@@ -1,0 +1,12 @@
+.table img {
+	height: 80px;
+	width: 80px;
+}
+#image-preview {
+	height: 100px;
+	width: auto;
+}
+.card-img-top {
+	height: 100px;
+	width: auto;
+}
