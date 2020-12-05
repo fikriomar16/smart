@@ -8,6 +8,7 @@ class C_smartphone extends CI_Controller {
 		parent::__construct();
 		date_default_timezone_set('Asia/Jakarta');
 		$this->load->model('M_smartphone','msmart');
+		$this->load->library('user_agent');
 	}
 
 	public function index()
@@ -46,8 +47,7 @@ class C_smartphone extends CI_Controller {
 			$row[] = $sp->chipset;
 			$row[] = $sp->os;
 			$row[] = $sp->baterai.' mAh';
-			$row[] = "Rp ".number_format($sp->harga,0,',','.');
-
+			$row[] = 'Rp '.number_format($sp->harga,0,',','.');
 			//add html for action
 			$row[] = '<td class="text-center">'.
 			'<button class="btn btn-sm btn-primary m-1" onclick="det_smart('.
@@ -60,26 +60,52 @@ class C_smartphone extends CI_Controller {
 			$sp->id.
 			');" '.$pop_del.'><i class="fas fa-trash"></i></button>'.
 			'</td>';
-		
+
 			$data[] = $row;
 		}
-
 		$output = array(
-						"draw" => $_POST['draw'],
-						"recordsTotal" => $this->msmart->count_all(),
-						"recordsFiltered" => $this->msmart->count_filtered(),
-						"data" => $data,
-				);
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->msmart->count_all(),
+			"recordsFiltered" => $this->msmart->count_filtered(),
+			"data" => $data,
+		);
+		//output to json format
+		echo json_encode($output);
+	}
+
+	public function ajax_user()
+	{
+		$list = $this->msmart->get_datatables();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $sp) {
+			$no++;
+			$row = array();
+			$row[] = '<input value="" type="checkbox" id="chk_boxes1"  name="hp[]" onchange=""/>';
+			$row[] = $sp->merk." ".$sp->seri;
+			$row[] = $sp->ram.' GB - '.$sp->rom.' GB';
+			$row[] = $sp->kamera_belakang.' MP / '.$sp->kamera_depan.' MP';
+			$row[] = $sp->display.'"';
+			$row[] = $sp->cpu.' GHz';
+			$row[] = $sp->chipset;
+			$row[] = $sp->os;
+			$row[] = $sp->baterai.' mAh';
+			$row[] = 'Rp '.number_format($sp->harga,0,',','.');
+
+			$data[] = $row;
+		}
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->msmart->count_all(),
+			"recordsFiltered" => $this->msmart->count_filtered(),
+			"data" => $data,
+		);
 		//output to json format
 		echo json_encode($output);
 	}
 
 	public function get_smartphone()
 	{
-		$sesi = $this->session->userdata('admin');
-		if (!$sesi) {
-			redirect('beranda');
-		}
 		$data = $this->msmart->list_smartphone();
 		echo json_encode($data);
 	}

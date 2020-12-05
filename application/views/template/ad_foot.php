@@ -50,8 +50,6 @@
 		<?php } ?>
 		
 		$(document).ready(function() {
-			$('[data-toggle="tooltip"]').tooltip();
-
 			<?php if ($p == 'smartphone') { ?>
 			var tab_smart;
 			tab_smart = $('#tab_smart').DataTable({
@@ -165,6 +163,7 @@
 				height: 150
 			});
 			<?php } ?>
+			$('[data-toggle="tooltip"]').tooltip();
 		});
 	</script>
 </body>

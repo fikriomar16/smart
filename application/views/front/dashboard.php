@@ -1,8 +1,8 @@
 <div class="m-0">
-	<div class="card animated fadeInUp border-left-success shadow h-100 py-2 my-5">
+	<div class="card animated fadeInUpBig border-left-success shadow h-100 py-2 my-5">
 		<div class="card-body">
 			<center>
-				<img class="m-4 img-fluid animated flash" src="<?= base_url('assets/img/sp1.png') ?>" style="height: 150px;">
+				<img class="m-4 img-fluid" src="<?= base_url('assets/img/sp1.png') ?>" style="height: 150px;">
 				<?php $d = $detail_con->row(); ?>
 				<h4 class="font-weight-bold"><?= $d->nama_aplikasi;?></h4>
 				<hr>

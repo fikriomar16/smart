@@ -57,11 +57,58 @@
 			<?php } ?>
 
 			<?php if ($p == 'find' || $p == 'cari') { ?>
+				function konversi(angka) {
+					var reverse = angka.toString().split('').reverse().join(''),
+					ribuan = reverse.match(/\d{1,3}/g);
+					ribuan = ribuan.join('.').split('').reverse().join('');
+					return ribuan
+				}
+				tampil_daftar();
+				$('#chk_boxes').click(function(){
+					$('[name="hp[]"]').attr('checked',this.checked)
+				})
 				var tab_pilih;
 				tab_pilih = $('#tab_pilih').DataTable();
-			$('.chk_boxes').click(function(){
-				$('.chk_boxes1').attr('checked',this.checked)
-			})
+				function tampil_daftar() {
+					$.ajax({
+						type: "ajax",
+						url: "<?= base_url('list_smartphone') ?>",
+						async: false,
+						dataType: "json",
+						success: function (data) {
+							var html = '';
+							var i;
+							for (i = 0; i < data.length; i++) {
+								html+= '<tr>'+
+								'<td><input value="'+data[i].id+'" type="checkbox" id="chk_boxes1"  name="hp[]" onchange=""/></td>'+
+								'<td>'+data[i].merk+' '+data[i].seri+'</td>'+
+								'<td>'+data[i].ram+' GB - '+data[i].rom+' GB'+'</td>'+
+								'<td>'+data[i].kamera_belakang+' MP / '+data[i].kamera_depan+' MP</td>'+
+								'<td>'+data[i].display+'"</td>'+
+								'<td>'+data[i].cpu+' GHz</td>'+
+								'<td>'+data[i].chipset+'</td>'+
+								'<td>'+data[i].os+'</td>'+
+								'<td>'+data[i].baterai+' mAh</td>'+
+								'<td>Rp.'+konversi(data[i].harga)+'</td>'+
+								'</tr>';
+							}
+							$('#show_pilih').html(html);
+						}
+					});
+				}
+				$('#btn_cari').click(function () {
+					$.ajax({
+						type: "POST",
+						url: "<?= base_url('get_data') ?>",
+						data: $('#tab_pilih input:checked').serialize(),
+						success: function (data){
+							swal(data);
+						},
+						error: function(data){
+							notif_gagal();
+						}
+					});
+				})
 			<?php } ?>
 		});
 	</script>

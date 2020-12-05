@@ -4,13 +4,27 @@
 	</div>
 	<div class="card-body" id="data_list">
 		<!-- Isi -->
+		<?php
+		$platform = $this->agent->platform();
+		if ($platform=="Android" | $platform=="iOS") {
+			$cardsize = 'col-6';
+			// $imgsize = 'style="width: 40%;height: auto;"';
+			$imgsize = '';
+		} else {
+			$cardsize = 'col-md-2';
+			$imgsize = '';
+		}
+		?>
 		<div class="row justify-content-center py-2">
-			<div class="col-md-2 mb-4">
+			<div class="<?= $cardsize; ?> mb-2">
 				<div class="card shadow h-100">
-					<img class="card-img-top" src="https://github.com/fluidicon.png" alt="Smartphone">
+					<center>
+						<img class="card-img-top img-responsive img-fluid" src="https://github.com/fluidicon.png" alt="Smartphone" <?= $imgsize;  ?>>
+					</center>
 					<div class="card-body">
 						<p class="card-text">Merk & Harga.</p>
 					</div>
+					<script type="text/javascript">console.log('<?= $this->agent->platform(); ?>');</script>
 					<div class="card-footer">
 						<button class="btn btn-sm btn-block btn-outline-primary" onclick="">
 							<i class="fas fa-eye"></i>&nbsp; Detail

@@ -56,10 +56,12 @@ $route['translate_uri_dashes'] = FALSE;
 $route['beranda'] = 'c_user';
 $route['list'] = 'c_user/listsmartphone';
 $route['daftar'] = 'c_user/listsmartphone';
-$route['find'] = 'c_user/findrekomendasi';
-$route['cari'] = 'c_user/findrekomendasi';
 $route['help'] = 'c_user/helppage';
 $route['bantuan'] = 'c_user/helppage';
+
+$route['find'] = 'c_proses';
+$route['cari'] = 'c_proses';
+$route['get_data'] = 'c_proses/getdata';
 
 $route['masuk'] = 'c_login';
 $route['login'] = 'c_login';
@@ -69,6 +71,7 @@ $route['logout'] = 'c_login/logout';
 
 $route['smartphone'] = 'c_smartphone';
 $route['ajax_list'] = 'c_smartphone/ajax';
+$route['ajax_list_user'] = 'c_smartphone/ajax_user';
 $route['list_smartphone'] = 'c_smartphone/get_smartphone';
 $route['simpan_smartphone'] = 'c_smartphone/save_smartphone';
 $route['pil_smart/(:any)'] = 'c_smartphone/select_smart/$1';

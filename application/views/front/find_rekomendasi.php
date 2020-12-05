@@ -6,49 +6,32 @@
 		<!-- Isi -->
 		<div class="table-responsive">
 			<table class="table table-hover" id="tab_pilih">
-				<thead class="thead-light">
-					<tr>
-						<th>
-							<input type="checkbox" id="chk_boxes" class="custom-checkbox" label="check all">
-						</th>
-						<th>Smartphone</th>
-						<th>RAM-ROM</th>
-						<th>Camera</th>
-						<th>Display</th>
-						<th>CPU</th>
-						<th>Chipset</th>
-						<th>OS</th>
-						<th>Baterai</th>
-						<th>Harga</th>
-					</tr>
-				</thead>
-				<tbody id="show_pilih">
-					<tr>
-						<td>
-							<input value="" type="checkbox" id="chk_boxes1"  name="hp[]" onchange=""/>
-						</td>
-						<td>
-							<button type="button" class="btn btn-outline-info btn-sm text-uppercase" onclick="swal('Test');" data-toggle="tooltip" data-placement="right" title="Detail">
-								Samsung S10
-							</button>
-						</td>
-						<td>aaaa</td>
-						<td>aaaa</td>
-						<td>aaaa</td>
-						<td>aaaa</td>
-						<td>aaaa</td>
-						<td>aaaa</td>
-						<td>aaaa</td>
-						<td>aaaa</td>
-					</tr>
-				</tbody>
+				<form method="POST" enctype="multipart/form-data" id="form_cari">
+					<thead class="thead-light">
+						<tr>
+							<th>
+								<input type="checkbox" id="chk_boxes" class="custom-checkbox" label="check all">
+							</th>
+							<th>Smartphone</th>
+							<th>RAM-ROM</th>
+							<th>Camera</th>
+							<th>Display</th>
+							<th>CPU</th>
+							<th>Chipset</th>
+							<th>OS</th>
+							<th>Baterai</th>
+							<th>Harga</th>
+						</tr>
+					</thead>
+					<tbody id="show_pilih">
+					</tbody>
+				</form>
 			</table>
 		</div>
 	</div>
 	<div class="card-footer text-center">
-		<a href="" class="btn btn-primary btn-icon-split m-1">
-			<span class="icon text-white"><i class="fas fa-check"></i></span>
-			<span class="text">Tampilkan Hasil</span>
-		</a>
+		<button class="btn btn-primary btn-block" id="btn_cari">
+			<i class="fas fa-check"></i>&nbsp;Tampilkan Hasil
+		</button>
 	</div>
 </div>
