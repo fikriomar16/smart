@@ -30,39 +30,99 @@
 			$('[data-toggle="tooltip"]').tooltip({
 				placement : 'right'
 			});
+			function konversi(angka) {
+				var reverse = angka.toString().split('').reverse().join(''),
+				ribuan = reverse.match(/\d{1,3}/g);
+				ribuan = ribuan.join('.').split('').reverse().join('');
+				return ribuan
+			}
 
 			<?php if ($p == 'login'  || $p == 'masuk') { ?>
-			$('#btn_flogin').click(function () {
-				$.ajax({
-					type: "POST",
-					url: "<?= base_url('check') ?>",
-					data: $('#flogin').serialize(),
-					success: function (data){
-						if (data == 'benar') {
-							sukses_login();
-							setTimeout('window.location = "<?= base_url('admin') ?>"; ',1000);
-						} else {
-							gagal_login();
+				$('#btn_flogin').click(function () {
+					$.ajax({
+						type: "POST",
+						url: "<?= base_url('check') ?>",
+						data: $('#flogin').serialize(),
+						success: function (data){
+							if (data == 'benar') {
+								sukses_login();
+								setTimeout('window.location = "<?= base_url('admin') ?>"; ',1000);
+							} else {
+								gagal_login();
+							}
+						},
+						error: function(data){
+							console.log(data);
 						}
-					},
-					error: function(data){
-						console.log(data);
-					}
-				});
-			})
+					});
+				})
 			<?php } ?>
 
 			<?php if ($p == 'list' || $p == 'daftar') { ?>
-				var data_list;
+				$('#pagination').on('click','a',function(e){
+					e.preventDefault(); 
+					var pageno = $(this).attr('data-ci-pagination-page');
+					loadPagination(pageno);
+				});
+				loadPagination(0);
+				function loadPagination(pagno){
+					$.ajax({
+						type: "ajax",
+						url: "<?= base_url('cek_hal/') ?>"+pagno,
+						async: false,
+						dataType: "json",
+						success: function(data){
+							$('#pagination').empty();
+							$('#pagination').html(data.pagination);
+							content(data.result,data.row);
+							console.log(data);
+						},
+						error: function(data){
+							console.log(data);
+						}
+					});
+				}
+				function content(result,sno){
+					var platform = "<?= $this->agent->platform() ?>";
+					var imgsize,cardsize;
+					if (platform == "Android" || platform == "iOS") {
+						cardsize = 'col-6';
+						imgsize = ' style="height: 100px;width: auto;"';
+					} else {
+						cardsize = 'col-md-2';
+						imgsize = ' style="height: 200px;width: auto;"';
+					}
+					sno = Number(sno);
+					$('#data_list').empty();
+					var isi = '';
+					for(index in result){
+						var id = result[index].id;
+						var merk = result[index].merk;
+						var seri = result[index].seri;
+						var harga = result[index].harga;
+						var foto = result[index].foto;
+						sno+=1;
+						isi+= '<div class="'+cardsize+' mb-2">'+
+						'<div class="card shadow h-100">'+
+						'<center>'+
+						'<img class="card-img-top img-responsive img-fluid" src="<?= base_url("assets/img/smartphone/") ?>'+foto+'" alt="Smartphone" '+imgsize+'>'+
+						'</center>'+
+						'<div class="card-body">'+
+						'<p class="card-text">'+merk+' '+seri+' <br>(Rp. '+konversi(harga)+')</p>'+
+						'</div>'+
+						'<div class="card-footer">'+
+						'<button class="btn btn-sm btn-block btn-outline-primary" onclick="">'+
+						'<i class="fas fa-eye"></i>&nbsp; Detail'+
+						'</button>'+
+						'</div>'+
+						'</div>'+
+						'</div>';
+						$('#data_list').html(isi);
+					}
+				}
 			<?php } ?>
 
 			<?php if ($p == 'find' || $p == 'cari') { ?>
-				function konversi(angka) {
-					var reverse = angka.toString().split('').reverse().join(''),
-					ribuan = reverse.match(/\d{1,3}/g);
-					ribuan = ribuan.join('.').split('').reverse().join('');
-					return ribuan
-				}
 				tampil_daftar();
 				$('#chk_boxes').click(function(){
 					$('[name="hp[]"]').attr('checked',this.checked)
@@ -109,8 +169,8 @@
 						}
 					});
 				})
-			<?php } ?>
-		});
+			<?php } ?>	
+		})
 	</script>
 </body>
 </html>

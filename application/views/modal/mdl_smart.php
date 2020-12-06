@@ -13,7 +13,7 @@
 								<div class="col">
 									<div class="form-group">
 										<label>Merk Smartphone</label>
-										<input type="text" name="merk" class="form-control">
+										<input type="text" name="merk" class="form-control" autofocus>
 									</div>
 								</div>
 								<div class="col">
@@ -27,7 +27,7 @@
 								<div class="col">
 									<div class="form-group">
 										<label>Display</label>
-										<input type="number" step="0.1" name="display" class="form-control">
+										<input type="number" min="5.0" step="0.1" name="display" class="form-control">
 									</div>
 								</div>
 								<div class="col">
@@ -93,7 +93,7 @@
 								<small>(.jpg atau .png | Max 2MB)</small>
 								<center>
 									<p hidden id="det_image"></p>
-									<img id="image-preview" style="width: 200px;height: auto;">
+									<img id="image-preview" style="height: 200px;width: auto;">
 								</center>
 							</div>
 						</div>

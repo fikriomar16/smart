@@ -5,6 +5,7 @@
 		$('#headtitle').text('Tambah Data Smartphone');
 		$('#mdl_smart').modal('show');
 		$('#form_smart')[0].reset();
+		$("#merk")[0].focus();
 		document.getElementById("image-preview").src = "";
 	}	
 	function det_smart(id) {
@@ -17,7 +18,7 @@
 				Swal.fire({
 					title: data.merk+' '+data.seri,
 					imageUrl: '<?= "assets/img/smartphone/"?>'+data.foto,
-					imageWidth: 150,
+					imageHeight: 150,
 					html:
 					'<hr>'+
 					'<div class="text-left small">'+

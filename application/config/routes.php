@@ -54,10 +54,12 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['beranda'] = 'c_user';
-$route['list'] = 'c_user/listsmartphone';
-$route['daftar'] = 'c_user/listsmartphone';
 $route['help'] = 'c_user/helppage';
 $route['bantuan'] = 'c_user/helppage';
+
+$route['daftar'] = 'c_list';
+$route['list'] = 'c_list';
+$route['cek_hal/(:any)'] = 'c_list/listpage/$1';
 
 $route['find'] = 'c_proses';
 $route['cari'] = 'c_proses';

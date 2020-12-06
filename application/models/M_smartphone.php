@@ -74,6 +74,12 @@ class M_smartphone extends CI_Model {
 
 		return $query->row();
 	}
+	public function seg($rowperpage,$rowno)
+	{
+		$this->db->from('tbl_smartphone')->limit($rowperpage,$rowno);
+		$q = $this->db->get();
+		return $q->result_array();
+	}
 
 	public function list_smartphone()
 	{

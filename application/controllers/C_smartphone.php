@@ -125,7 +125,7 @@ class C_smartphone extends CI_Controller {
 		$title = str_replace(' ', '_', $merk_seri);
 
 		$config['upload_path'] = './assets/img/smartphone/';
-		$config['allowed_types'] = 'gif|jpg|png';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$config['max_size']  = '3072'; // 3MB
 		$config['overwrite'] = TRUE;
 		$config['file_name'] = $title;

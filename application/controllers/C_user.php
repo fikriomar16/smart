@@ -8,7 +8,6 @@ class C_user extends CI_Controller {
 		parent::__construct();
 		date_default_timezone_set('Asia/Jakarta');
 		$this->load->model('M_config','mconfig');
-		$this->load->library('user_agent');
 	}
 
 	public function index()
@@ -17,14 +16,6 @@ class C_user extends CI_Controller {
 		$data['detail_con'] = $this->mconfig->det_conf();
 		$this->load->view('template/us_head', $data);
 		$this->load->view('front/dashboard', $data);
-		$this->load->view('template/us_foot', $data);
-	}
-
-	public function listsmartphone()
-	{
-		$data['title'] = 'Recommendation - List Smartphone';
-		$this->load->view('template/us_head', $data);
-		$this->load->view('front/list_smartphone', $data);
 		$this->load->view('template/us_foot', $data);
 	}
 
