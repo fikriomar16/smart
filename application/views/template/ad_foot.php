@@ -63,11 +63,18 @@
 				"columnDefs": [{ 
 					"targets": [ -1 ],
 					"orderable": false
-				}]
+				}],
+				initComplete:function () {
+					$('#tab_smart thead tr th').addClass("align-middle text-center");
+					$('#show_smart tr td').addClass("align-middle");
+				}
 			});
 			function reload_tab_smart()
 			{
-				tab_smart.ajax.reload(null,false);
+				// tab_smart.ajax.reload(null,false);
+				tab_smart.ajax.reload(function () {
+					$('#show_smart tr td').addClass("align-middle");
+				})
 			}
 			$('#form_smart').submit(function (e) {
 				e.preventDefault();

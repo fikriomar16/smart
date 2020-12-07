@@ -22,7 +22,7 @@ class C_list extends CI_Controller {
 
 	public function listpage($rowno=0)
 	{
-		$rowperpage = 10;
+		$rowperpage = 12;
 		if($rowno != 0){
 			$rowno = ($rowno-1) * $rowperpage;
 		}

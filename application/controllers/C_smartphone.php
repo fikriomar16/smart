@@ -121,6 +121,7 @@ class C_smartphone extends CI_Controller {
 		$id = $this->input->post('id');
 		$merk = strtoupper($this->input->post('merk'));
 		$seri = ucwords($this->input->post('seri'), " \t\r\n\f\v'");
+		$chipset = ucwords($this->input->post('chipset'), " \t\r\n\f\v'");
 		$merk_seri = $merk."_".$seri;
 		$title = str_replace(' ', '_', $merk_seri);
 
@@ -144,7 +145,7 @@ class C_smartphone extends CI_Controller {
 					'ram' => $this->input->post('ram'),
 					'rom' => $this->input->post('rom'),
 					'cpu' => $this->input->post('cpu'),
-					'chipset' => $this->input->post('chipset'),
+					'chipset' => $chipset,
 					'os' => $this->input->post('os'),
 					'baterai' => $this->input->post('baterai'),
 					'harga' => $this->input->post('harga'),
@@ -164,7 +165,7 @@ class C_smartphone extends CI_Controller {
 					'ram' => $this->input->post('ram'),
 					'rom' => $this->input->post('rom'),
 					'cpu' => $this->input->post('cpu'),
-					'chipset' => $this->input->post('chipset'),
+					'chipset' => $chipset,
 					'os' => $this->input->post('os'),
 					'baterai' => $this->input->post('baterai'),
 					'harga' => $this->input->post('harga'),
@@ -187,7 +188,7 @@ class C_smartphone extends CI_Controller {
 					'ram' => $this->input->post('ram'),
 					'rom' => $this->input->post('rom'),
 					'cpu' => $this->input->post('cpu'),
-					'chipset' => $this->input->post('chipset'),
+					'chipset' => $chipset,
 					'os' => $this->input->post('os'),
 					'baterai' => $this->input->post('baterai'),
 					'harga' => $this->input->post('harga'),
@@ -207,7 +208,7 @@ class C_smartphone extends CI_Controller {
 					'ram' => $this->input->post('ram'),
 					'rom' => $this->input->post('rom'),
 					'cpu' => $this->input->post('cpu'),
-					'chipset' => $this->input->post('chipset'),
+					'chipset' => $chipset,
 					'os' => $this->input->post('os'),
 					'baterai' => $this->input->post('baterai'),
 					'harga' => $this->input->post('harga'),

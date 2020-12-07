@@ -5,8 +5,8 @@
 		$('#headtitle').text('Tambah Data Smartphone');
 		$('#mdl_smart').modal('show');
 		$('#form_smart')[0].reset();
-		$("#merk")[0].focus();
 		document.getElementById("image-preview").src = "";
+		$('#image-preview').removeAttr('src');
 	}	
 	function det_smart(id) {
 		$.ajax({
@@ -106,8 +106,9 @@
 					<span class="icon text-white-50"><i class="fas fa-sync"></i></span>
 					<span class="text">Reload</span>
 				</button>
+				<script type="text/javascript"></script>
 				<div class="table-responsive">
-					<table class="table table-hover" id="tab_smart">
+					<table class="table table-hover table-striped table-sm" id="tab_smart">
 						<thead class="thead-light">
 							<tr>
 								<th>No</th>

@@ -58,9 +58,12 @@
 							<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
 							Login
 						</a>
-						<?php } ?>
-						<!-- <div class="dropdown-divider"></div> -->
-						<?php if ($this->session->userdata('admin')) { ?>
+						<?php } else { ?>
+						<a class="dropdown-item" href="<?= base_url('admin') ?>">
+							<i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
+							Menuju Dashboard
+						</a>
+						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#" onclick="logout();">
 							<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 							Keluar

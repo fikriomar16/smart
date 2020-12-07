@@ -32,7 +32,14 @@ class C_proses extends CI_Controller {
 		} else {
 			echo "Tidak Ada Pilihan";
 		}
-		
+	}
+
+	public function olahdata()
+	{
+		// separate letters and digits
+		// https://stackoverflow.com/questions/4311156/how-to-separate-letters-and-digits-from-a-string-in-php
+		$numbers = preg_replace('/[^0-9]/', '', $str);
+		$letters = preg_replace('/[^a-zA-Z]/', '', $str);
 	}
 
 }

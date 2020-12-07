@@ -12,11 +12,15 @@ class M_smartphone extends CI_Model {
 	function _get_datatables_query()
 	{
 		$table = 'tbl_smartphone';
-		$order = array('merk' => 'asc');
+		$order = array('merk' => 'asc','seri' => 'asc','ram' => 'asc','rom' => 'asc');
 		$column_order = array('id','merk','seri','display','kamera_depan','kamera_belakang','ram','rom','cpu','chipset','os','baterai','harga','foto');
 		$column_search = array('id','merk','seri','display','kamera_depan','kamera_belakang','ram','rom','cpu','chipset','os','baterai','harga','foto');
 
-		$this->db->from('tbl_smartphone');		
+		$this->db->from('tbl_smartphone');
+		$this->db->order_by('merk', 'ASC');
+		$this->db->order_by('seri', 'ASC');
+		$this->db->order_by('ram', 'ASC');
+		$this->db->order_by('rom', 'ASC');	
 		$i = 0;
 		foreach ($column_search as $item) // loop column
 		{
@@ -77,13 +81,25 @@ class M_smartphone extends CI_Model {
 	public function seg($rowperpage,$rowno)
 	{
 		$this->db->from('tbl_smartphone')->limit($rowperpage,$rowno);
+		$this->db->order_by('merk', 'ASC');
+		$this->db->order_by('seri', 'ASC');
+		$this->db->order_by('ram', 'ASC');
+		$this->db->order_by('rom', 'ASC');
 		$q = $this->db->get();
 		return $q->result_array();
 	}
 
 	public function list_smartphone()
 	{
-		$query = $this->db->get('tbl_smartphone');
+		// $query = $this->db->get('tbl_smartphone');
+		// return $query->result();
+		$this->db->select('*');
+		$this->db->from('tbl_smartphone');
+		$this->db->order_by('merk', 'ASC');
+		$this->db->order_by('seri', 'ASC');
+		$this->db->order_by('ram', 'ASC');
+		$this->db->order_by('rom', 'ASC');
+		$query = $this->db->get();
 		return $query->result();
 	}
 

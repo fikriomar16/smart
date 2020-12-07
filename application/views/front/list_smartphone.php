@@ -1,3 +1,35 @@
+<script type="text/javascript">
+	function det_smart(id) {
+		$.ajax({
+			type: "ajax",
+			url: "<?= base_url('pil_smart/') ?>"+id,
+			async: false,
+			dataType: "json",
+			success: function (data) {
+				Swal.fire({
+					title: data.merk+' '+data.seri,
+					imageUrl: '<?= "assets/img/smartphone/"?>'+data.foto,
+					imageHeight: 150,
+					html:
+					'<hr>'+
+					'<div class="text-left small">'+
+					'<ul>'+
+					'<li>Display: '+data.display+'"</li>'+
+					'<li>OS: '+data.os+'</li>'+
+					'<li>RAM: '+data.ram+' GB</li>'+
+					'<li>ROM: '+data.rom+' GB</li>'+
+					'<li>Kamera: '+data.kamera_belakang+' MP / '+data.kamera_depan+'MP</li>'+
+					'<li>CPU: '+data.cpu+' GHz</li>'+
+					'<li>Chipset: '+data.chipset+'</li>'+
+					'<li>Baterai: '+data.baterai+' mAh</li>'+
+					'<li>Harga: Rp.'+konversi(data.harga)+'</li>'+
+					'</ul>'+
+					'</div>'
+				})
+			}
+		});
+	}
+</script>
 <div class="card shadow animated fadeInRightBig border-bottom-success shadow h-100 py-2 my-3" id="manual">
 	<div class="card-header">
 		<h5 class="font-weight-bold text-success text-center">List Smartphone</h5>
@@ -31,7 +63,7 @@
 				</div>
 			</div> -->
 		</div>
-		<div id='pagination'></div>
+		<div class="float-right align-content-center" id='pagination'></div>
 	</div>
 	<div class="card-footer text-center">
 		<a href="<?= base_url('find') ?>" class="btn btn-success btn-icon-split m-1">

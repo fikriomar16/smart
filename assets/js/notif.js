@@ -4,7 +4,7 @@ function notif_sukses() {
 		type: 'success',
 		title: 'Berhasil Simpan Data',
 		showConfirmButton: false,
-		timer: 1500
+		timer: 10
 	});
 }
 

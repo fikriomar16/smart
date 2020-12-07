@@ -6,8 +6,8 @@
 			</div>
 			<form method="POST" enctype="multipart/form-data" id="form_smart">
 				<div class="modal-body">
-					<div class="row">
-						<div class="col-6">
+					<div class="row justify-content-center">
+						<div class="col-4">
 							<input type="text" name="id" class="form-control" hidden>
 							<div class="row">
 								<div class="col">
@@ -33,7 +33,7 @@
 								<div class="col">
 									<div class="form-group">
 										<label>Os</label>
-										<input type="text" name="os" class="form-control">
+										<input type="number" min="4" name="os" class="form-control">
 									</div>
 								</div>
 							</div>
@@ -66,7 +66,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-6">
+						<div class="col-3">
 							<div class="form-group">
 								<label>CPU</label>
 								<input type="text" name="cpu" class="form-control">
@@ -77,16 +77,14 @@
 							</div>
 							<div class="form-group">
 								<label>Baterai</label>
-								<input type="text" name="baterai" class="form-control">
+								<input type="number" min="3000" name="baterai" class="form-control">
 							</div>
 							<div class="form-group">
 								<label>Harga</label>
-								<input type="number" name="harga" class="form-control">
+								<input type="number" min="1000000" name="harga" class="form-control">
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col text-center">
+						<div class="col-3 text-center">
 							<div class="form-group">
 								<label>Foto Smartphone</label>
 								<input type="file" name="foto" class="form-control" accept="image/*" id="foto" onchange="previewImage();">
