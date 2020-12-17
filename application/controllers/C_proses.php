@@ -9,7 +9,6 @@ class C_proses extends CI_Controller {
 		date_default_timezone_set('Asia/Jakarta');
 		$this->load->model('M_smartphone','msmart');
 		$this->load->model('M_proses','mproses');
-		$this->load->library('user_agent');
 	}
 
 	public function index()
@@ -18,6 +17,19 @@ class C_proses extends CI_Controller {
 		$this->load->view('template/us_head', $data);
 		$this->load->view('front/find_rekomendasi', $data);
 		$this->load->view('template/us_foot', $data);
+	}
+
+	public function pushdata()
+	{
+		$id = $this->input->post('hp');
+		$arr = array();
+		if (false !== $key = array_search($id, $arr)) {
+			unset($arr[$key]);
+		} else {
+			array_push($arr,$id);
+		}
+		// return $arr;
+		echo json_encode($arr);
 	}
 
 	public function getdata()

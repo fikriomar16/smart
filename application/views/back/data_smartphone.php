@@ -102,13 +102,13 @@
 					<span class="icon text-white-50"><i class="fas fa-plus"></i></span>
 					<span class="text">Tambah</span>
 				</button>
-				<button type="button" class="btn btn-primary btn-icon-split btn-sm mb-4" id="reload_tsmart" data-toggle="tooltip" data-placement="right" title="Reload Tabel">
+				<button type="button" class="btn btn-primary btn-icon-split btn-sm mb-4 float-right" id="reload_tsmart" data-toggle="tooltip" data-placement="right" title="Reload Tabel">
 					<span class="icon text-white-50"><i class="fas fa-sync"></i></span>
 					<span class="text">Reload</span>
 				</button>
 				<script type="text/javascript"></script>
 				<div class="table-responsive">
-					<table class="table table-hover table-striped table-sm" id="tab_smart">
+					<table class="table table-hover table-striped table-borderless table-sm w-100 d-block d-md-table" id="tab_smart">
 						<thead class="thead-light">
 							<tr>
 								<th>No</th>
@@ -123,7 +123,7 @@
 								<th>OS</th>
 								<th>Baterai</th>
 								<th>Harga</th>
-								<th class="text-center">Opsi</th>
+								<th>Opsi</th>
 							</tr>
 						</thead>
 						<tbody id="show_smart">

@@ -17,10 +17,10 @@ class M_smartphone extends CI_Model {
 		$column_search = array('id','merk','seri','display','kamera_depan','kamera_belakang','ram','rom','cpu','chipset','os','baterai','harga','foto');
 
 		$this->db->from('tbl_smartphone');
-		$this->db->order_by('merk', 'ASC');
-		$this->db->order_by('seri', 'ASC');
-		$this->db->order_by('ram', 'ASC');
-		$this->db->order_by('rom', 'ASC');	
+		// $this->db->order_by('merk', 'ASC');
+		// $this->db->order_by('seri', 'ASC');
+		// $this->db->order_by('ram', 'ASC');
+		// $this->db->order_by('rom', 'ASC');	
 		$i = 0;
 		foreach ($column_search as $item) // loop column
 		{

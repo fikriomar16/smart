@@ -9,20 +9,16 @@
 				<h6 class="text-center m-0 font-weight-bold text-info">Data Kriteria</h6>
 			</div>
 			<div class="card-body">
-				<button type="button" class="btn btn-info btn-icon-split btn-sm mb-4" onclick="" data-toggle="tooltip" data-placement="right" title="Tambah Data">
-					<span class="icon text-white-50"><i class="fas fa-plus"></i></span>
-					<span class="text">Tambah</span>
-				</button>
 				<div class="table-responsive">
 					<table class="table table-hover" id="tab_kriteria">
 						<thead class="thead-light">
 							<tr>
-								<th>Kode Kriteria</th>
+								<th>No.</th>
 								<th>Kriteria</th>
 								<th class="text-center">Opsi</th>
 							</tr>
 						</thead>
-						<tbody id="">
+						<tbody id="show_kriteria">
 						</tbody>
 					</table>
 				</div>

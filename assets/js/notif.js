@@ -4,7 +4,7 @@ function notif_sukses() {
 		type: 'success',
 		title: 'Berhasil Simpan Data',
 		showConfirmButton: false,
-		timer: 10
+		timer: 1000
 	});
 }
 
@@ -44,7 +44,7 @@ function sukses_simpan_bantuan() {
 	swal({
 		type: 'success',
 		title: 'Berhasil',
-		text: 'Pengumuman Berhasil Disimpan',
+		text: 'Halaman Bantuan Berhasil Disimpan',
 		showConfirmButton: false,
 		timer: 2500
 	});

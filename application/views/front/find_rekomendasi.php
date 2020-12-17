@@ -36,8 +36,8 @@
 	</div>
 	<div class="card-body">
 		<!-- Isi -->
-		<div class="table-responsive">
-			<table class="table table-hover table-striped table-sm" id="tab_pilih">
+		<div class="table-responsive <?php if ($this->agent->platform() == "Android" || $this->agent->platform() == "iOS"){echo "small";} ?>">
+			<table class="table table-hover table-striped table-borderless table-sm" id="tab_pilih">
 				<form method="POST" enctype="multipart/form-data" id="form_cari">
 					<thead class="thead-light text-center">
 						<tr>
@@ -49,13 +49,14 @@
 							</th>
 							<th>Smartphone</th>
 							<th>RAM-ROM</th>
-							<th>Camera</th>
+							<th>Kamera</th>
 							<th>Display</th>
 							<th>CPU</th>
 							<th>Chipset</th>
 							<th>OS</th>
 							<th>Baterai</th>
 							<th>Harga</th>
+							<th>...</th>
 						</tr>
 					</thead>
 					<tbody id="show_pilih">

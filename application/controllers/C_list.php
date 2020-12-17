@@ -8,7 +8,6 @@ class C_list extends CI_Controller {
 		parent::__construct();
 		date_default_timezone_set('Asia/Jakarta');
 		$this->load->model('M_smartphone','msmart');
-		$this->load->library('user_agent');
 		$this->load->library('pagination');
 	}
 
@@ -27,6 +26,12 @@ class C_list extends CI_Controller {
 			$rowno = ($rowno-1) * $rowperpage;
 		}
 		$record = $this->msmart->seg($rowperpage,$rowno);
+		$platform = $this->agent->platform();
+		if ($platform=="Android" | $platform=="iOS") {
+			$size = 'small';
+		} else {
+			$size = '';
+		}
 		
 		$config['base_url'] = base_url();
 		$config['use_page_numbers'] = TRUE;
@@ -34,17 +39,17 @@ class C_list extends CI_Controller {
 		$config['per_page'] = $rowperpage;
 		// $config['uri_segment'] = 3;
 		// $config['num_links'] = 3;
-		$config['first_link'] = 'Pertama';
+		$config['first_link'] = 'First';
 		$config['first_tag_open'] = '<div>';
 		$config['first_tag_close'] = '</div>';
-		$config['last_link'] = 'Terakhir';
+		$config['last_link'] = 'Last';
 		$config['last_tag_open'] = '<div>';
 		$config['last_tag_close'] = '</div>';
 		// $config['next_link'] = '&gt;';
 		// $config['prev_link'] = '&lt;';
-		$config['next_link'] = 'Selanjutnya';
-		$config['prev_link'] = 'Sebelumnya';
-		$config['full_tag_open'] = '<div class="pagging text-center"><nav><ul class="pagination">';
+		$config['next_link'] = 'Next';
+		$config['prev_link'] = 'Prev';
+		$config['full_tag_open'] = '<div class="pagging '.$size.' text-center"><nav><ul class="pagination">';
 		$config['full_tag_close'] = '</ul></nav></div>';
 		$config['num_tag_open'] = '<li class="page-item"><span class="page-link">';
 		$config['num_tag_close'] = '</span></li>';

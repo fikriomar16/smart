@@ -41,13 +41,13 @@
 								<div class="col">
 									<div class="form-group">
 										<label>RAM</label>
-										<input type="text" name="ram" class="form-control">
+										<input type="number" min="1" name="ram" class="form-control">
 									</div>
 								</div>
 								<div class="col">
 									<div class="form-group">
 										<label>ROM</label>
-										<input type="text" name="rom" class="form-control">
+										<input type="number" min="16" name="rom" class="form-control">
 									</div>
 								</div>
 							</div>
@@ -87,8 +87,11 @@
 						<div class="col-3 text-center">
 							<div class="form-group">
 								<label>Foto Smartphone</label>
-								<input type="file" name="foto" class="form-control" accept="image/*" id="foto" onchange="previewImage();">
-								<small>(.jpg atau .png | Max 2MB)</small>
+								<div class="custom-file">
+									<input type="file" name="foto" class="form-control custom-file-input" accept="image/*" id="foto" onchange="previewImage();">
+									<label class="custom-file-label" for="foto">Pilih Foto</label>
+									<small>(.jpg atau .png | Max 2MB)</small>
+								</div>
 								<center>
 									<p hidden id="det_image"></p>
 									<img id="image-preview" style="height: 200px;width: auto;">

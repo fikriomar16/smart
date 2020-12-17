@@ -143,16 +143,47 @@
 						});
 					}
 				});
-				// $('#show_pilih tr').click(function() {
-				// 	$(':checkbox',this).trigger('click');
-				// 	if ($(':checkbox',this).is(':checked')) {
-				// 		$(this).addClass('bg-secondary text-white');
-				// 	} else {
-				// 		$(this).removeClass('bg-secondary text-white');
-				// 	}
-				// });
+				$('table').on('change', '[type=checkbox]', function () {
+					var $this = $(this);
+					var row = $this.closest('tr');
+					if ($this.prop('checked')){ // move to top
+						// row.insertBefore( row.parent().find('tr:first-child'));
+					} else { // move to bottom
+						// row.insertAfter( row.parent().find('tr:last-child'));
+					}
+				});
+				$('#tab_pilih [name="hp[]"]').click(function () {
+					$.ajax({
+						type: "POST",
+						url: "<?= base_url('push_data') ?>",
+						data: $('#tab_pilih input:checked').serialize(),
+						success: function (data){
+							console.log(data);
+						},
+						error: function(data){
+							notif_gagal();
+						}
+					});
+				})
 				var tab_pilih;
-				tab_pilih = $('#tab_pilih').DataTable();
+				tab_pilih = $('#tab_pilih').DataTable({
+					"lengthMenu": [[-1,10, 25, 50], ["Semua",10, 25, 50]],
+					"oLanguage": {
+						"oPaginate": {					
+							"sFirst": "Awal",
+							"sLast": "Akhir",
+							"sNext": "Selanjutnya",
+							"sPrevious": "Sebelumnya"
+						},
+						"sSearch": "Cari :",
+						"sSearchPlaceholder": "",
+						"sZeroRecords": "Data Tidak Ditemukan",
+						"sLengthMenu": "Tampilkan _MENU_   data",
+						"sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+						"sInfoEmpty": "Tidak Ada Data Ditemukan",
+						"sInfoFiltered": "(disaring dari _MAX_ total data)"
+					}				
+				});
 				function tampil_daftar() {
 					$.ajax({
 						type: "ajax",
@@ -171,8 +202,8 @@
 								'</div>'+
 								'</td>'+
 								'<td>'+
-								'<button class="btn btn-sm btn-block btn-secondary float-left" onclick="det_smart('+data[i].id+')">'+data[i].merk+' '+data[i].seri+'</button>'+
-								// data[i].merk+' '+data[i].seri+
+								// '<button class="btn btn-sm btn-block btn-secondary float-left" onclick="det_smart('+data[i].id+')">'+data[i].merk+' '+data[i].seri+'</button>'+
+								data[i].merk+' '+data[i].seri+
 								'</td>'+
 								'<td>'+data[i].ram+' GB - '+data[i].rom+' GB'+'</td>'+
 								'<td>'+data[i].kamera_belakang+' MP / '+data[i].kamera_depan+' MP</td>'+
@@ -182,6 +213,9 @@
 								'<td>'+data[i].os+'</td>'+
 								'<td>'+data[i].baterai+' mAh</td>'+
 								'<td>Rp.'+konversi(data[i].harga)+'</td>'+
+								'<td class="text-center">'+
+								'<button class="btn btn-sm btn-primary" onclick="det_smart('+data[i].id+')" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fas fa-eye"></i></button>'+
+								'</td>'+
 								'</tr>';
 							}
 							$('#show_pilih').html(html);

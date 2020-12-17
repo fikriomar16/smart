@@ -8,7 +8,6 @@ class C_smartphone extends CI_Controller {
 		parent::__construct();
 		date_default_timezone_set('Asia/Jakarta');
 		$this->load->model('M_smartphone','msmart');
-		$this->load->library('user_agent');
 	}
 
 	public function index()
@@ -122,6 +121,7 @@ class C_smartphone extends CI_Controller {
 		$merk = strtoupper($this->input->post('merk'));
 		$seri = ucwords($this->input->post('seri'), " \t\r\n\f\v'");
 		$chipset = ucwords($this->input->post('chipset'), " \t\r\n\f\v'");
+		$cpu = ucwords($this->input->post('cpu'), " \t\r\n\f\v'");
 		$merk_seri = $merk."_".$seri;
 		$title = str_replace(' ', '_', $merk_seri);
 
@@ -144,7 +144,7 @@ class C_smartphone extends CI_Controller {
 					'kamera_belakang' => $this->input->post('kamera_belakang'),
 					'ram' => $this->input->post('ram'),
 					'rom' => $this->input->post('rom'),
-					'cpu' => $this->input->post('cpu'),
+					'cpu' => $cpu,
 					'chipset' => $chipset,
 					'os' => $this->input->post('os'),
 					'baterai' => $this->input->post('baterai'),
@@ -164,7 +164,7 @@ class C_smartphone extends CI_Controller {
 					'kamera_belakang' => $this->input->post('kamera_belakang'),
 					'ram' => $this->input->post('ram'),
 					'rom' => $this->input->post('rom'),
-					'cpu' => $this->input->post('cpu'),
+					'cpu' => $cpu,
 					'chipset' => $chipset,
 					'os' => $this->input->post('os'),
 					'baterai' => $this->input->post('baterai'),
@@ -187,7 +187,7 @@ class C_smartphone extends CI_Controller {
 					'kamera_belakang' => $this->input->post('kamera_belakang'),
 					'ram' => $this->input->post('ram'),
 					'rom' => $this->input->post('rom'),
-					'cpu' => $this->input->post('cpu'),
+					'cpu' => $cpu,
 					'chipset' => $chipset,
 					'os' => $this->input->post('os'),
 					'baterai' => $this->input->post('baterai'),
@@ -207,7 +207,7 @@ class C_smartphone extends CI_Controller {
 					'kamera_belakang' => $this->input->post('kamera_belakang'),
 					'ram' => $this->input->post('ram'),
 					'rom' => $this->input->post('rom'),
-					'cpu' => $this->input->post('cpu'),
+					'cpu' => $cpu,
 					'chipset' => $chipset,
 					'os' => $this->input->post('os'),
 					'baterai' => $this->input->post('baterai'),

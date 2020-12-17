@@ -64,6 +64,7 @@ $route['cek_hal/(:any)'] = 'c_list/listpage/$1';
 $route['find'] = 'c_proses';
 $route['cari'] = 'c_proses';
 $route['get_data'] = 'c_proses/getdata';
+$route['push_data'] = 'c_proses/pushdata';
 
 $route['masuk'] = 'c_login';
 $route['login'] = 'c_login';
@@ -84,5 +85,18 @@ $route['admin'] = 'c_admin';
 $route['kriteria'] = 'c_admin/datakriteria';
 $route['perhitungan'] = 'c_admin/dataperhitungan';
 $route['pertanyaan'] = 'c_admin/datapertanyaan';
+
 $route['pengaturan'] = 'c_admin/settings';
+$route['simpan_config'] = 'c_admin/update_config';
+$route['simpan_bantuan'] = 'c_admin/update_help';
+$route['reset_bantuan'] = 'c_admin/reset_help';
+
 $route['addadmin'] = 'c_admin/adduser';
+$route['list_admin'] = 'c_admin/get_admin';
+$route['pil_admin/(:any)'] = 'c_admin/select_admin/$1';
+$route['simpan_admin'] = 'c_admin/save_admin';
+$route['del_admin/(:any)'] = 'c_admin/delete_admin/$1';
+
+$route['list_kriteria'] = 'c_admin/get_kriteria';
+
+$route['list_pertanyaan'] = 'c_admin/get_pertanyaan';

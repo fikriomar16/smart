@@ -30,22 +30,26 @@
 		});
 	}
 </script>
-<div class="card shadow animated fadeInRightBig border-bottom-success shadow h-100 py-2 my-3" id="manual">
+<?php
+$platform = $this->agent->platform();
+if ($platform=="Android" || $platform=="iOS") {
+	$cardsize = 'col-6';
+	$imgsize = '';
+	$size = 'small';
+	$btn = 'btn-sm';
+} else {
+	$cardsize = 'col-md-2';
+	$imgsize = '';
+	$size = '';
+	$btn = '';
+}
+?>
+<div class="card shadow animated fadeInRightBig border-left-primary shadow h-100 py-2 my-3" id="manual">
 	<div class="card-header">
-		<h5 class="font-weight-bold text-success text-center">List Smartphone</h5>
+		<h6 class="font-weight-bold text-primary text-center">List Smartphone</h6>
 	</div>
 	<div class="card-body">
 		<!-- Isi -->
-		<?php
-		$platform = $this->agent->platform();
-		if ($platform=="Android" | $platform=="iOS") {
-			$cardsize = 'col-6';
-			$imgsize = '';
-		} else {
-			$cardsize = 'col-md-2';
-			$imgsize = '';
-		}
-		?>
 		<div class="row justify-content-center py-2" id="data_list">
 			<!-- <div class="<?= $cardsize; ?> mb-2">
 				<div class="card shadow h-100">
@@ -66,7 +70,7 @@
 		<div class="float-right align-content-center" id='pagination'></div>
 	</div>
 	<div class="card-footer text-center">
-		<a href="<?= base_url('find') ?>" class="btn btn-success btn-icon-split m-1">
+		<a href="<?= base_url('find') ?>" class="btn btn-primary btn-icon-split m-1 <?= $btn ?>">
 			<span class="icon text-white"><i class="fas fa-search"></i></span>
 			<span class="text">Cari Rekomendasi</span>
 		</a>

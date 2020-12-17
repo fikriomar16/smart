@@ -16,7 +16,17 @@
 	<style type="text/css">
 		body{
 			/*background: #e7e8eb;*/
-			background: url(<?= base_url('assets/img/bg1.jpg') ?>);
+			<?php
+			$pf = $this->agent->platform();
+			if ($pf=='Android'||$pf=='iOS') {
+				$img='bgalt.jpg';
+				$pd='px-1';
+			} else {
+				$img='bg.jpg';
+				$pd='';
+			}
+			?>
+			background: url(<?= base_url('assets/img/'.$img) ?>);
 			background-repeat: no-repeat;
 			background-size: cover;
 			background-attachment:fixed;
@@ -24,10 +34,10 @@
 		}
 	</style>
 </head>
-<body id="page-top">
+<body id="page-top" class="sb-nav-fixed">
 	<?php $p = $this->uri->segment(1); ?>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="<?= base_url() ?>"><i class="fas fa-fw fa-mobile-alt"></i>&nbsp; Recommendation System</a>
+	<nav class="sb-topnav navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="<?= base_url() ?>"><i class="fas fa-fw fa-mobile-alt"></i>&nbsp; Sistem Rekomendasi</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -74,5 +84,5 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="container-fluid">
+	<div class="container-fluid <?= $pd ?>">
 	
