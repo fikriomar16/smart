@@ -2,15 +2,15 @@
 	<h1 class="h4 mb-0 text-gray-800">Data Kriteria</h1>
 </div>
 
-<div class="row">
-	<div class="col-lg-12">
+<div class="row justify-content-center">
+	<div class="col-lg-6">
 		<div class="card border-left-info shadow mb-4">
 			<div class="card-header py-3">
 				<h6 class="text-center m-0 font-weight-bold text-info">Data Kriteria</h6>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-hover" id="tab_kriteria">
+					<table class="table table-hover table-striped table-borderless" id="tab_kriteria">
 						<thead class="thead-light">
 							<tr>
 								<th>No.</th>

@@ -244,7 +244,7 @@
 				 ['para', ['ul', 'ol', 'paragraph']],
 				 ['height', ['height']]
 				],
-				height: 150
+				height: 225
 			});
 			$('#note_help').summernote('code','<?= $r->halaman_bantuan ?>');
 			$('#simp_setting').click(function () {

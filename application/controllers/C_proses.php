@@ -8,6 +8,7 @@ class C_proses extends CI_Controller {
 		parent::__construct();
 		date_default_timezone_set('Asia/Jakarta');
 		$this->load->model('M_smartphone','msmart');
+		$this->load->model('M_admin','madmin');
 		$this->load->model('M_proses','mproses');
 	}
 
@@ -16,6 +17,26 @@ class C_proses extends CI_Controller {
 		$data['title'] = 'Recommendation - Cari Rekomendasi';
 		$this->load->view('template/us_head', $data);
 		$this->load->view('front/find_rekomendasi', $data);
+		$this->load->view('template/us_foot', $data);
+	}
+	public function bobot()
+	{
+		$hp = $this->input->post('hp');
+		if (count($hp)<2) {
+			redirect('cari');
+		}
+		$data['hp'] = $hp;
+		$data['pertanyaan'] = $this->madmin->list_pertanyaan();
+		$data['title'] = 'Recommendation - Pembobotan';
+		$this->load->view('template/us_head', $data);
+		$this->load->view('front/bobot', $data);
+		$this->load->view('template/us_foot', $data);
+	}
+	public function result()
+	{
+		$data['title'] = 'Hasil Rekomendasi';
+		$this->load->view('template/us_head', $data);
+		$this->load->view('front/hasil', $data);
 		$this->load->view('template/us_foot', $data);
 	}
 
@@ -36,10 +57,10 @@ class C_proses extends CI_Controller {
 	{
 		$hp = $this->input->post('hp');
 		if ($hp) {
-		for ($i=0; $i < count($hp); $i++) {
-			$data = $this->msmart->get_smartphone($hp[$i]);
-			$get[] = $data;
-		}
+			for ($i=0; $i < count($hp); $i++) {
+				$data = $this->msmart->get_smartphone($hp[$i]);
+				$get[] = $data;
+			}
 			echo json_encode($get);
 		} else {
 			echo "Tidak Ada Pilihan";

@@ -2,15 +2,15 @@
 	<h1 class="h4 mb-0 text-gray-800">Data Pertanyaan</h1>
 </div>
 
-<div class="row">
-	<div class="col-lg-12">
+<div class="row justify-content-center">
+	<div class="col-lg-10">
 		<div class="card border-left-warning shadow mb-4">
 			<div class="card-header py-3">
 				<h6 class="text-center m-0 font-weight-bold text-warning">Data Pertanyaan</h6>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-hover" id="tab_pertanyaan">
+					<table class="table table-hover table-borderless table-striped" id="tab_pertanyaan">
 						<thead class="thead-light">
 							<tr>
 								<th>No.</th>

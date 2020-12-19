@@ -49,7 +49,7 @@
 				<li class="nav-item <?php if($p == 'list' || $p == 'daftar'){echo "active font-weight-bold";} ?>">
 					<a class="nav-link" href="<?= base_url('daftar') ?>"><i class="fas fa-fw fa-list"></i>&nbsp;List Smartphone</a>
 				</li>
-				<li class="nav-item <?php if($p == 'find' || $p == 'cari'){echo "active font-weight-bold";} ?>">
+				<li class="nav-item <?php if($p == 'find' || $p == 'cari' || $p == 'pembobotan'){echo "active font-weight-bold";} ?>">
 					<a class="nav-link" href="<?= base_url('cari') ?>"><i class="fas fa-fw fa-search"></i>&nbsp;Cari Rekomendasi</a>
 				</li>
 				<li class="nav-item <?php if($p == 'help' || $p == 'bantuan'){echo "active font-weight-bold";} ?>">

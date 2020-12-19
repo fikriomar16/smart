@@ -34,11 +34,11 @@
 	<div class="card-header">
 		<h6 class="font-weight-bold text-primary text-center">Cari Rekomendasi Smartphone</h6>
 	</div>
-	<div class="card-body">
-		<!-- Isi -->
-		<div class="table-responsive <?php if ($this->agent->platform() == "Android" || $this->agent->platform() == "iOS"){echo "small";} ?>">
-			<table class="table table-hover table-striped table-borderless table-sm" id="tab_pilih">
-				<form method="POST" enctype="multipart/form-data" id="form_cari">
+	<form method="POST" enctype="multipart/form-data" id="form_cari" action="pembobotan">
+		<div class="card-body">
+			<div class="alert alert-primary text-center" role="alert">** Pilih Minimal 2 Smartphone Untuk Dibandingkan **</div>
+			<div class="table-responsive <?php if ($this->agent->platform() == "Android" || $this->agent->platform() == "iOS"){echo "small";} ?>">
+				<table class="table table-hover table-striped table-borderless table-sm" id="tab_pilih">
 					<thead class="thead-light text-center">
 						<tr>
 							<th class="px-1">
@@ -61,13 +61,13 @@
 					</thead>
 					<tbody id="show_pilih">
 					</tbody>
-				</form>
-			</table>
+				</table>
+			</div>
 		</div>
-	</div>
-	<div class="card-footer text-center">
-		<button class="btn btn-primary btn-block" id="btn_cari">
-			<i class="fas fa-check"></i>&nbsp;Tampilkan Hasil
-		</button>
-	</div>
+		<div class="card-footer text-center">
+			<button class="btn btn-primary btn-block" id="btn_cari">
+				<i class="fas fa-rocket"></i>&nbsp;Menuju Pembobotan
+			</button>
+		</div>
+	</form>
 </div>

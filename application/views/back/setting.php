@@ -3,7 +3,7 @@
 </div>
 
 <div class="row justify-content-center">
-	<div class="col-md-6">
+	<div class="col-md-4">
 		<div class="card border-bottom-primary shadow mb-4">
 			<div class="card-header py-3">
 				<h6 class="text-center m-0 font-weight-bold text-primary">Pengaturan</h6>
@@ -45,8 +45,6 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div class="row justify-content-center">	
 	<div class="col">
 		<div class="card border-bottom-primary shadow mb-4">
 			<div class="card-header py-3">
@@ -69,4 +67,6 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div class="row justify-content-center">
 </div>

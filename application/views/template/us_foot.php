@@ -131,6 +131,7 @@
 			<?php } ?>
 
 			<?php if ($p == 'find' || $p == 'cari') { ?>
+				$('#btn_cari').prop('disabled', true);
 				tampil_daftar();
 				$('#chk_boxes').click(function(){
 					if (this.checked) {
@@ -144,13 +145,22 @@
 					}
 				});
 				$('table').on('change', '[type=checkbox]', function () {
-					var $this = $(this);
-					var row = $this.closest('tr');
-					if ($this.prop('checked')){ // move to top
-						// row.insertBefore( row.parent().find('tr:first-child'));
-					} else { // move to bottom
-						// row.insertAfter( row.parent().find('tr:last-child'));
+					// $('#tab_pilih').dataTable().fnFilter('');
+					tab_pilih.search('').draw();
+					$('#tab_pilih_length select').val('-1').trigger('change');
+					if ($(":checkbox:checked").length < 2) {
+						$('#btn_cari').prop('disabled', true);
+					} else {
+						$('#btn_cari').prop('disabled', false);
 					}
+					// alert($(":checkbox:checked").length);
+					// var $this = $(this);
+					// var row = $this.closest('tr');
+					// if ($this.prop('checked')){ // move to top
+					// 	row.insertBefore( row.parent().find('tr:first-child'));
+					// } else { // move to bottom
+					// 	row.insertAfter( row.parent().find('tr:last-child'));
+					// }
 				});
 				$('#tab_pilih [name="hp[]"]').click(function () {
 					$.ajax({
@@ -164,10 +174,10 @@
 							notif_gagal();
 						}
 					});
-				})
+				});
 				var tab_pilih;
 				tab_pilih = $('#tab_pilih').DataTable({
-					"lengthMenu": [[-1,10, 25, 50], ["Semua",10, 25, 50]],
+					"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
 					"oLanguage": {
 						"oPaginate": {					
 							"sFirst": "Awal",
@@ -230,7 +240,7 @@
 						url: "<?= base_url('get_data') ?>",
 						data: $('#tab_pilih input:checked').serialize(),
 						success: function (data){
-							swal(data);
+							console.log(data);
 						},
 						error: function(data){
 							notif_gagal();
@@ -238,6 +248,17 @@
 					});
 				})
 			<?php } ?>	
+
+			<?php if ($p == 'pembobotan') { ?>
+			$('#btn_bobot').prop('disabled', true);
+			$('#form_bobot').on('change','[type="radio"]', function () {
+				if ($('input[type=radio]:checked').length > 8) {
+					$('#btn_bobot').prop('disabled', false);
+				} else {
+					$('#btn_bobot').prop('disabled', true);
+				}
+			});
+			<?php } ?>
 		});
 	</script>
 </body>

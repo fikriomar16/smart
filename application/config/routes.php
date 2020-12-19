@@ -65,6 +65,8 @@ $route['find'] = 'c_proses';
 $route['cari'] = 'c_proses';
 $route['get_data'] = 'c_proses/getdata';
 $route['push_data'] = 'c_proses/pushdata';
+$route['pembobotan'] = 'c_proses/bobot';
+$route['hasil'] = 'c_proses/result';
 
 $route['masuk'] = 'c_login';
 $route['login'] = 'c_login';
