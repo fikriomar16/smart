@@ -19,6 +19,11 @@ class C_proses extends CI_Controller {
 		$this->load->view('front/find_rekomendasi', $data);
 		$this->load->view('template/us_foot', $data);
 	}
+	public function splithigh($value)
+	{
+		$val = explode("+",$value);
+		return max($val);
+	}
 	public function bobot()
 	{
 		$hp = $this->input->post('hp');
@@ -32,8 +37,249 @@ class C_proses extends CI_Controller {
 		$this->load->view('front/bobot', $data);
 		$this->load->view('template/us_foot', $data);
 	}
+
+	// Memberikan bobot pada masing masing kriteria
+	public function setbobot($id_kriteria,$bobot)
+	{
+		$result = array(
+			'id_kriteria' => $id_kriteria,
+			'bobot' => $bobot
+		);
+		return $result;
+	}
+	// Menghitung Normalisasi Bobot
+	public function normalisasi($id_kriteria,$bobot)
+	{
+		$data = $this->setbobot($id_kriteria,$bobot);
+		$jum = 0;
+		$normalisasi = array();
+		for($i = 0; $i < sizeof($data['bobot']); $i++){
+			$jum += $data['bobot'][$i];
+		}
+		for($i = 0; $i < sizeof($data['bobot']); $i++) {
+			$temp_normal = 0;
+			$temp_normal = $data['bobot'][$i] / $jum;
+			array_push($normalisasi, $temp_normal);
+		}
+		$result = array(
+			'id_kriteria' => $id_kriteria,
+			'bobot' => $bobot,
+			'normalisasi' => $normalisasi
+		);
+		return $result;
+	}
+	// Menentukan nilai Sub Kriteria sesuai dengan value kriteria
+	public function setsubkriteria($id_kriteria,$hp)
+	{
+		$dataset = $this->msmart->getanysmart($hp);
+		$subKriteria = array();
+
+		// Looping sebanyak jumlah smartphone yang dipilih
+		for ($i=0; $i < sizeof($dataset); $i++) {
+			// Looping sebanyak jumlah kriteria
+			for ($j=0; $j < sizeof($id_kriteria); $j++) {
+				// Kriteria Display
+				if ($j == 0) {
+					if ($dataset[$i]['display'] > 6.7) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 4;
+					} else if ($dataset[$i]['display'] > 6.2) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 3;
+					} else if ($dataset[$i]['display'] > 5.7) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 2;
+					} else {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 1;
+					}
+				}
+				// Kriteria RAM
+				if ($j == 1) {
+					if ($dataset[$i]['ram'] > 8) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 4;
+					} else if ($dataset[$i]['ram'] > 6) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 3;
+					} else if ($dataset[$i]['ram'] > 4) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 2;
+					} else {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 1;
+					}
+				}
+				// Kriteria ROM
+				if ($j == 2) {
+					if ($dataset[$i]['rom'] > 512) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 5;
+					} else if ($dataset[$i]['rom'] > 256) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 4;
+					} else if ($dataset[$i]['rom'] > 128) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 3;
+					} else if ($dataset[$i]['rom'] > 64) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 2;
+					} else {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 1;
+					}
+				}
+				// Kriteria Kamera Depan
+				if ($j == 3) {
+					if (splithigh($dataset[$i]['kamera_depan']) > 25) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 5;
+					} else if (splithigh($dataset[$i]['kamera_depan']) > 20) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 4;
+					} else if (splithigh($dataset[$i]['kamera_depan']) > 15) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 3;
+					} else if (splithigh($dataset[$i]['kamera_depan']) > 10) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 2;
+					} else {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 1;
+					}
+				}
+				// Kriteria Kamera Belakang
+				if ($j == 4) {
+					if (splithigh($dataset[$i]['kamera_belakang']) > 60) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 5;
+					} else if (splithigh($dataset[$i]['kamera_belakang']) > 45) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 4;
+					} else if (splithigh($dataset[$i]['kamera_belakang']) > 30) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 3;
+					} else if (splithigh($dataset[$i]['kamera_belakang']) > 15) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 2;
+					} else {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 1;
+					}
+				}
+				// Kriteria CPU
+				if ($j == 5) {
+					if (preg_replace('/[^0-9\.,]/', '', $dataset[$i]['cpu']) > 2.8) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 4;
+					} else if (preg_replace('/[^0-9\.,]/', '', $dataset[$i]['cpu']) > 2.3) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 3;
+					} else if (preg_replace('/[^0-9\.,]/', '', $dataset[$i]['cpu']) > 1.8) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 2;
+					} else {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 1;
+					}
+				}
+				// Kriteria OS
+				if ($j == 6) {
+					if ($dataset[$i]['os'] > 10) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 4;
+					} else if ($dataset[$i]['os'] > 9) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 3;
+					} else if ($dataset[$i]['os'] > 8) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 2;
+					} else {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 1;
+					}
+				}
+				// Kriteria Baterai
+				if ($j == 7) {
+					if ($dataset[$i]['baterai'] > 6000) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 4;
+					} else if ($dataset[$i]['baterai'] > 5000) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 3;
+					} else if ($dataset[$i]['baterai'] > 4000) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 2;
+					} else {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 1;
+					}
+				}
+				// Kriteria Harga
+				if ($j == 8) {
+					if ($dataset[$i]['harga'] > 13000000) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 4;
+					} else if ($dataset[$i]['harga'] > 9000000) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 3;
+					} else if ($dataset[$i]['harga'] > 5000000) {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 2;
+					} else {
+						$subKriteria[$dataset[$i]['id']]['subkriteria'][$j] = 1;
+					}
+				}
+			}
+		}
+		return $subKriteria;
+	}
+	// Menghitung Utilities Score dengan Rumus = (Cout-Cmin)/(Cmax-Cmin)
+	public function getValueUtilities($id_kriteria,$hp)
+	{
+		$data = $this->setsubkriteria($id_kriteria,$hp);
+		$temp_data = array();
+		foreach ($id_kriteria as $key => $value) {
+			$temp_data[] =  $key;
+		}
+		for($i = 0; $i < sizeof($data); $i++) {
+			$max = max($data[$id[$i]]['subkriteria']);
+			$min = min($data[$id[$i]]['subkriteria']);
+			for ($j = 0; $j < sizeof($idKriteria); $j++) { 
+				if($j == $temp_data[$j]) {
+					$cout = ($data[$id[$i]]['subkriteria'][$j] - $min) / ($max - $min);
+					$data[$id[$i]]['value_utilities'][$j] = $cout;
+				}
+			}
+		}
+		return $data;
+	}
+	// Mengalikan Utilities Score dengan Normalisasi
+	public function getScore($id_kriteria,$hp,$bobot)
+	{
+		$data = $this->getValueUtilities($id_kriteria,$hp);
+		$normalisasi = $this->normalisasi($id_kriteria,$bobot);
+		$temp_data = array();
+		foreach ($id_kriteria as $key => $value) {
+			$temp_data[] =  $key;
+		}
+		for($i = 0; $i < sizeof($data); $i++) {
+			for ($j = 0; $j < sizeof($id_kriteria) ; $j++) { 
+				if($j == $temp_data[$j]) {
+					$total = $data[$id[$i]]['value_utilities'][$j] * $normalisasi['normalisasi'][$j];
+					$data[$id[$i]]['normalisasi'][$j] = $normalisasi['normalisasi'][$j];
+					$data[$id[$i]]['total'][$j] = $total;
+				}
+			}
+		}
+		return $data;
+	}
+	// Mendapatkan Score Akhir Perhitungan
+	public function getTotalScore($id_kriteria,$hp,$bobot)
+	{
+		$data = $this->getScore($id_kriteria,$hp,$bobot);
+		$temp_data = array();
+		for($i = 0; $i < sizeof($data); $i++) {
+			$temp_data[] =  $i;
+		}
+		for($i = 0; $i < sizeof($data); $i++) {
+			if($i == $temp_data[$i]) {
+				$score = array_sum($data[$id[$i]]['total']);
+				$data[$id[$i]]['final_score'][0] = $score;
+			}
+		}
+		return $data;
+	}
+	// Proses Perhitungan
+	public function insertPerhitungan($id_kriteria,$hp,$bobot)
+	{
+		$createPerhitungan = $this->mproses->createPerhitungan();
+		if ($createPerhitungan) {
+			$getLastIdPerhitungan = $this->mproses->getLastIdPerhitungan();
+			$id_perhitungan = $getLastIdPerhitungan->id_perhitungan;
+			$perhitungan = $this->getTotalScore($id_kriteria,$hp,$bobot);
+			$isInsert = false;
+			$isInsertNormal = false;
+		} else {
+			# code...
+		}
+		
+	}
+
 	public function result()
 	{
+		$bobot = array();
+		for ($i=1; $i <= $this->madmin->pertanyaan_all(); $i++) {
+			$bbt = $this->input->post('bobot'.$i);
+			$bobot[] .= $bbt;
+		}
+		$id_kriteria = $this->input->post('id_kriteria');
+		$hp = $this->input->post('hp');
+		$data['id_kriteria'] = $id_kriteria;
+		$data['hp'] = $hp;
+		$data['bobot'] = $bobot;
 		$data['title'] = 'Hasil Rekomendasi';
 		$this->load->view('template/us_head', $data);
 		$this->load->view('front/hasil', $data);
@@ -72,6 +318,7 @@ class C_proses extends CI_Controller {
 		// separate letters and digits
 		// https://stackoverflow.com/questions/4311156/how-to-separate-letters-and-digits-from-a-string-in-php
 		$numbers = preg_replace('/[^0-9]/', '', $str);
+		$decimal = preg_replace('/[^0-9\.,]/', '', $str);
 		$letters = preg_replace('/[^a-zA-Z]/', '', $str);
 	}
 

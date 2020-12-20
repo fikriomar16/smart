@@ -4,13 +4,14 @@
 			<div class="card-header">
 				<h6 class="font-weight-bold text-info text-center">Pertanyaan</h6>
 			</div>
-			<form method="POST" enctype="multipart/form-data" id="form_bobot">
+			<form method="POST" enctype="multipart/form-data" id="form_bobot" action="hasil">
 				<div class="card-body">
 					<div class="alert alert-info text-center mb-5" role="alert">** Dimohon untuk mengisi beberapa pertanyaan di bawah ini terlebih dahulu **</div>
 					<?php
 					$i = 1;
 					foreach ($pertanyaan as $key => $row){
 					?>
+					<input type="text" name="id_kriteria[]" value="<?= $row->id_kriteria ?>" hidden>
 					<?php if ($row->kriteria != "Harga") { ?>
 						<p><?= $i; ?>. <?= $row->pertanyaan; ?></p>
 						<div class="custom-control custom-radio custom-control-inline">
@@ -40,7 +41,7 @@
 					?>
 
 					<?php for ($i=0; $i < count($hp); $i++) { ?>
-					<input type="text" name="hp[]" value="<?= $hp[$i] ?>" disabled hidden>
+					<input type="text" name="hp[]" value="<?= $hp[$i] ?>" hidden>
 					<?php } ?>
 				</div>
 				<div class="card-footer text-center">

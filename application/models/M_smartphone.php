@@ -72,7 +72,7 @@ class M_smartphone extends CI_Model {
 	}
 	public function get_by_id($id)
 	{
-		$this->db->from($this->table);
+		$this->db->from($this->$table);
 		$this->db->where('id',$id);
 		$query = $this->db->get();
 
@@ -87,6 +87,15 @@ class M_smartphone extends CI_Model {
 		$this->db->order_by('rom', 'ASC');
 		$q = $this->db->get();
 		return $q->result_array();
+	}
+	public function getanysmart($id)
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_smartphone');
+		$this->db->where_in('id', $id);
+		$query = $this->db->get();
+
+		return $query->row();
 	}
 
 	public function list_smartphone()

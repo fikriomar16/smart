@@ -87,6 +87,11 @@ class M_admin extends CI_Model {
 		$this->db->where('id_pertanyaan', $id_pertanyaan);
 		return $this->db->update('tbl_pertanyaan', $data);
 	}
+	public function pertanyaan_all()
+	{
+		$this->db->from('tbl_pertanyaan');
+		return $this->db->count_all_results();
+	}
 
 }
 
