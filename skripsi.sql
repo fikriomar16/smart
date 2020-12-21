@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2020 at 10:05 PM
+-- Generation Time: Dec 21, 2020 at 07:15 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -43,7 +43,7 @@ CREATE TABLE `tbl_admin` (
 
 INSERT INTO `tbl_admin` (`id_admin`, `username`, `password`, `nama`, `hak_akses`, `last_login`) VALUES
 (1, 'admin', 'admin', 'Admin', 'admin', '2020-12-15 23:42:15'),
-(2, 'fikri', 'omar', 'Fikri Omar', 'sadmin', '2020-12-18 00:01:42'),
+(2, 'fikri', 'omar', 'Fikri Omar', 'sadmin', '2020-12-22 01:11:57'),
 (10, 'admin1', 'admin1', 'Admin Satu', 'admin', '2020-12-13 07:43:00');
 
 -- --------------------------------------------------------
@@ -66,7 +66,7 @@ CREATE TABLE `tbl_conf` (
 --
 
 INSERT INTO `tbl_conf` (`id_conf`, `nama_instansi`, `alamat_instansi`, `deskripsi`, `nama_aplikasi`, `halaman_bantuan`) VALUES
-(0, 'DNT Cell', 'Jogjatronik', 'Aplikasi Rekomendasi Smartphone Android', 'Sistem Rekomendasi Smartphone Android', '<p>Petunjuk Penggunaan Sistem :</p><ol><li>Satu</li><li>Dua</li><li>Tiga</li><li>Empat</li></ol><p>Sekian dan terima kasih</p>');
+(0, 'DNT Cell', 'Jogjatronik', 'Aplikasi Rekomendasi Smartphone Android', 'Sistem Rekomendasi Smartphone Android', '<p><b>Sistem Rekomendasi Smartphone Android</b>&nbsp;merupakan sistem yang merekomendasikan kepada pengguna dalam menentukan <i>Smartphone Android</i>&nbsp;yang sesuai dengan kriteria pengguna.</p><p>Adapun tahapan-tahapan dalam pengoperasian sistem ini, yaitu:</p><ol><li>Pengguna masuk kedalam tab <b>Cari Rekomendasi</b>&nbsp;untuk bisa memilih beberapa opsi <i>smartphone</i>&nbsp;yang akan dipilihnya</li><li>Pengguna memilih beberapa <i>smartphone</i>&nbsp;untuk nanti dibandingkan (minimal 2)</li><li>Selesai memilih, klik tombol paling bawah yang bertuliskan <b>Menuju Pembobotan</b>&nbsp;untuk menjawab beberapa pertanyaan</li><li>Jawab pertanyaan dengan jawaban yang sesuai dengan kriteria pengguna</li><li>Setelah terisi semua, klik tombol tampilkan hasil</li><li>Sistem akan memberikan hasil rekomendasi berdasarkan pilihan dan kriteria anda</li></ol><p>Sekian dan Terima Kasih</p>');
 
 -- --------------------------------------------------------
 
@@ -80,6 +80,21 @@ CREATE TABLE `tbl_detail_perhitungan` (
   `id_smartphone` int(11) NOT NULL,
   `skor_akhir` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_detail_perhitungan`
+--
+
+INSERT INTO `tbl_detail_perhitungan` (`id_detail`, `id_perhitungan`, `id_smartphone`, `skor_akhir`) VALUES
+(1, 1, 76, 0.375),
+(2, 1, 52, 0.416667),
+(3, 2, 52, 0.357143),
+(4, 2, 92, 0.5),
+(5, 3, 52, 0.357143),
+(6, 3, 90, 0.321429),
+(7, 5, 73, 0.464286),
+(8, 5, 52, 0.357143),
+(9, 5, 92, 0.5);
 
 -- --------------------------------------------------------
 
@@ -120,6 +135,93 @@ CREATE TABLE `tbl_normalisasi` (
   `utilities` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tbl_normalisasi`
+--
+
+INSERT INTO `tbl_normalisasi` (`id_normalisasi`, `id_detail`, `normalisasi`, `utilities`) VALUES
+(1, 1, 0.166667, 0.5),
+(2, 1, 0.0833333, 0),
+(3, 1, 0.0833333, 0),
+(4, 1, 0.0833333, 0),
+(5, 1, 0.0833333, 0),
+(6, 1, 0.166667, 1),
+(7, 1, 0.0833333, 0.5),
+(8, 1, 0.166667, 0.5),
+(9, 1, 0.0833333, 0),
+(10, 2, 0.166667, 1),
+(11, 2, 0.0833333, 0),
+(12, 2, 0.0833333, 0),
+(13, 2, 0.0833333, 0),
+(14, 2, 0.0833333, 0),
+(15, 2, 0.166667, 1),
+(16, 2, 0.0833333, 1),
+(17, 2, 0.166667, 0),
+(18, 2, 0.0833333, 0),
+(19, 3, 0.142857, 1),
+(20, 3, 0.142857, 0),
+(21, 3, 0.0714286, 0),
+(22, 3, 0.0714286, 0),
+(23, 3, 0.142857, 0),
+(24, 3, 0.142857, 1),
+(25, 3, 0.0714286, 1),
+(26, 3, 0.142857, 0),
+(27, 3, 0.0714286, 0),
+(28, 4, 0.142857, 1),
+(29, 4, 0.142857, 0),
+(30, 4, 0.0714286, 0),
+(31, 4, 0.0714286, 0),
+(32, 4, 0.142857, 0),
+(33, 4, 0.142857, 1),
+(34, 4, 0.0714286, 1),
+(35, 4, 0.142857, 1),
+(36, 4, 0.0714286, 0),
+(37, 5, 0.142857, 1),
+(38, 5, 0.142857, 0),
+(39, 5, 0.0714286, 0),
+(40, 5, 0.0714286, 0),
+(41, 5, 0.142857, 0),
+(42, 5, 0.142857, 1),
+(43, 5, 0.0714286, 1),
+(44, 5, 0.142857, 0),
+(45, 5, 0.0714286, 0),
+(46, 6, 0.142857, 1),
+(47, 6, 0.142857, 0),
+(48, 6, 0.0714286, 0),
+(49, 6, 0.0714286, 0),
+(50, 6, 0.142857, 0),
+(51, 6, 0.142857, 0.5),
+(52, 6, 0.0714286, 0.5),
+(53, 6, 0.142857, 0.5),
+(54, 6, 0.0714286, 0),
+(55, 7, 0.142857, 0.5),
+(56, 7, 0.0714286, 0.5),
+(57, 7, 0.142857, 0.5),
+(58, 7, 0.142857, 1),
+(59, 7, 0.0714286, 0.75),
+(60, 7, 0.142857, 0.25),
+(61, 7, 0.0714286, 0.5),
+(62, 7, 0.142857, 0),
+(63, 7, 0.0714286, 0.25),
+(64, 8, 0.142857, 1),
+(65, 8, 0.0714286, 0),
+(66, 8, 0.142857, 0),
+(67, 8, 0.142857, 0),
+(68, 8, 0.0714286, 0),
+(69, 8, 0.142857, 1),
+(70, 8, 0.0714286, 1),
+(71, 8, 0.142857, 0),
+(72, 8, 0.0714286, 0),
+(73, 9, 0.142857, 1),
+(74, 9, 0.0714286, 0),
+(75, 9, 0.142857, 0),
+(76, 9, 0.142857, 0),
+(77, 9, 0.0714286, 0),
+(78, 9, 0.142857, 1),
+(79, 9, 0.0714286, 1),
+(80, 9, 0.142857, 1),
+(81, 9, 0.0714286, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -130,6 +232,17 @@ CREATE TABLE `tbl_perhitungan` (
   `id_perhitungan` int(11) NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_perhitungan`
+--
+
+INSERT INTO `tbl_perhitungan` (`id_perhitungan`, `tanggal`) VALUES
+(1, '2020-12-21 15:24:06'),
+(2, '2020-12-21 16:22:50'),
+(3, '2020-12-21 18:07:23'),
+(4, '2020-12-21 18:08:50'),
+(5, '2020-12-21 18:13:22');
 
 -- --------------------------------------------------------
 
@@ -148,8 +261,15 @@ CREATE TABLE `tbl_pertanyaan` (
 --
 
 INSERT INTO `tbl_pertanyaan` (`id_pertanyaan`, `id_kriteria`, `pertanyaan`) VALUES
-(1, 1, 'Apakah anda membutuhkan ukuran layar yang lebar ?'),
-(2, 2, 'Apakah anda membutuhkan memory yang besar ?');
+(1, 1, 'Apakah anda nyaman dengan ukuran layar yang lebar ?'),
+(2, 2, 'Apakah anda membutuhkan memori yang besar ? (semisal untuk membuka banyak aplikasi bersamaan)'),
+(3, 3, 'Apakah anda membutuhkan kapasitas penyimpanan yang besar ?'),
+(4, 4, 'Apakah anda membutuhkan hasil selfie yang bagus ?'),
+(5, 5, 'Apakah anda membutuhkan hasil foto yang bagus ?'),
+(6, 6, 'Apakah anda menginginkan smartphone yang dapat memproses data dengan cepat ?'),
+(7, 7, 'Apakah anda membutuhkan versi OS Android terbaru ?'),
+(8, 8, 'Apakah anda membutuhkan kapasitas baterai yang besar ?'),
+(9, 9, 'Apakah anda menginginkan harga yang terjangkau ?');
 
 -- --------------------------------------------------------
 
@@ -317,7 +437,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_detail_perhitungan`
 --
 ALTER TABLE `tbl_detail_perhitungan`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_kriteria`
@@ -329,19 +449,19 @@ ALTER TABLE `tbl_kriteria`
 -- AUTO_INCREMENT for table `tbl_normalisasi`
 --
 ALTER TABLE `tbl_normalisasi`
-  MODIFY `id_normalisasi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_normalisasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `tbl_perhitungan`
 --
 ALTER TABLE `tbl_perhitungan`
-  MODIFY `id_perhitungan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_perhitungan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_pertanyaan`
 --
 ALTER TABLE `tbl_pertanyaan`
-  MODIFY `id_pertanyaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pertanyaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_smartphone`

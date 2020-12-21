@@ -10,15 +10,16 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-hover" id="tab_perhitungan">
+					<table class="table table-hover table-striped table-borderless" id="tab_perhitungan">
 						<thead class="thead-light">
 							<tr>
+								<th>No.</th>
 								<th>Waktu Perhitungan</th>
 								<th>Merk</th>
 								<th>Hasil Perhitungan</th>
 							</tr>
 						</thead>
-						<tbody id="">
+						<tbody id="show_perhitungan">
 						</tbody>
 					</table>
 				</div>

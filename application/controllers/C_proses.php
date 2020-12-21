@@ -323,9 +323,6 @@ class C_proses extends CI_Controller {
 
 	public function result()
 	{
-		// if (empty($this->input->post('bobot'))) {
-		// 	redirect('pembobotan');
-		// }
 		$bobot = array();
 		for ($i=1; $i <= $this->madmin->pertanyaan_all(); $i++) {
 			$bbt = $this->input->post('bobot'.$i);
@@ -333,8 +330,12 @@ class C_proses extends CI_Controller {
 		}
 		$id_kriteria = $this->input->post('id_kriteria');
 		$hp = $this->input->post('hp');
-		$show_smartphone = $this->show_smartphone();
-		$data['hasil'] = $this->insertPerhitungan($id_kriteria,$hp,$bobot);
+		if (empty($bobot) || empty($hp)) {
+			redirect('pembobotan');
+		}
+		if ($hp || $id_kriteria) {
+			$data['hasil'] = $this->insertPerhitungan($id_kriteria,$hp,$bobot);
+		}
 		$data['title'] = 'Hasil Rekomendasi';
 		$this->load->view('template/us_head', $data);
 		$this->load->view('front/hasil', $data);

@@ -192,11 +192,11 @@
 							html+= '<tr>'+
 							'<td>'+(i+1)+'</td>'+
 							'<td>'+data[i].kriteria+'</td>'+
-							'<td class="text-center">'+
-							'<button class="btn btn-sm btn-warning m-1" onclick="edt_kriteria('+
-							data[i].id_kriteria+
-							');" '+pop_edt+'><i class="fas fa-pen-square"></i></button>'+
-							'</td>'+
+							// '<td class="text-center">'+
+							// '<button class="btn btn-sm btn-warning m-1" onclick="edt_kriteria('+
+							// data[i].id_kriteria+
+							// ');" '+pop_edt+'><i class="fas fa-pen-square"></i></button>'+
+							// '</td>'+
 							'</tr>';
 						}
 						$('#show_kriteria').html(html);
@@ -233,6 +233,20 @@
 					}
 				});
 			}
+			$('#simp_tanya').click(function () {
+				$.ajax({
+					type: "POST",
+					url: "<?= base_url('simpan_pertanyaan') ?>",
+					data: $('#form_tanya').serialize(),
+					success: function (data){
+						$('#mdl_tanya').modal('hide');
+						notif_sukses();tampil_pertanyaan();
+					},
+					error: function(data){
+						notif_gagal();
+					}
+				});
+			})
 			<?php } ?>
 
 			<?php if ($p == 'pengaturan') { ?>
@@ -414,6 +428,34 @@
 				setTimeout(function() { tampil_admin(); }, 5000);
 			});
 			<?php } ?>
+
+			<?php if ($p == 'perhitungan') { ?>
+			tampil_perhitungan();
+			var tab_perhitungan;
+			tab_perhitungan = $('#tab_perhitungan').DataTable();
+			function tampil_perhitungan() {
+				$.ajax({
+					type: "ajax",
+					url: "<?= base_url('list_perhitungan') ?>",
+					async: false,
+					dataType: "json",
+					success: function (data) {
+						var html = '';
+						var i;
+						for (i = 0; i < data.length; i++) {
+							html+= '<tr>'+
+							'<td>'+(i+1)+'</td>'+
+							'<td>'+data[i].tanggal+'</td>'+
+							'<td>'+data[i].merk+' '+data[i].seri+'</td>'+
+							'<td>'+data[i].skor_akhir+'</td>'+
+							'</tr>';
+						}
+						$('#show_perhitungan').html(html);
+					}
+				});
+			}
+			<?php } ?>
+
 			$('[data-toggle="tooltip"]').tooltip();
 		});
 	</script>

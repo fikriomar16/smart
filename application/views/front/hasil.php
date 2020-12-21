@@ -23,7 +23,7 @@ for ($j=0; $j < sizeof($result); $j++) {
 	}
 }
 ?>
-<div class="row justify-content-center py-2 mb-4">
+<div class="row justify-content-center mb-2">
 	<div class="col-md-12">
 		<div class="card shadow animated fadeInDownBig border-bottom-info shadow h-100 py-2 my-3" id="manual">
 			<div class="card-header">
@@ -35,8 +35,11 @@ for ($j=0; $j < sizeof($result); $j++) {
 				<?php $value = select_smart($result[$j]['id_smartphone']) ?>
 					<div class="col-md-2 mb-2">
 						<div class="card shadow h-100">
-							<center><img src="<?= base_url('assets/img/smartphone/'.$value->foto) ?>" style="height: 125px;width: auto;"></center>
+							<div class="card-header">
+								<h5 class="font-weight-bold text-center text-primary">Rangking <?= $j+1 ?></h5>
+							</div>
 							<div class="card-body">
+								<center><img src="<?= base_url('assets/img/smartphone/'.$value->foto) ?>" style="height: 125px;width: auto;"></center>
 								<ul class="px-3 my-0">
 									<li><?= $value->merk.' '.$value->seri ?></li>
 									<li><?= $value->ram.' GB - '.$value->rom.' GB' ?></li>
@@ -95,9 +98,13 @@ for ($j=0; $j < sizeof($result); $j++) {
 						</tbody>
 					</table>
 				</div>
+				<hr>
 			<?php } ?>
 			</div>
 			<div class="card-footer text-center">
+				<a class="btn btn-primary btn-block" href="<?= base_url('cari') ?>">
+					<i class="fas fa-search"></i> Cari Rekomendasi Lagi
+				</a>
 			</div>
 		</div>
 	</div>

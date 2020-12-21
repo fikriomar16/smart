@@ -20,6 +20,8 @@ class C_admin extends CI_Controller {
 		}
 		$data['jumlah_smartphone'] = $this->msmart->count_all();
 		$data['jumlah_kriteria'] = $this->madmin->kriteria_all();
+		$data['jumlah_perhitungan'] = $this->madmin->perhitungan_all();
+		$data['most_freq'] = $this->madmin->most_frequent();
 		$data['title'] = 'Recommendation - Admin';
 		$this->load->view('template/ad_head', $data);
 		$this->load->view('back/dashboard', $data);
@@ -47,6 +49,7 @@ class C_admin extends CI_Controller {
 		$data['title'] = 'Admin - Data Pertanyaan';
 		$this->load->view('template/ad_head', $data);
 		$this->load->view('back/data_pertanyaan', $data);
+		$this->load->view('modal/mdl_edt_pertanyaan', $data);
 		$this->load->view('template/ad_foot', $data);
 	}
 
@@ -176,6 +179,28 @@ class C_admin extends CI_Controller {
 			redirect('beranda');
 		}
 		$get = $this->madmin->list_pertanyaan();
+		echo json_encode($get);
+	}
+	public function select_pertanyaan($id_pertanyaan)
+	{
+		$result = $this->madmin->get_pertanyaan($id_pertanyaan);
+		echo json_encode($result);
+	}
+	public function save_pertanyaan()
+	{
+		$id_pertanyaan = $this->input->post('id_pertanyaan');
+		$data = array('pertanyaan' => $this->input->post('pertanyaan'));
+		$result = $this->madmin->update_pertanyaan($id_pertanyaan,$data);
+		echo json_encode($result);
+	}
+
+	public function get_perhitungan()
+	{
+		$sesi = $this->session->userdata('admin');
+		if (!$sesi) {
+			redirect('beranda');
+		}
+		$get = $this->madmin->list_perhitungan();
 		echo json_encode($get);
 	}
 }

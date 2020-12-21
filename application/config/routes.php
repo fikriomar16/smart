@@ -104,3 +104,7 @@ $route['del_admin/(:any)'] = 'c_admin/delete_admin/$1';
 $route['list_kriteria'] = 'c_admin/get_kriteria';
 
 $route['list_pertanyaan'] = 'c_admin/get_pertanyaan';
+$route['pil_tanya/(:any)'] = 'c_admin/select_pertanyaan/$1';
+$route['simpan_pertanyaan'] = 'c_admin/save_pertanyaan';
+
+$route['list_perhitungan'] = 'c_admin/get_perhitungan';

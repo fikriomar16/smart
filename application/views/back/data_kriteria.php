@@ -15,7 +15,7 @@
 							<tr>
 								<th>No.</th>
 								<th>Kriteria</th>
-								<th class="text-center">Opsi</th>
+								<!-- <th class="text-center">Opsi</th> -->
 							</tr>
 						</thead>
 						<tbody id="show_kriteria">

@@ -1,3 +1,24 @@
+<script type="text/javascript">
+	function edt_pertanyaan(id) {
+		$.ajax({
+			type: "ajax",
+			url: "<?= base_url('pil_tanya/') ?>"+id,
+			async: false,
+			dataType: "json",
+			success: function (data) {
+				document.getElementById("mdlhead").classList.remove('bg-info');
+				document.getElementById("mdlhead").classList.add('bg-warning');
+				$('#headtitle').text('Edit Data');
+				$('#mdl_tanya').modal('show');
+				$('[name="pertanyaan"]').val(data.pertanyaan);
+				$('[name="id_pertanyaan"]').val(data.id_pertanyaan);
+			},
+			error: function (data) {
+				swal('Terdapat Kesalahan');
+			}
+		});
+	}
+</script>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h4 mb-0 text-gray-800">Data Pertanyaan</h1>
 </div>

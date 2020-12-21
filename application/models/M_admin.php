@@ -93,6 +93,33 @@ class M_admin extends CI_Model {
 		return $this->db->count_all_results();
 	}
 
+	public function list_perhitungan()
+	{
+		$this->db->select('tbl_perhitungan.tanggal, tbl_smartphone.merk, tbl_smartphone.seri, tbl_detail_perhitungan.id_detail, tbl_detail_perhitungan.id_perhitungan, tbl_detail_perhitungan.skor_akhir');
+		$this->db->from('tbl_detail_perhitungan');
+		$this->db->join('tbl_smartphone', 'tbl_detail_perhitungan.id_smartphone = tbl_smartphone.id', 'inner');
+		$this->db->join('tbl_perhitungan', 'tbl_detail_perhitungan.id_perhitungan = tbl_perhitungan.id_perhitungan', 'inner');
+		$q = $this->db->get();
+		return $q->result();
+	}
+	public function perhitungan_all()
+	{
+		$this->db->from('tbl_perhitungan');
+		return $this->db->count_all_results();
+	}
+
+	public function most_frequent()
+	{
+		$this->db->select('count(tbl_detail_perhitungan.id_smartphone) as id_smartphone, tbl_smartphone.merk, tbl_smartphone.seri');
+		$this->db->from('tbl_detail_perhitungan');
+		$this->db->join('tbl_smartphone', 'tbl_detail_perhitungan.id_smartphone = tbl_smartphone.id', 'inner');
+		$this->db->group_by('tbl_detail_perhitungan.id_smartphone');
+		$this->db->order_by('id_smartphone', 'desc');
+		$this->db->limit(1);
+		$q = $this->db->get();
+		return $q->row();
+	}
+
 }
 
 /* End of file M_admin.php */
