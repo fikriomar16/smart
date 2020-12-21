@@ -11,7 +11,7 @@ class M_proses extends CI_Model {
 
 	public function createPerhitungan()
 	{
-		$data = $this->db->insert('tbl_perhitungan');
+		$data = $this->db->insert('tbl_perhitungan',array('tanggal' => NULL));
 		if ($data) {
 			return true;
 		} else {
@@ -37,6 +37,18 @@ class M_proses extends CI_Model {
 		$this->db->limit(1);
 		$result = $this->db->get();
 		return $result->row();
+	}
+
+	public function insertDetailPerhitungan($val)
+	{
+		$this->db->insert('tbl_detail_perhitungan', $val);
+		return $this->db->insert_id();
+	}
+
+	public function insertNormalisasi($normal)
+	{
+		$this->db->insert('tbl_normalisasi', $normal);
+		return $this->db->insert_id();
 	}
 
 }

@@ -67,6 +67,8 @@ $route['get_data'] = 'c_proses/getdata';
 $route['push_data'] = 'c_proses/pushdata';
 $route['pembobotan'] = 'c_proses/bobot';
 $route['hasil'] = 'c_proses/result';
+$route['getsmart/(:any)'] = 'c_proses/select_smart/$1';
+$route['getkriteria/(:any)'] = 'c_proses/select_kriteria/$1';
 
 $route['masuk'] = 'c_login';
 $route['login'] = 'c_login';

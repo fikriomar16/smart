@@ -14,9 +14,9 @@
 					<span class="icon text-white"><i class="fas fa-chevron-circle-up"></i></span>
 					<span class="text">Kembali</span>
 				</a>
-				<a href="<?= base_url('list') ?>" class="btn btn-success btn-icon-split m-1">
+				<a href="<?= base_url('find') ?>" class="btn btn-primary btn-icon-split m-1">
 					<span class="icon text-white"><i class="fas fa-list"></i></span>
-					<span class="text">List Smartphone</span>
+					<span class="text">Cari Rekomendasi</span>
 				</a>
 			</div>
 		</div>

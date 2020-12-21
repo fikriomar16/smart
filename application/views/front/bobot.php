@@ -1,4 +1,4 @@
-<div class="row justify-content-center py-2 px-4 mb-4">
+<div class="row justify-content-center py-2 mb-4">
 	<div class="col-md-6">
 		<div class="card shadow animated fadeInDownBig border-bottom-info shadow h-100 py-2 my-3" id="manual">
 			<div class="card-header">

@@ -95,7 +95,7 @@ class M_smartphone extends CI_Model {
 		$this->db->where_in('id', $id);
 		$query = $this->db->get();
 
-		return $query->row();
+		return $query->result();
 	}
 
 	public function list_smartphone()
