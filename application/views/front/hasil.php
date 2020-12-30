@@ -33,13 +33,13 @@ for ($j=0; $j < sizeof($result); $j++) {
 				<div class="row justify-content-center">
 				<?php for ($j=0; $j < sizeof($result); $j++) { ?>
 				<?php $value = select_smart($result[$j]['id_smartphone']) ?>
-					<div class="col-md-2 mb-2">
+					<div class="col-md-3 mb-2">
 						<div class="card shadow h-100">
 							<div class="card-header">
 								<h5 class="font-weight-bold text-center text-primary">Rangking <?= $j+1 ?></h5>
 							</div>
 							<div class="card-body">
-								<center><img src="<?= base_url('assets/img/smartphone/'.$value->foto) ?>" style="height: 125px;width: auto;"></center>
+								<center><img class="img-responsive img-fluid mb-5" src="<?= base_url('assets/img/smartphone/'.$value->foto) ?>" style="height: 125px;width: auto;"></center>
 								<ul class="px-3 my-0">
 									<li><?= $value->merk.' '.$value->seri ?></li>
 									<li><?= $value->ram.' GB - '.$value->rom.' GB' ?></li>
@@ -70,15 +70,14 @@ for ($j=0; $j < sizeof($result); $j++) {
 				<div class="row">
 					<div class="col-md-10">
 						<h5>Rangking : <?= $k+1 ?></h5>
-						<p><?= ' '.$value->merk.' '. $value->seri ?></p>
+						<h4 class="font-weight-bold text-primary"><?= ' '.$value->merk.' '. $value->seri ?></h4>
 					</div>
 					<div class="col-md-2">
-						<h4><?= 'Score : '.number_format($result[$k]['final_score'],4) ?></h4>
 					</div>
 				</div>
 				<div class="table-responsive">
-					<table class="table table-hover table-borderless table-striped">
-						<thead class="thead-light">
+					<table class="table table-sm table-hover table-borderless table-striped">
+						<thead class="thead-dark">
 							<tr>
 								<th>Kriteria</th>
 								<th>Value Utilities</th>
@@ -97,6 +96,13 @@ for ($j=0; $j < sizeof($result); $j++) {
 						<?php } ?>
 						</tbody>
 					</table>
+				</div>
+				<div class="row">
+					<div class="col-md-10">
+					</div>
+					<div class="col-md-2">
+						<h5 class="text-danger"><?= 'Score : '.number_format($result[$k]['final_score'],4) ?></h5>
+					</div>
 				</div>
 				<hr>
 			<?php } ?>

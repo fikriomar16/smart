@@ -21,8 +21,11 @@ _Judul:_ __Implementasi Metode SMART Pada Sistem Rekomendasi Pemilihan Smartphon
 - [x] Summernote Text Editor
 - [x] Javascript validation (before input data or select phones)
 - [x] Admin Management by Super Admin
+- [x] SweetAlert for pop-up info & confirmation
 - [ ] DSS Method Implementation with Ajax \*still can't figured\*
 - [ ] Chart
 - [ ] Searched data log
+- [ ] Searching (part of pagination)
+- [ ] Sorting data (part of pagination)
 
 *Cukup Sekian* :+1:

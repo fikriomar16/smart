@@ -57,7 +57,14 @@
 				<div class="row no-gutters align-items-center">
 					<div class="col mr-2">
 						<div class="text-xs font-weight-bold text-info text-uppercase mb-1">Paling Banyak Dicari</div>
-						<div class="h6 mb-0 font-weight-bold text-gray-800"><?= $most_freq->merk.' '.$most_freq->seri.' ('.$most_freq->id_smartphone.'x Dicari)' ?></div>
+						<div class="h6 mb-0 font-weight-bold text-gray-800">
+						<?php if ($most_freq == false) {
+							echo "Tidak Ada Data";
+						} else {
+							echo $most_freq->merk.' '.$most_freq->seri.' ('.$most_freq->id_smartphone.'x Dicari)';
+						}
+						?>						
+						</div>
 					</div>
 					<div class="col-auto">
 						<i class="fas fa-mobile-alt fa-2x text-gray-300"></i>

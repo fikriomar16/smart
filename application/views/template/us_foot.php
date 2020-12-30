@@ -133,9 +133,14 @@
 			<?php if ($p == 'find' || $p == 'cari') { ?>
 				$('#btn_cari').prop('disabled', true);
 				tampil_daftar();
+				function set_tab() {
+					tab_pilih.search('').draw();
+					$('#tab_pilih_length select').val('-1').trigger('change');
+				}
 				$('#chk_boxes').click(function(){
 					if (this.checked) {
-						$('[name="hp[]"]').each(function() { 
+						set_tab();
+						$('[name="hp[]"]').each(function() {
 							this.checked = true;
 						});
 					} else {
@@ -146,8 +151,7 @@
 				});
 				$('table').on('change', '[type=checkbox]', function () {
 					// $('#tab_pilih').dataTable().fnFilter('');
-					tab_pilih.search('').draw();
-					$('#tab_pilih_length select').val('-1').trigger('change');
+					set_tab();
 					if ($(":checkbox:checked").length < 2) {
 						$('#btn_cari').prop('disabled', true);
 					} else {
