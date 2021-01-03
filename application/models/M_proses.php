@@ -59,7 +59,7 @@ class M_proses extends CI_Model {
 		$this->db->join('tbl_perhitungan', 'tbl_detail_perhitungan.id_perhitungan = tbl_perhitungan.id_perhitungan', 'inner');
 		$this->db->join('tbl_user', 'tbl_detail_perhitungan.id_user = tbl_user.id_user', 'inner');
 		$this->db->where('tbl_user.id_user', $id_user);
-		$this->db->order_by('tbl_detail_perhitungan.skor_akhir', 'desc');
+		// $this->db->order_by('tbl_detail_perhitungan.skor_akhir', 'desc');
 		$q = $this->db->get();
 		return $q->result();
 	}

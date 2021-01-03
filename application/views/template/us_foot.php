@@ -306,7 +306,7 @@
 							console.log(data);
 						},
 						error: function(data){
-							notif_gagal();
+							// notif_gagal();
 						}
 					});
 				});
@@ -400,10 +400,10 @@
 						data: $('#form_bobot').serialize(),
 						success: function (data){
 							console.log(data);
-							setTimeout('window.location = "<?= base_url('hasil') ?>"; ',1000);
+							// setTimeout('window.location = "<?= base_url('hasil') ?>"; ',1000);
 						},
 						error: function(data){
-							notif_gagal();
+							// notif_gagal();
 						}
 					});
 				});
