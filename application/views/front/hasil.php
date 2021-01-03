@@ -31,7 +31,7 @@ for ($j=0; $j < sizeof($result); $j++) {
 			</div>
 			<div class="card-body">
 				<div class="row justify-content-center">
-				<?php for ($j=0; $j < sizeof($result); $j++) { ?>
+				<?php for ($j=0; $j < $limit; $j++) { ?>
 				<?php $value = select_smart($result[$j]['id_smartphone']) ?>
 					<div class="col-md-3 mb-2">
 						<div class="card shadow h-100">
@@ -65,7 +65,7 @@ for ($j=0; $j < sizeof($result); $j++) {
 				<h6 class="font-weight-bold text-info text-center">Rincian Perhitungan</h6>
 			</div>
 			<div class="card-body">
-			<?php for ($k=0; $k < sizeof($id_smartphone); $k++) { ?>
+			<?php for ($k=0; $k < $limit; $k++) { ?>
 			<?php $value = select_smart($result[$k]['id_smartphone']) ?>
 				<div class="row">
 					<div class="col-md-10">
@@ -108,7 +108,7 @@ for ($j=0; $j < sizeof($result); $j++) {
 			<?php } ?>
 			</div>
 			<div class="card-footer text-center">
-				<a class="btn btn-primary btn-block" href="<?= base_url('cari') ?>">
+				<a class="btn btn-primary btn-block" href="<?= base_url('opsi') ?>">
 					<i class="fas fa-search"></i> Cari Rekomendasi Lagi
 				</a>
 			</div>

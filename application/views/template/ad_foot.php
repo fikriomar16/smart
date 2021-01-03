@@ -130,6 +130,30 @@
 			$('#reload_tsmart').click(function () {
 				reload_tab_smart();
 			})
+			const backcam = document.getElementById('backcam');
+			const frontcam = document.getElementById('frontcam');
+			backcam.addEventListener('input', function() {
+				let start = this.selectionStart;
+				let end = this.selectionEnd;
+
+				const current = this.value
+				const corrected = current.replace(/([^+0-9]+)/gi, '');
+				this.value = corrected;
+
+				if (corrected.length < current.length) --end;
+				this.setSelectionRange(start, end);
+			});
+			frontcam.addEventListener('input', function() {
+				let start = this.selectionStart;
+				let end = this.selectionEnd;
+
+				const current = this.value
+				const corrected = current.replace(/([^+0-9]+)/gi, '');
+				this.value = corrected;
+
+				if (corrected.length < current.length) --end;
+				this.setSelectionRange(start, end);
+			});
 			// tampil_smartphone();
 			function tampil_smartphone() {
 				pop_det = 'data-toggle="tooltip" title="Detail Data"';
@@ -322,7 +346,14 @@
 			<?php } ?>
 
 			<?php if ($p == 'addadmin') { ?>
-			tampil_admin();
+			showuseradmin();
+			$('#reload_tabel').click(function () {
+				showuseradmin();
+			})
+			function showuseradmin() {
+				tampil_admin();
+				tampil_user();
+			}
 			function tampil_admin() {
 				var user="<?= $this->session->userdata('admin')['username']; ?>";
 				var akses="<?= $this->session->userdata('admin')['hak_akses']; ?>";
@@ -414,7 +445,7 @@
 						url: "<?= base_url('simpan_admin') ?>",
 						data: $('#form_addmin').serialize(),
 						success: function (data){
-							tampil_admin();
+							showuseradmin();
 							$('#mdl_addadmin').modal('hide');
 							notif_sukses();
 						},
@@ -426,6 +457,61 @@
 			});
 			$('.del_addmin').click(function () {
 				setTimeout(function() { tampil_admin(); }, 5000);
+				$('#reload_tabel').trigger('click');
+			});
+			function tampil_user() {
+				pop_edt = 'data-toggle="tooltip" data-placement="top" title="Edit Data"';
+				pop_del = 'data-toggle="tooltip" data-placement="top" title="Delete Data"';
+				$.ajax({
+					type: "ajax",
+					url: "<?= base_url('list_user') ?>",
+					async: false,
+					dataType: "json",
+					success: function (data) {
+						var html = '';
+						var i;
+						for (i = 0; i < data.length; i++){
+							html+= '<tr>'+
+							'<td>'+(i+1)+'</td>'+
+							'<td>'+data[i].nama+'</td>'+
+							'<td>'+data[i].username+'</td>'+
+							'<td>'+data[i].password.replace(/./g, '*')+'</td>'+
+							'<td>'+data[i].last_login+'</td>'+
+							'<td class="text-center">'+
+							'<button class="btn btn-sm btn-primary m-1" onclick="edt_user('+
+							data[i].id_user+
+							');" '+pop_edt+'><i class="fas fa-pen-square"></i></button>'+
+							'<button class="btn btn-sm btn-danger m-1" onclick="del_user('+
+							data[i].id_user+
+							');" '+pop_del+'><i class="fas fa-trash"></i></button>'+
+							'</td>'+
+							'</tr>';
+						}
+						$('#show_user').html(html);
+					}
+				})
+			}
+			$('#simp_adduser').click(function () {
+				var username = $('[name="username_user"]').val();
+				var password = $('[name="password_user"]').val();
+				var nama = $('[name="nama_user"]').val();
+				if (username==''||password==''||nama=='') {
+					swal('Lengkapi Data Terlebih Dahulu');
+				} else {
+					$.ajax({
+						type: "POST",
+						url: "<?= base_url('simpan_user') ?>",
+						data: $('#form_adduser').serialize(),
+						success: function (data){
+							$('#mdl_adduser').modal('hide');
+							showuseradmin();
+							notif_sukses();
+						},
+						error: function(data){
+							notif_gagal();
+						}
+					});
+				}
 			});
 			<?php } ?>
 
@@ -448,6 +534,7 @@
 							'<td>'+data[i].tanggal+'</td>'+
 							'<td>'+data[i].merk+' '+data[i].seri+'</td>'+
 							'<td>'+data[i].skor_akhir+'</td>'+
+							'<td>'+data[i].nama+'</td>'+
 							'</tr>';
 						}
 						$('#show_perhitungan').html(html);

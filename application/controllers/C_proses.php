@@ -15,9 +15,27 @@ class C_proses extends CI_Controller {
 
 	public function index()
 	{
+		$sesi = $this->session->userdata('user');
+		if (!$sesi) {
+			redirect('login');
+		}
 		$data['title'] = 'Recommendation - Cari Rekomendasi';
 		$this->load->view('template/us_head', $data);
 		$this->load->view('front/find_rekomendasi', $data);
+		$this->load->view('modal/mdl_adduser', $data);
+		$this->load->view('template/us_foot', $data);
+	}
+	public function options()
+	{
+		$sesi = $this->session->userdata('user');
+		if (!$sesi) {
+			redirect('login');
+		}
+		$data['title'] = 'Recommendation - Cari Rekomendasi';
+		$data['smartphone'] = $this->show_smartphone();
+		$this->load->view('template/us_head', $data);
+		$this->load->view('front/opsi', $data);
+		$this->load->view('modal/mdl_adduser', $data);
 		$this->load->view('template/us_foot', $data);
 	}
 	public function splithigh($value)
@@ -29,13 +47,15 @@ class C_proses extends CI_Controller {
 	{
 		$hp = $this->input->post('hp');
 		if (count($hp)<2) {
-			redirect('cari');
+			redirect('opsi');
 		}
 		$data['hp'] = $hp;
+		$data['smartphone'] = $this->show_smartphone();
 		$data['pertanyaan'] = $this->madmin->list_pertanyaan();
 		$data['title'] = 'Recommendation - Pembobotan';
 		$this->load->view('template/us_head', $data);
 		$this->load->view('front/bobot', $data);
+		$this->load->view('modal/mdl_adduser', $data);
 		$this->load->view('template/us_foot', $data);
 	}
 
@@ -118,9 +138,7 @@ class C_proses extends CI_Controller {
 				}
 				// Kriteria ROM
 				if ($j == 2) {
-					if ($dataset[$i]->rom > 512) {
-						$subKriteria[$dataset[$i]->id]['subkriteria'][$j] = 5;
-					} else if ($dataset[$i]->rom > 256) {
+					if ($dataset[$i]->rom > 256) {
 						$subKriteria[$dataset[$i]->id]['subkriteria'][$j] = 4;
 					} else if ($dataset[$i]->rom > 128) {
 						$subKriteria[$dataset[$i]->id]['subkriteria'][$j] = 3;
@@ -132,9 +150,7 @@ class C_proses extends CI_Controller {
 				}
 				// Kriteria Kamera Depan
 				if ($j == 3) {
-					if ($this->splithigh($dataset[$i]->kamera_depan) > 25) {
-						$subKriteria[$dataset[$i]->id]['subkriteria'][$j] = 5;
-					} else if ($this->splithigh($dataset[$i]->kamera_depan) > 20) {
+					if ($this->splithigh($dataset[$i]->kamera_depan) > 20) {
 						$subKriteria[$dataset[$i]->id]['subkriteria'][$j] = 4;
 					} else if ($this->splithigh($dataset[$i]->kamera_depan) > 15) {
 						$subKriteria[$dataset[$i]->id]['subkriteria'][$j] = 3;
@@ -146,9 +162,7 @@ class C_proses extends CI_Controller {
 				}
 				// Kriteria Kamera Belakang
 				if ($j == 4) {
-					if ($this->splithigh($dataset[$i]->kamera_belakang) > 60) {
-						$subKriteria[$dataset[$i]->id]['subkriteria'][$j] = 5;
-					} else if ($this->splithigh($dataset[$i]->kamera_belakang) > 45) {
+					if ($this->splithigh($dataset[$i]->kamera_belakang) > 45) {
 						$subKriteria[$dataset[$i]->id]['subkriteria'][$j] = 4;
 					} else if ($this->splithigh($dataset[$i]->kamera_belakang) > 30) {
 						$subKriteria[$dataset[$i]->id]['subkriteria'][$j] = 3;
@@ -274,8 +288,80 @@ class C_proses extends CI_Controller {
 			$getLastIdPerhitungan = $this->mproses->getLastIdPerhitungan();
 			$id_perhitungan = $getLastIdPerhitungan->id_perhitungan;
 			$perhitungan = $this->getTotalScore($id_kriteria,$hp,$bobot);
+			// $temp_count = array_column($perhitungan, 'final_score');
+			// array_multisort($temp_count,SORT_DESC,$perhitungan);
+			// print_r($perhitungan);
 			$isInsert = false;
 			$isInsertNormal = false;
+
+
+			for ($i=0; $i < sizeof($perhitungan); $i++) { 
+				$temp_hp = $hp[$i];
+				$temp_score = $perhitungan[$hp[$i]]['final_score'][0];
+				$val = array(
+					'id_perhitungan' => $id_perhitungan,
+					'id_smartphone' => $temp_hp,
+					'skor_akhir' => $temp_score,
+					'id_user' => $this->session->userdata('user')['id_user']
+				);
+				$data = $this->mproses->insertDetailPerhitungan($val);
+				$isInsert = $data ? true : false;
+
+				if ($isInsert) {
+					$getLastIdDetailPerhitungan = $this->mproses->getLastIdDetailPerhitungan();
+					$id_detail = $getLastIdDetailPerhitungan->id_detail;
+					for ($j=0; $j < sizeof($id_kriteria); $j++) { 
+						$temp_normalisasi = $perhitungan[$hp[$i]]['normalisasi'][$j];
+						$temp_utility = $perhitungan[$hp[$i]]['value_utilities'][$j];
+						$normal = array(
+							'id_detail' => $id_detail,
+							'normalisasi' => $temp_normalisasi,
+							'utilities' => $temp_utility
+						);
+						$dataNormal = $this->mproses->insertNormalisasi($normal);
+						$isInsertNormal = $dataNormal ? true : false;
+						if (!$isInsertNormal) {
+							return false;
+						}
+					}
+				} else {
+					return false;
+				}
+			}
+			$SMART = array(
+				'id_smartphone' => $hp,
+				'id_kriteria' => $id_kriteria,
+				'bobot' => $bobot,
+				'perhitungan' => $perhitungan
+			);
+			return $SMART;
+			// echo json_encode($SMART);
+		} else {
+			return false;
+		}
+	}
+	// Trying Ajax
+	public function countdata()
+	{
+		$bobot = array();
+		for ($i=1; $i <= $this->madmin->pertanyaan_all(); $i++) {
+			$bbt = $this->input->post('bobot'.$i);
+			$bobot[] .= $bbt;
+		}
+		$id_kriteria = $this->input->post('id_kriteria');
+		$hp = $this->input->post('hp');
+		$smartphone = $this->show_smartphone();
+		$createPerhitungan = $this->mproses->createPerhitungan();
+		if ($createPerhitungan) {
+			$getLastIdPerhitungan = $this->mproses->getLastIdPerhitungan();
+			$id_perhitungan = $getLastIdPerhitungan->id_perhitungan;
+			$perhitungan = $this->getTotalScore($id_kriteria,$hp,$bobot);
+			// $temp_count = array_column($perhitungan, 'final_score');
+			// array_multisort($temp_count,SORT_DESC,$perhitungan);
+			// print_r($perhitungan);
+			$isInsert = false;
+			$isInsertNormal = false;
+
 
 			for ($i=0; $i < sizeof($perhitungan); $i++) { 
 				$temp_hp = $hp[$i];
@@ -315,10 +401,13 @@ class C_proses extends CI_Controller {
 				'bobot' => $bobot,
 				'perhitungan' => $perhitungan
 			);
-			return $SMART;
+			echo json_encode($SMART);
 		} else {
 			return false;
 		}
+	}
+	public function PerhitunganTerakhir()
+	{
 	}
 
 	public function result()
@@ -330,15 +419,23 @@ class C_proses extends CI_Controller {
 		}
 		$id_kriteria = $this->input->post('id_kriteria');
 		$hp = $this->input->post('hp');
+		$smartphone = $this->show_smartphone();
 		if (empty($bobot) || empty($hp)) {
 			redirect('pembobotan');
+		}
+		if (count($hp) == sizeof($smartphone)) {
+			$limit = 8;
+		} else {
+			$limit = count($hp);
 		}
 		if ($hp || $id_kriteria) {
 			$data['hasil'] = $this->insertPerhitungan($id_kriteria,$hp,$bobot);
 		}
 		$data['title'] = 'Hasil Rekomendasi';
+		$data['limit'] = $limit;
 		$this->load->view('template/us_head', $data);
 		$this->load->view('front/hasil', $data);
+		$this->load->view('modal/mdl_adduser', $data);
 		$this->load->view('template/us_foot', $data);
 	}
 
@@ -376,6 +473,32 @@ class C_proses extends CI_Controller {
 		$numbers = preg_replace('/[^0-9]/', '', $str);
 		$decimal = preg_replace('/[^0-9\.,]/', '', $str);
 		$letters = preg_replace('/[^a-zA-Z]/', '', $str);
+	}
+
+	public function get_log()
+	{
+		$id_user = $this->session->userdata('user')['id_user'];
+		$data = $this->mproses->search_log($id_user);
+		echo json_encode($data);
+	}
+
+	public function history()
+	{
+		$sesi = $this->session->userdata('user');
+		if (!$sesi) {
+			redirect('login');
+		}
+		if ($this->mproses->search_log($this->session->userdata('user')['id_user'])) {
+			$status = TRUE;
+		} else {
+			$status = FALSE;
+		}
+		$data['title'] = 'Recommendation - Riwayat Pencarian';
+		$data['status'] = $status;
+		$this->load->view('template/us_head', $data);
+		$this->load->view('front/riwayat', $data);
+		$this->load->view('modal/mdl_adduser', $data);
+		$this->load->view('template/us_foot', $data);
 	}
 
 }

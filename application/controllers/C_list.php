@@ -16,6 +16,7 @@ class C_list extends CI_Controller {
 		$data['title'] = 'Recommendation - List Smartphone';
 		$this->load->view('template/us_head', $data);
 		$this->load->view('front/list_smartphone', $data);
+		$this->load->view('modal/mdl_adduser', $data);
 		$this->load->view('template/us_foot', $data);
 	}
 

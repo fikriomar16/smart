@@ -37,6 +37,137 @@
 				placement : 'right'
 			});
 
+			$('#btn_edt_user').click(function () {
+				<?php
+				if ($this->session->userdata('user')) {
+					?>
+					var id_user = "<?= $this->session->userdata('user')['id_user'] ?>";
+					<?php
+				}
+				?>
+				$.ajax({
+					type: "ajax",
+					url: "<?= base_url('pil_user/') ?>"+id_user,
+					async: false,
+					dataType: "json",
+					success: function (data) {
+						document.getElementById("mdlheaduser").classList.remove('bg-info');
+						document.getElementById("mdlheaduser").classList.add('bg-primary');
+						$('#headtitleuser').text('Edit Data');
+						$('#mdl_adduser').modal('show');
+						$('[name="id_user"]').val(data.id_user);
+						$('[name="username_user"]').val(data.username);
+						$('[name="password_user"]').val(data.password);
+						$('[name="nama_user"]').val(data.nama);
+					},
+					error: function (data) {
+						swal('Terdapat Kesalahan');
+					}
+				});
+			});
+			$('#simp_adduser').click(function () {
+				var username = $('[name="username_user"]').val();
+				var password = $('[name="password_user"]').val();
+				var nama = $('[name="nama_user"]').val();
+				if (username==''||password==''||nama=='') {
+					swal('Lengkapi Data Terlebih Dahulu');
+				} else {
+					$.ajax({
+						type: "POST",
+						url: "<?= base_url('simpan_user') ?>",
+						data: $('#form_adduser').serialize(),
+						success: function (data){
+							$('#mdl_adduser').modal('hide');
+							notif_sukses();
+						},
+						error: function(data){
+							notif_gagal();
+						}
+					});
+				}
+			});
+			<?php if ($p == 'mendaftar') { ?>
+				$('#btn_fdaftar').prop('disabled', true);
+				var password_conf = $('#password_conf');
+				var password = $('#password');
+				var username = $('#username');
+				var nama = $('#nama');
+				password_conf.on('keyup',function () {
+					if (password.val() == password_conf.val() || password.val().length<6) {
+						password_conf.removeClass("is-invalid");
+						password.removeClass("is-invalid");
+						password_conf.addClass("is-valid");
+						password.addClass("is-valid");
+					} else {
+						password_conf.removeClass("is-valid");
+						password.removeClass("is-valid");
+						password_conf.addClass("is-invalid");
+						password.addClass("is-invalid");
+					}
+				});
+				username.on('keyup',function () {
+					$.ajax({
+						type: "POST",
+						url: "<?= base_url('cekusername') ?>",
+						data: $('#fdaftar').serialize(),
+						success: function (data) {
+							if (data || username.val()=='' || username.val().length<6) {
+								username.removeClass("is-valid");
+								username.addClass("is-invalid");
+							} else {
+								username.removeClass("is-invalid");
+								username.addClass("is-valid");
+							}
+						}
+					});
+				});
+				const user = document.getElementById('username');
+				user.addEventListener('input', function() {
+					let start = this.selectionStart;
+					let end = this.selectionEnd;
+
+					const current = this.value
+					const corrected = current.replace(/\s/g, "").toLowerCase();
+					this.value = corrected;
+
+					if (corrected.length < current.length) --end;
+					this.setSelectionRange(start, end);
+				});
+				nama.on('keyup',function () {
+					if (nama.val() == '') {
+						nama.removeClass("is-valid");
+						nama.addClass("is-invalid");
+					} else {
+						nama.removeClass("is-invalid");
+						nama.addClass("is-valid");
+					}
+				});
+				$('input').on('keyup',function () {
+					if ($('.is-valid').length>3) {
+						$('#btn_fdaftar').prop('disabled', false);
+					} else {
+						$('#btn_fdaftar').prop('disabled', true);
+					}
+				});
+				$('#btn_fdaftar').click(function () {
+					$.ajax({
+						type: "POST",
+						url: "<?= base_url('daftar_akun') ?>",
+						data: $('#fdaftar').serialize(),
+						success: function (data) {
+							Swal.fire({
+								type: 'success',
+								title: 'Berhasil Mendaftar',
+								text: 'Harap Tunggu, Sedang Mengalihkan Halaman',
+								showConfirmButton: false,
+								timer: 3000
+							});
+							setTimeout('window.location = "<?= base_url('login') ?>"; ',3000);
+						}
+					});
+				});
+			<?php } ?>
+
 			<?php if ($p == 'login'  || $p == 'masuk') { ?>
 				$('#btn_flogin').click(function () {
 					$.ajax({
@@ -228,7 +359,7 @@
 								'<td>'+data[i].baterai+' mAh</td>'+
 								'<td>Rp.'+konversi(data[i].harga)+'</td>'+
 								'<td class="text-center">'+
-								'<button class="btn btn-sm btn-primary" onclick="det_smart('+data[i].id+')" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fas fa-eye"></i></button>'+
+								'<button class="btn btn-sm btn-primary" type="button" onclick="det_smart('+data[i].id+')" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fas fa-eye"></i></button>'+
 								'</td>'+
 								'</tr>';
 							}
@@ -247,21 +378,61 @@
 							console.log(data);
 						},
 						error: function(data){
-							notif_gagal();
+							// notif_gagal();
 						}
 					});
-				})
+				});
 			<?php } ?>	
 
 			<?php if ($p == 'pembobotan') { ?>
-			$('#btn_bobot').prop('disabled', true);
-			$('#form_bobot').on('change','[type="radio"]', function () {
-				if ($('input[type=radio]:checked').length > 8) {
-					$('#btn_bobot').prop('disabled', false);
-				} else {
-					$('#btn_bobot').prop('disabled', true);
+				$('#btn_bobot').prop('disabled', true);
+				$('#form_bobot').on('change','[type="radio"]', function () {
+					if ($('input[type=radio]:checked').length > 8) {
+						$('#btn_bobot').prop('disabled', false);
+					} else {
+						$('#btn_bobot').prop('disabled', true);
+					}
+				});
+				$('#btn_bobot').click(function () {
+					$.ajax({
+						type: "POST",
+						url: "<?= base_url('hitung') ?>",
+						data: $('#form_bobot').serialize(),
+						success: function (data){
+							console.log(data);
+							setTimeout('window.location = "<?= base_url('hasil') ?>"; ',1000);
+						},
+						error: function(data){
+							notif_gagal();
+						}
+					});
+				});
+			<?php } ?>
+			<?php if ($p == 'riwayat') { ?>
+				tampil_log();
+				var tab_log;
+				tab_log = $('#tab_log').DataTable();
+				function tampil_log() {
+					$.ajax({
+						type: "ajax",
+						url: "<?= base_url('cari_log') ?>",
+						async: false,
+						dataType: "json",
+						success: function (data) {
+							var html = '';
+							var i;
+							for (i = 0; i < data.length; i++) {
+								html+= '<tr>'+
+								'<td>'+(i+1)+'</td>'+
+								'<td>'+data[i].tanggal+'</td>'+
+								'<td>'+data[i].merk+' '+data[i].seri+'</td>'+
+								'<td>'+data[i].skor_akhir+'</td>'+
+								'</tr>';
+							}
+							$('#show_log').html(html);
+						}
+					});
 				}
-			});
 			<?php } ?>
 		});
 	</script>

@@ -36,7 +36,7 @@
 			<li class="nav-item <?php if($p=='smartphone'||$p=='kriteria'||$p=='pertanyaan'||$p=='perhitungan'){echo "active";} ?>">
 				<a class="nav-link <?php if($p!='smartphone'||$p!='kriteria'||$p!='pertanyaan'||$p!='perhitungan'){echo "collapsed";} ?>" href="#" data-toggle="collapse" data-target="#InsertData" aria-expanded="true" aria-controls="collapseTwo">
 					<i class="fas fa-fw fa-database"></i>
-					<span>Insert Data</span>
+					<span>Master Data</span>
 				</a>
 				<div id="InsertData" class="collapse <?php if($p=='smartphone'||$p=='kriteria'||$p=='pertanyaan'||$p=='perhitungan'){echo "show";} ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -62,7 +62,7 @@
 			<li class="nav-item <?php if($p=='addadmin'){echo "active";} ?>">
 				<a class="nav-link" href="<?= base_url('addadmin') ?>">
 					<i class="fas fa-fw fa-user-cog"></i>
-					<span>Data Admin</span>
+					<span>Data Pengguna</span>
 				</a>
 			</li>
 			<li class="nav-item <?php if($p=='pengaturan'){echo "active";} ?>">

@@ -49,10 +49,17 @@
 					<h4 class="font-weight-bold text-primary py-3"><?= $d->nama_aplikasi;?></h4>
 					<h5 class="font-weight-bold"><?= $d->nama_instansi;?></h5>
 					<p class="font-italic"><?= $d->alamat_instansi;?></p>
+					<?php if (!$this->session->userdata('user')) { ?>
+					<a href="<?= base_url('login') ?>" class="btn btn-primary btn-icon-split m-1">
+						<span class="icon text-white"><i class="fas fa-chevron-circle-right"></i></span>
+						<span class="text">Berikutnya</span>
+					</a>
+					<?php } else { ?>
 					<a href="<?= base_url('list') ?>" class="btn btn-primary btn-icon-split m-1">
 						<span class="icon text-white"><i class="fas fa-chevron-circle-right"></i></span>
 						<span class="text">Berikutnya</span>
 					</a>
+					<?php } ?>
 				</center>
 			</div>
 		</div>

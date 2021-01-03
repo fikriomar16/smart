@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2020 at 07:15 PM
+-- Generation Time: Jan 03, 2021 at 04:30 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -43,7 +43,7 @@ CREATE TABLE `tbl_admin` (
 
 INSERT INTO `tbl_admin` (`id_admin`, `username`, `password`, `nama`, `hak_akses`, `last_login`) VALUES
 (1, 'admin', 'admin', 'Admin', 'admin', '2020-12-15 23:42:15'),
-(2, 'fikri', 'omar', 'Fikri Omar', 'sadmin', '2020-12-22 01:11:57'),
+(2, 'fikri', 'omar', 'Fikri Omar', 'sadmin', '2021-01-03 16:28:05'),
 (10, 'admin1', 'admin1', 'Admin Satu', 'admin', '2020-12-13 07:43:00');
 
 -- --------------------------------------------------------
@@ -78,23 +78,19 @@ CREATE TABLE `tbl_detail_perhitungan` (
   `id_detail` int(11) NOT NULL,
   `id_perhitungan` int(11) NOT NULL,
   `id_smartphone` int(11) NOT NULL,
-  `skor_akhir` float NOT NULL
+  `skor_akhir` float NOT NULL,
+  `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_detail_perhitungan`
 --
 
-INSERT INTO `tbl_detail_perhitungan` (`id_detail`, `id_perhitungan`, `id_smartphone`, `skor_akhir`) VALUES
-(1, 1, 76, 0.375),
-(2, 1, 52, 0.416667),
-(3, 2, 52, 0.357143),
-(4, 2, 92, 0.5),
-(5, 3, 52, 0.357143),
-(6, 3, 90, 0.321429),
-(7, 5, 73, 0.464286),
-(8, 5, 52, 0.357143),
-(9, 5, 92, 0.5);
+INSERT INTO `tbl_detail_perhitungan` (`id_detail`, `id_perhitungan`, `id_smartphone`, `skor_akhir`, `id_user`) VALUES
+(1, 1, 74, 0.346154, 1),
+(2, 1, 56, 0.192308, 1),
+(3, 1, 88, 0.346154, 1),
+(4, 1, 97, 0.358974, 1);
 
 -- --------------------------------------------------------
 
@@ -140,87 +136,42 @@ CREATE TABLE `tbl_normalisasi` (
 --
 
 INSERT INTO `tbl_normalisasi` (`id_normalisasi`, `id_detail`, `normalisasi`, `utilities`) VALUES
-(1, 1, 0.166667, 0.5),
-(2, 1, 0.0833333, 0),
-(3, 1, 0.0833333, 0),
-(4, 1, 0.0833333, 0),
-(5, 1, 0.0833333, 0),
-(6, 1, 0.166667, 1),
-(7, 1, 0.0833333, 0.5),
-(8, 1, 0.166667, 0.5),
-(9, 1, 0.0833333, 0),
-(10, 2, 0.166667, 1),
-(11, 2, 0.0833333, 0),
-(12, 2, 0.0833333, 0),
-(13, 2, 0.0833333, 0),
-(14, 2, 0.0833333, 0),
-(15, 2, 0.166667, 1),
-(16, 2, 0.0833333, 1),
-(17, 2, 0.166667, 0),
-(18, 2, 0.0833333, 0),
-(19, 3, 0.142857, 1),
-(20, 3, 0.142857, 0),
-(21, 3, 0.0714286, 0),
-(22, 3, 0.0714286, 0),
-(23, 3, 0.142857, 0),
-(24, 3, 0.142857, 1),
-(25, 3, 0.0714286, 1),
-(26, 3, 0.142857, 0),
-(27, 3, 0.0714286, 0),
-(28, 4, 0.142857, 1),
-(29, 4, 0.142857, 0),
-(30, 4, 0.0714286, 0),
-(31, 4, 0.0714286, 0),
-(32, 4, 0.142857, 0),
-(33, 4, 0.142857, 1),
-(34, 4, 0.0714286, 1),
-(35, 4, 0.142857, 1),
-(36, 4, 0.0714286, 0),
-(37, 5, 0.142857, 1),
-(38, 5, 0.142857, 0),
-(39, 5, 0.0714286, 0),
-(40, 5, 0.0714286, 0),
-(41, 5, 0.142857, 0),
-(42, 5, 0.142857, 1),
-(43, 5, 0.0714286, 1),
-(44, 5, 0.142857, 0),
-(45, 5, 0.0714286, 0),
-(46, 6, 0.142857, 1),
-(47, 6, 0.142857, 0),
-(48, 6, 0.0714286, 0),
-(49, 6, 0.0714286, 0),
-(50, 6, 0.142857, 0),
-(51, 6, 0.142857, 0.5),
-(52, 6, 0.0714286, 0.5),
-(53, 6, 0.142857, 0.5),
-(54, 6, 0.0714286, 0),
-(55, 7, 0.142857, 0.5),
-(56, 7, 0.0714286, 0.5),
-(57, 7, 0.142857, 0.5),
-(58, 7, 0.142857, 1),
-(59, 7, 0.0714286, 0.75),
-(60, 7, 0.142857, 0.25),
-(61, 7, 0.0714286, 0.5),
-(62, 7, 0.142857, 0),
-(63, 7, 0.0714286, 0.25),
-(64, 8, 0.142857, 1),
-(65, 8, 0.0714286, 0),
-(66, 8, 0.142857, 0),
-(67, 8, 0.142857, 0),
-(68, 8, 0.0714286, 0),
-(69, 8, 0.142857, 1),
-(70, 8, 0.0714286, 1),
-(71, 8, 0.142857, 0),
-(72, 8, 0.0714286, 0),
-(73, 9, 0.142857, 1),
-(74, 9, 0.0714286, 0),
-(75, 9, 0.142857, 0),
-(76, 9, 0.142857, 0),
-(77, 9, 0.0714286, 0),
-(78, 9, 0.142857, 1),
-(79, 9, 0.0714286, 1),
-(80, 9, 0.142857, 1),
-(81, 9, 0.0714286, 0);
+(1, 1, 0.153846, 1),
+(2, 1, 0.153846, 0),
+(3, 1, 0.0769231, 0),
+(4, 1, 0.0769231, 1),
+(5, 1, 0.153846, 0),
+(6, 1, 0.153846, 0),
+(7, 1, 0.0769231, 1),
+(8, 1, 0.0769231, 0.5),
+(9, 1, 0.0769231, 0),
+(10, 2, 0.153846, 1),
+(11, 2, 0.153846, 0),
+(12, 2, 0.0769231, 0),
+(13, 2, 0.0769231, 0),
+(14, 2, 0.153846, 0),
+(15, 2, 0.153846, 0),
+(16, 2, 0.0769231, 0.5),
+(17, 2, 0.0769231, 0),
+(18, 2, 0.0769231, 0),
+(19, 3, 0.153846, 1),
+(20, 3, 0.153846, 0),
+(21, 3, 0.0769231, 0),
+(22, 3, 0.0769231, 0),
+(23, 3, 0.153846, 0),
+(24, 3, 0.153846, 0.5),
+(25, 3, 0.0769231, 1),
+(26, 3, 0.0769231, 0.5),
+(27, 3, 0.0769231, 0),
+(28, 4, 0.153846, 0.666667),
+(29, 4, 0.153846, 0),
+(30, 4, 0.0769231, 0),
+(31, 4, 0.0769231, 0.333333),
+(32, 4, 0.153846, 1),
+(33, 4, 0.153846, 0.333333),
+(34, 4, 0.0769231, 0.333333),
+(35, 4, 0.0769231, 0),
+(36, 4, 0.0769231, 0);
 
 -- --------------------------------------------------------
 
@@ -238,11 +189,8 @@ CREATE TABLE `tbl_perhitungan` (
 --
 
 INSERT INTO `tbl_perhitungan` (`id_perhitungan`, `tanggal`) VALUES
-(1, '2020-12-21 15:24:06'),
-(2, '2020-12-21 16:22:50'),
-(3, '2020-12-21 18:07:23'),
-(4, '2020-12-21 18:08:50'),
-(5, '2020-12-21 18:13:22');
+(1, '2021-01-03 15:28:24'),
+(2, '2021-01-03 15:28:26');
 
 -- --------------------------------------------------------
 
@@ -265,7 +213,7 @@ INSERT INTO `tbl_pertanyaan` (`id_pertanyaan`, `id_kriteria`, `pertanyaan`) VALU
 (2, 2, 'Apakah anda membutuhkan memori yang besar ? (semisal untuk membuka banyak aplikasi bersamaan)'),
 (3, 3, 'Apakah anda membutuhkan kapasitas penyimpanan yang besar ?'),
 (4, 4, 'Apakah anda membutuhkan hasil selfie yang bagus ?'),
-(5, 5, 'Apakah anda membutuhkan hasil foto yang bagus ?'),
+(5, 5, 'Apakah anda membutuhkan hasil foto/video yang bagus ?'),
 (6, 6, 'Apakah anda menginginkan smartphone yang dapat memproses data dengan cepat ?'),
 (7, 7, 'Apakah anda membutuhkan versi OS Android terbaru ?'),
 (8, 8, 'Apakah anda membutuhkan kapasitas baterai yang besar ?'),
@@ -310,7 +258,7 @@ INSERT INTO `tbl_smartphone` (`id`, `merk`, `seri`, `display`, `kamera_depan`, `
 (48, 'SAMSUNG', 'A71', '6.7', '32', '64+12+5+5', '6', '128', 'Octa-core 2.2', 'Snapdragon 730', '10', '4500', 5700000, 'SAMSUNG_A71.jpg'),
 (49, 'SAMSUNG', 'A50s', '6.4', '32', '48+8+5', '4', '64', 'Octa-core 2.3', 'Exynos 9611', '9', '4000', 4900000, 'SAMSUNG_A50s.jpg'),
 (50, 'SAMSUNG', 'M30s', '6.4', '16', '48+8+5', '4', '64', 'Octa-core 2.3', 'Exynos 9611', '9', '6000', 3150000, 'SAMSUNG_M30s.jpg'),
-(51, 'SAMSUNG', 'A80', '6.3', '-', '48+8', '8', '128', 'Octa-core 2.0', 'Snapdragon 986', '9', '3700', 12065000, 'SAMSUNG_A80.jpg'),
+(51, 'SAMSUNG', 'A80', '6.3', '0', '48+8', '8', '128', 'Octa-core 2.0', 'Snapdragon 986', '9', '3700', 12065000, 'SAMSUNG_A80.jpg'),
 (52, 'SAMSUNG', 'A10s', '6.2', '8', '13+2', '2', '32', 'Octa-core 2.0', 'Helio P22', '9', '4000', 2600000, 'SAMSUNG_A10s.jpg'),
 (53, 'SAMSUNG', 'A20s', '6.5', '8', '13+8+5', '3', '64', 'Octa-core 1.8', 'Snapdragon 458', '9', '4000', 2600000, 'SAMSUNG_A20s.jpg'),
 (54, 'SAMSUNG', 'A30s', '6.4', '16', '25+5+8', '4', '64', 'Octa-core 1.8', 'Exynos 7904', '9', '4000', 3300000, 'SAMSUNG_A30s.jpg'),
@@ -367,6 +315,28 @@ INSERT INTO `tbl_smartphone` (`id`, `merk`, `seri`, `display`, `kamera_depan`, `
 (105, 'XIAOMI', 'Mi 10', '6.6', '20', '108+13', '8', '256', 'Octa-core 2.84', 'Snapdragon 865', '10', '4780', 9999000, 'XIAOMI_Mi_10.png'),
 (106, 'XIAOMI', 'Mi Note 10', '6.4', '32', '108+12', '6', '128', 'Octa-core 2.2', 'Snapdragon 730G', '9', '5260', 6199000, 'XIAOMI_Mi_Note_10.png');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user`
+--
+
+CREATE TABLE `tbl_user` (
+  `id_user` int(11) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `last_login` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_user`
+--
+
+INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `last_login`) VALUES
+(1, 'omar', 'fikri', 'Om Fikri', '2021-01-03 22:27:08'),
+(2, 'ekacahyani', 'ecka1412', 'Eka Cahyani', '2021-01-03 16:14:00');
+
 --
 -- Indexes for dumped tables
 --
@@ -389,7 +359,8 @@ ALTER TABLE `tbl_conf`
 ALTER TABLE `tbl_detail_perhitungan`
   ADD PRIMARY KEY (`id_detail`),
   ADD KEY `id_perhitungan` (`id_perhitungan`),
-  ADD KEY `id_smartphone` (`id_smartphone`);
+  ADD KEY `id_smartphone` (`id_smartphone`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `tbl_kriteria`
@@ -424,6 +395,12 @@ ALTER TABLE `tbl_smartphone`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -437,7 +414,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_detail_perhitungan`
 --
 ALTER TABLE `tbl_detail_perhitungan`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_kriteria`
@@ -449,13 +426,13 @@ ALTER TABLE `tbl_kriteria`
 -- AUTO_INCREMENT for table `tbl_normalisasi`
 --
 ALTER TABLE `tbl_normalisasi`
-  MODIFY `id_normalisasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id_normalisasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `tbl_perhitungan`
 --
 ALTER TABLE `tbl_perhitungan`
-  MODIFY `id_perhitungan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_perhitungan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_pertanyaan`
@@ -470,6 +447,12 @@ ALTER TABLE `tbl_smartphone`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
+-- AUTO_INCREMENT for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -478,7 +461,8 @@ ALTER TABLE `tbl_smartphone`
 --
 ALTER TABLE `tbl_detail_perhitungan`
   ADD CONSTRAINT `tbl_detail_perhitungan_ibfk_1` FOREIGN KEY (`id_perhitungan`) REFERENCES `tbl_perhitungan` (`id_perhitungan`),
-  ADD CONSTRAINT `tbl_detail_perhitungan_ibfk_2` FOREIGN KEY (`id_smartphone`) REFERENCES `tbl_smartphone` (`id`);
+  ADD CONSTRAINT `tbl_detail_perhitungan_ibfk_2` FOREIGN KEY (`id_smartphone`) REFERENCES `tbl_smartphone` (`id`),
+  ADD CONSTRAINT `tbl_detail_perhitungan_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `tbl_user` (`id_user`);
 
 --
 -- Constraints for table `tbl_normalisasi`

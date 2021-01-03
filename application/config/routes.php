@@ -65,13 +65,20 @@ $route['find'] = 'c_proses';
 $route['cari'] = 'c_proses';
 $route['get_data'] = 'c_proses/getdata';
 $route['push_data'] = 'c_proses/pushdata';
+$route['opsi'] = 'c_proses/options';
 $route['pembobotan'] = 'c_proses/bobot';
 $route['hasil'] = 'c_proses/result';
+$route['hitung'] = 'c_proses/countdata';
+$route['cari_log'] = 'c_proses/get_log';
+$route['riwayat'] = 'c_proses/history';
 $route['getsmart/(:any)'] = 'c_proses/select_smart/$1';
 $route['getkriteria/(:any)'] = 'c_proses/select_kriteria/$1';
 
 $route['masuk'] = 'c_login';
 $route['login'] = 'c_login';
+$route['mendaftar'] = 'c_login/register';
+$route['cekusername'] = 'c_login/cekusername';
+$route['daftar_akun'] = 'c_login/user_register';
 $route['check'] = 'c_login/check_login';
 $route['keluar'] = 'c_login/logout';
 $route['logout'] = 'c_login/logout';
@@ -100,6 +107,11 @@ $route['list_admin'] = 'c_admin/get_admin';
 $route['pil_admin/(:any)'] = 'c_admin/select_admin/$1';
 $route['simpan_admin'] = 'c_admin/save_admin';
 $route['del_admin/(:any)'] = 'c_admin/delete_admin/$1';
+
+$route['list_user'] = 'c_admin/get_user';
+$route['pil_user/(:any)'] = 'c_admin/select_user/$1';
+$route['simpan_user'] = 'c_admin/save_user';
+$route['del_user/(:any)'] = 'c_admin/delete_user/$1';
 
 $route['list_kriteria'] = 'c_admin/get_kriteria';
 

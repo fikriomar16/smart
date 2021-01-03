@@ -70,7 +70,7 @@ if ($platform=="Android" || $platform=="iOS") {
 		<div class="float-right align-content-center" id='pagination'></div>
 	</div>
 	<div class="card-footer text-center">
-		<a href="<?= base_url('find') ?>" class="btn btn-primary btn-icon-split m-1 <?= $btn ?>">
+		<a href="<?= base_url('opsi') ?>" class="btn btn-primary btn-icon-split m-1 <?= $btn ?>">
 			<span class="icon text-white"><i class="fas fa-search"></i></span>
 			<span class="text">Cari Rekomendasi</span>
 		</a>

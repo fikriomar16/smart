@@ -116,6 +116,7 @@ class C_admin extends CI_Controller {
 		$this->load->view('template/ad_head', $data);
 		$this->load->view('back/data_admin', $data);
 		$this->load->view('modal/mdl_addadmin', $data);
+		$this->load->view('modal/mdl_adduser', $data);
 		$this->load->view('template/ad_foot', $data);
 	}
 	public function get_admin()
@@ -159,6 +160,48 @@ class C_admin extends CI_Controller {
 	public function delete_admin($id_admin)
 	{
 		$result = $this->madmin->delete_admin($id_admin);
+		echo json_encode($result);
+	}
+
+	public function get_user()
+	{
+		$sesi = $this->session->userdata('admin');
+		if (!$sesi) {
+			redirect('beranda');
+		}
+		$get = $this->madmin->list_user();
+		echo json_encode($get);
+	}
+	public function select_user($id_user)
+	{
+		$data = $this->madmin->get_user($id_user);
+		echo json_encode($data);
+	}
+	public function save_user()
+	{
+		$nama = ucwords($this->input->post('nama_user'), " \t\r\n\f\v'");
+		$id_user = $this->input->post('id_user');
+		if (empty($id_user)) {
+			$data = array(
+				'username' => $this->input->post('username_user'),
+				'password' => $this->input->post('password_user'),
+				'nama' => $nama
+			);
+			$result = $this->madmin->insert_user($data);
+			echo json_encode($result);
+		} else {
+			$data = array(
+				'username' => $this->input->post('username_user'),
+				'password' => $this->input->post('password_user'),
+				'nama' => $nama
+			);
+			$result = $this->madmin->update_user($id_user,$data);
+			echo json_encode($result);
+		}
+	}
+	public function delete_user($id_user)
+	{
+		$result = $this->madmin->delete_user($id_user);
 		echo json_encode($result);
 	}
 

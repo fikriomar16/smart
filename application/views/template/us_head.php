@@ -49,31 +49,50 @@
 				<li class="nav-item <?php if($p == 'list' || $p == 'daftar'){echo "active font-weight-bold";} ?>">
 					<a class="nav-link" href="<?= base_url('daftar') ?>"><i class="fas fa-fw fa-list"></i>&nbsp;List Smartphone</a>
 				</li>
-				<li class="nav-item <?php if($p == 'find' || $p == 'cari' || $p == 'pembobotan'){echo "active font-weight-bold";} ?>">
-					<a class="nav-link" href="<?= base_url('cari') ?>"><i class="fas fa-fw fa-search"></i>&nbsp;Cari Rekomendasi</a>
+				<li class="nav-item <?php if($p == 'find' || $p == 'cari' || $p == 'pembobotan' || $p == 'opsi'){echo "active font-weight-bold";} ?>">
+					<a class="nav-link" href="<?= base_url('opsi') ?>"><i class="fas fa-fw fa-search"></i>&nbsp;Cari Rekomendasi</a>
 				</li>
 				<li class="nav-item <?php if($p == 'help' || $p == 'bantuan'){echo "active font-weight-bold";} ?>">
 					<a class="nav-link" href="<?= base_url('bantuan') ?>"><i class="fas fa-fw fa-info"></i>&nbsp;Bantuan</a>
+				</li>
+				<li class="nav-item <?php if($p == 'riwayat'){echo "active font-weight-bold";} ?>">
+					<a class="nav-link" href="<?= base_url('riwayat') ?>"><i class="fas fa-fw fa-history"></i>&nbsp;Riwayat Pencarian</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				<?php?>
 				<li class="nav-item dropdown no-arrow">
 					<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<p class=" d-lg-inline small"><i class="fas fa-fw fa-ellipsis-v"></i>&nbsp;Opsi</p>
+						<p class=" d-lg-inline small"><i class="fas fa-fw fa-ellipsis-v"></i>&nbsp;&nbsp;
+							<?php
+							if ($this->session->userdata('user')) {
+								echo '<i class="fas fa-fw fa-user-circle"></i>&nbsp;'.$this->session->userdata('user')['nama'];
+							} else {
+								echo "Opsi";
+							}
+							?>
+						</p>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-						<?php if (!$this->session->userdata('admin')) { ?>
-						<a class="dropdown-item" href="<?= base_url('masuk') ?>">
-							<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-							Login
+						<?php if ($this->session->userdata('user')) { ?>
+						<a class="dropdown-item" href="#" id="btn_edt_user">
+							<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+							Ubah Pengaturan Akun
 						</a>
-						<?php } else { ?>
+						<?php } ?>
+						<?php if ($this->session->userdata('admin')) { ?>
 						<a class="dropdown-item" href="<?= base_url('admin') ?>">
 							<i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
 							Menuju Dashboard
 						</a>
+						<?php } elseif (!$this->session->userdata('user')) { ?>
+						<a class="dropdown-item" href="<?= base_url('masuk') ?>">
+							<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+							Login
+						</a>
+						<?php } ?>
 						<div class="dropdown-divider"></div>
+						<?php if ($this->session->userdata('admin') || $this->session->userdata('user')) { ?>
 						<a class="dropdown-item" href="#" onclick="logout();">
 							<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 							Keluar

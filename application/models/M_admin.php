@@ -95,10 +95,11 @@ class M_admin extends CI_Model {
 
 	public function list_perhitungan()
 	{
-		$this->db->select('tbl_perhitungan.tanggal, tbl_smartphone.merk, tbl_smartphone.seri, tbl_detail_perhitungan.id_detail, tbl_detail_perhitungan.id_perhitungan, tbl_detail_perhitungan.skor_akhir');
+		$this->db->select('tbl_perhitungan.tanggal, tbl_smartphone.merk, tbl_smartphone.seri, tbl_detail_perhitungan.id_detail, tbl_detail_perhitungan.id_perhitungan, tbl_detail_perhitungan.skor_akhir, tbl_user.nama');
 		$this->db->from('tbl_detail_perhitungan');
 		$this->db->join('tbl_smartphone', 'tbl_detail_perhitungan.id_smartphone = tbl_smartphone.id', 'inner');
 		$this->db->join('tbl_perhitungan', 'tbl_detail_perhitungan.id_perhitungan = tbl_perhitungan.id_perhitungan', 'inner');
+		$this->db->join('tbl_user', 'tbl_detail_perhitungan.id_user = tbl_user.id_user', 'inner');
 		$q = $this->db->get();
 		return $q->result();
 	}
@@ -118,6 +119,36 @@ class M_admin extends CI_Model {
 		$this->db->limit(1);
 		$q = $this->db->get();
 		return $q->row();
+	}
+
+	public function list_user()
+	{
+		$query = $this->db->get('tbl_user');
+		return $query->result();
+	}
+	public function get_user($id_user)
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_user');
+		$this->db->where('id_user', $id_user);
+
+		$q = $this->db->get();
+		return $q->row();
+	}
+	public function insert_user($data)
+	{
+		$this->db->insert('tbl_user', $data);
+		return $this->db->insert_id();
+	}
+	public function update_user($id_user,$data)
+	{
+		$this->db->where('id_user', $id_user);
+		return $this->db->update('tbl_user', $data);
+	}
+	public function delete_user($id_user)
+	{
+		$this->db->where('id_user', $id_user);
+		return $this->db->delete('tbl_user');
 	}
 
 }

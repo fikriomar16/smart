@@ -55,13 +55,13 @@
 								<div class="col">
 									<div class="form-group">
 										<label>Kamera Belakang</label>
-										<input type="text" name="kamera_belakang" class="form-control">
+										<input type="text" name="kamera_belakang" class="form-control" id="backcam">
 									</div>
 								</div>
 								<div class="col">
 									<div class="form-group">
 										<label>Kamera Depan</label>
-										<input type="text" name="kamera_depan" class="form-control">
+										<input type="text" name="kamera_depan" class="form-control" id="frontcam">
 									</div>
 								</div>
 							</div>

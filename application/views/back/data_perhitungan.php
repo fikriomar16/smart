@@ -17,6 +17,7 @@
 								<th>Waktu Perhitungan</th>
 								<th>Merk</th>
 								<th>Hasil Perhitungan</th>
+								<th>Dicari Oleh</th>
 							</tr>
 						</thead>
 						<tbody id="show_perhitungan">
