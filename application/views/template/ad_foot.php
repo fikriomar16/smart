@@ -346,6 +346,42 @@
 			<?php } ?>
 
 			<?php if ($p == 'addadmin') { ?>
+			var username_user = $('[name="username_user"]');
+			username_user.on('keyup',function () {
+				$.ajax({
+					type: "POST",
+					url: "<?= base_url('cekusername_user') ?>",
+					data: $('#form_adduser').serialize(),
+					success: function (data) {
+						if (data) {
+							swal("Username Telah Digunakan");
+							username_user.addClass("is-invalid");
+							username_user.removeClass("is-valid");
+						} else {
+							username_user.addClass("is-valid");
+							username_user.removeClass("is-invalid");
+						}
+					}
+				});
+			});
+			var username = $('[name="username"]');
+			username.on('keyup',function () {
+				$.ajax({
+					type: "POST",
+					url: "<?= base_url('cekusername_admin') ?>",
+					data: $('#form_addmin').serialize(),
+					success: function (data) {
+						if (data) {
+							swal("Username Telah Digunakan");
+							username.addClass("is-invalid");
+							username.removeClass("is-valid");
+						} else {
+							username.addClass("is-valid");
+							username.removeClass("is-invalid");
+						}
+					}
+				});
+			});
 			showuseradmin();
 			$('#reload_tabel').click(function () {
 				showuseradmin();

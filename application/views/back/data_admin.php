@@ -74,9 +74,9 @@
 				$('#headtitleuser').text('Edit Data User');
 				$('#mdl_adduser').modal('show');
 				$('[name="id_user"]').val(data.id_user);
-				$('[name="username"]').val(data.username);
-				$('[name="password"]').val(data.password);
-				$('[name="nama"]').val(data.nama);
+				$('[name="username_user"]').val(data.username);
+				$('[name="password_user"]').val(data.password);
+				$('[name="nama_user"]').val(data.nama);
 			},
 			error: function (data) {
 				swal('Terdapat Kesalahan');

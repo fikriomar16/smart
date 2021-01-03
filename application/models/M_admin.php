@@ -151,6 +151,23 @@ class M_admin extends CI_Model {
 		return $this->db->delete('tbl_user');
 	}
 
+	public function cekusername_user($username)
+	{
+		$this->db->select('username');
+		$this->db->from('tbl_user');
+		$this->db->where('username', $username);
+		$q = $this->db->get();
+		return $q->row();
+	}
+	public function cekusername_admin($username)
+	{
+		$this->db->select('username');
+		$this->db->from('tbl_admin');
+		$this->db->where('username', $username);
+		$q = $this->db->get();
+		return $q->row();
+	}
+
 }
 
 /* End of file M_admin.php */

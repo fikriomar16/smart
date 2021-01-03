@@ -105,7 +105,7 @@
 	<div class="col-lg-12">
 		<div class="card border-bottom-primary shadow mb-4">
 			<div class="card-header py-3">
-				<h6 class="text-center m-0 font-weight-bold text-primary">Perolehan Data</h6>
+				<h6 class="text-center m-0 font-weight-bold text-primary"><i class="fas fa-chart-line fa-fw"></i>  Perolehan Data</h6>
 			</div>
 			<div class="card-body">
 				<p class="text-center">Ciluk Baaa!! Disini Datanya</p>

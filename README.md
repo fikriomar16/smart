@@ -19,12 +19,14 @@ _Judul:_ __Implementasi Metode SMART Pada Sistem Rekomendasi Pemilihan Smartphon
 - [x] Responsive Layout for User \*perhaps\*
 - [x] Ajax Pagination
 - [x] Summernote Text Editor
-- [x] Javascript validation (before input data or select phones)
+- [x] Javascript validation (before input data, select phones, account registration, etc)
 - [x] Admin Management by Super Admin
 - [x] SweetAlert for pop-up info & confirmation
+- [x] Registration feature (for user)
+- [x] Username checker using Ajax Jquery
 - [ ] DSS Method Implementation with Ajax \*still can't figured\*
 - [ ] Chart
-- [ ] Searched data log
+- [x] Searched data log
 - [ ] Searching (part of pagination)
 - [ ] Sorting data (part of pagination)
 

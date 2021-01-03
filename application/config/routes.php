@@ -107,6 +107,8 @@ $route['list_admin'] = 'c_admin/get_admin';
 $route['pil_admin/(:any)'] = 'c_admin/select_admin/$1';
 $route['simpan_admin'] = 'c_admin/save_admin';
 $route['del_admin/(:any)'] = 'c_admin/delete_admin/$1';
+$route['cekusername_user'] = 'c_admin/cekusername_user';
+$route['cekusername_admin'] = 'c_admin/cekusername_admin';
 
 $route['list_user'] = 'c_admin/get_user';
 $route['pil_user/(:any)'] = 'c_admin/select_user/$1';

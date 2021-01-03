@@ -246,6 +246,27 @@ class C_admin extends CI_Controller {
 		$get = $this->madmin->list_perhitungan();
 		echo json_encode($get);
 	}
+
+	public function cekusername_user()
+	{
+		$username_user = $this->input->post('username_user');
+		$res = $this->madmin->cekusername_user($username_user);
+		if ($res) {
+			echo json_encode($res);
+		} else {
+			return false;
+		}
+	}
+	public function cekusername_admin()
+	{
+		$username = $this->input->post('username');
+		$res = $this->madmin->cekusername_admin($username);
+		if ($res) {
+			echo json_encode($res);
+		} else {
+			return false;
+		}
+	}
 }
 
 /* End of file C_admin.php */
