@@ -267,6 +267,12 @@ class C_admin extends CI_Controller {
 			return false;
 		}
 	}
+
+	public function data_chart()
+	{
+		$data = $this->madmin->chart_data();
+		echo json_encode($data);
+	}
 }
 
 /* End of file C_admin.php */

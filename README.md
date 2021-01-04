@@ -24,10 +24,10 @@ _Judul:_ __Implementasi Metode SMART Pada Sistem Rekomendasi Pemilihan Smartphon
 - [x] SweetAlert for pop-up info & confirmation
 - [x] Registration feature (for user)
 - [x] Username checker using Ajax Jquery
-- [ ] DSS Method Implementation with Ajax \*still can't figured\*
-- [ ] Chart
+- [x] Chart
 - [x] Searched data log
 - [ ] Searching (part of pagination)
 - [ ] Sorting data (part of pagination)
+- [ ] DSS Method Implementation with Ajax \*still can't figured\*
 
 *Cukup Sekian* :+1:

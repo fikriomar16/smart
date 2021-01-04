@@ -11,9 +11,9 @@
 	<script src="<?= base_url() ?>assets/vendor/sweetalert/dist/sweetalert2.js"></script>
 	<script src="<?= base_url() ?>assets/vendor/datatables/jquery.dataTables.js"></script>
 	<script src="<?= base_url() ?>assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+	<script src="<?= base_url() ?>assets/vendor/chart.js/Chart.js"></script>
 	<?php $p = $this->uri->segment(1); ?>
 	<script type="text/javascript">
-		// $('.sidebar').toggleClass('toggled');
 		function logout() {
 			Swal.fire({
 				confirmButtonClass: 'btn btn-success m-2',
@@ -30,6 +30,50 @@
 				}
 			})
 		}
+		<?php if ($p == 'admin') { ?>
+			tampil_chart();
+			function tampil_chart() {
+				var ctx;
+				ctx = $('#myChart');
+				$.ajax({
+					type: "GET",
+					url: "<?= base_url('chart_data') ?>",
+					async: false,
+					dataType: "json",
+					success: function (response) {
+						var i,tgl=[],jml=[];
+						for (i=0;i<response.length;i++){
+							tgl.push(response[i].tanggal);
+							jml.push(response[i].jumlah);
+						}
+						console.log(tgl);
+						console.log(jml);
+						var myChart = new Chart(ctx, {
+							type: 'line',
+							data: {
+								labels: tgl,
+								datasets: [{
+									label: 'Jumlah Pencarian Dalam Perhari',
+									data: jml,
+									backgroundColor: 'rgba(54, 162, 235, 0.2)',
+									borderColor: 'rgba(54, 162, 235, 1)',
+									borderWidth: 1
+								}]
+							},
+							options: {
+								scales: {
+									yAxes: [{
+										ticks: {
+											beginAtZero: true
+										}
+									}]
+								}
+							}
+						});
+					}
+				});
+			}
+		<?php } ?>
 
 		<?php if ($p == 'smartphone') { ?>
 		function previewImage() {

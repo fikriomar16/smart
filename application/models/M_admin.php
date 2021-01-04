@@ -168,6 +168,15 @@ class M_admin extends CI_Model {
 		return $q->row();
 	}
 
+	public function chart_data()
+	{
+		$this->db->select('date_format(tbl_perhitungan.tanggal, "%Y-%m-%d") as tanggal, COUNT(tanggal) as jumlah');
+		$this->db->from('tbl_perhitungan');
+		$this->db->group_by('date_format(tbl_perhitungan.tanggal, "%Y-%m-%d")');
+		$res = $this->db->get();
+		return $res->result();
+	}
+
 }
 
 /* End of file M_admin.php */

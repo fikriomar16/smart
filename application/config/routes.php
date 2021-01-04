@@ -92,6 +92,7 @@ $route['pil_smart/(:any)'] = 'c_smartphone/select_smart/$1';
 $route['del_smartphone'] = 'c_smartphone/delete_smartphone';
 
 $route['admin'] = 'c_admin';
+$route['chart_data'] = 'c_admin/data_chart';
 
 $route['kriteria'] = 'c_admin/datakriteria';
 $route['perhitungan'] = 'c_admin/dataperhitungan';

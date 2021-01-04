@@ -108,7 +108,7 @@
 				<h6 class="text-center m-0 font-weight-bold text-primary"><i class="fas fa-chart-line fa-fw"></i>  Perolehan Data</h6>
 			</div>
 			<div class="card-body">
-				<p class="text-center">Ciluk Baaa!! Disini Datanya</p>
+				<canvas id="myChart" width="350" height="75"></canvas>
 			</div>
 		</div>
 	</div>

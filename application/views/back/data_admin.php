@@ -119,7 +119,7 @@
 	<div class="col-lg-12">
 		<div class="card border-bottom-info shadow mb-4">
 			<div class="card-header py-3">
-				<h6 class="text-center m-0 font-weight-bold text-secondary">Tambah Admin</h6>
+				<h6 class="text-center m-0 font-weight-bold text-secondary">Data Admin</h6>
 			</div>
 			<div class="card-body">
 				<button type="button" class="btn btn-primary btn-icon-split btn-sm mb-4 float-right" id="reload_tabel" data-toggle="tooltip" data-placement="right" title="Reload Tabel">
@@ -157,7 +157,7 @@
 	<div class="col-lg-12">
 		<div class="card border-bottom-info shadow mb-4">
 			<div class="card-header py-3">
-				<h6 class="text-center m-0 font-weight-bold text-secondary">Tambah User</h6>
+				<h6 class="text-center m-0 font-weight-bold text-secondary">Data User</h6>
 			</div>
 			<div class="card-body">
 				<button type="button" class="btn btn-info btn-icon-split btn-sm mb-4" onclick="mdl_adduser();" data-toggle="tooltip" data-placement="right" title="Tambah Data">
