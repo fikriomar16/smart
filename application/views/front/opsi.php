@@ -26,7 +26,7 @@
 							<div class="card border-info">
 								<img class="img-fluid card-img-top" style="height: 220px;width: auto;object-fit: cover;object-position: -20% 0;" src="<?= base_url('assets/img/sp.jpg') ?>">
 								<div class="card-body">
-									<h4 class="card-title text-info">Langsung Menuju Pembobotan</h4>
+									<h4 class="card-title text-info">Cari Tau HP yang Cocok Untuk Anda</h4>
 									<p class="card-text">
 										Tidak perlu memilih berbagai smartphone untuk dibandingkan, anda bisa langsung menjawab beberapa pertanyaan untuk mendapatkan hasil rekomendasi smartphone yang diinginkan.
 									</p>
@@ -34,7 +34,7 @@
 									<input type="text" name="hp[]" value="<?= $smartphone[$i]->id ?>" hidden>
 									<?php } ?>
 									<button class="btn btn-info float-right" id="btn_cari">
-										<i class="fas fa-rocket"></i>&nbsp;Menuju Pembobotan
+										<i class="fas fa-rocket"></i>&nbsp;Isi kuesioner
 									</button>
 								</div>
 							</div>

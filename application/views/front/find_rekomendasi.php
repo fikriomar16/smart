@@ -66,7 +66,7 @@
 		</div>
 		<div class="card-footer text-center">
 			<button class="btn btn-primary btn-block" id="btn_cari">
-				<i class="fas fa-rocket"></i>&nbsp;Menuju Pembobotan
+				<i class="fas fa-rocket"></i>&nbsp;Menuju Pengisian Kuesioner
 			</button>
 		</div>
 	</form>

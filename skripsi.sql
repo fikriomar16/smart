@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2021 at 04:30 PM
+-- Generation Time: Jan 04, 2021 at 07:45 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -43,8 +43,8 @@ CREATE TABLE `tbl_admin` (
 
 INSERT INTO `tbl_admin` (`id_admin`, `username`, `password`, `nama`, `hak_akses`, `last_login`) VALUES
 (1, 'admin', 'admin', 'Admin', 'admin', '2020-12-15 23:42:15'),
-(2, 'fikri', 'omar', 'Fikri Omar', 'sadmin', '2021-01-03 16:28:05'),
-(10, 'admin1', 'admin1', 'Admin Satu', 'admin', '2020-12-13 07:43:00');
+(2, 'fikri', 'omar', 'Fikri Omar', 'sadmin', '2021-01-04 13:11:35'),
+(10, 'admin1', 'admin1', 'Admin Satu', 'admin', '2021-01-04 03:47:26');
 
 -- --------------------------------------------------------
 
@@ -81,16 +81,6 @@ CREATE TABLE `tbl_detail_perhitungan` (
   `skor_akhir` float NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_detail_perhitungan`
---
-
-INSERT INTO `tbl_detail_perhitungan` (`id_detail`, `id_perhitungan`, `id_smartphone`, `skor_akhir`, `id_user`) VALUES
-(1, 1, 74, 0.346154, 1),
-(2, 1, 56, 0.192308, 1),
-(3, 1, 88, 0.346154, 1),
-(4, 1, 97, 0.358974, 1);
 
 -- --------------------------------------------------------
 
@@ -131,48 +121,6 @@ CREATE TABLE `tbl_normalisasi` (
   `utilities` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tbl_normalisasi`
---
-
-INSERT INTO `tbl_normalisasi` (`id_normalisasi`, `id_detail`, `normalisasi`, `utilities`) VALUES
-(1, 1, 0.153846, 1),
-(2, 1, 0.153846, 0),
-(3, 1, 0.0769231, 0),
-(4, 1, 0.0769231, 1),
-(5, 1, 0.153846, 0),
-(6, 1, 0.153846, 0),
-(7, 1, 0.0769231, 1),
-(8, 1, 0.0769231, 0.5),
-(9, 1, 0.0769231, 0),
-(10, 2, 0.153846, 1),
-(11, 2, 0.153846, 0),
-(12, 2, 0.0769231, 0),
-(13, 2, 0.0769231, 0),
-(14, 2, 0.153846, 0),
-(15, 2, 0.153846, 0),
-(16, 2, 0.0769231, 0.5),
-(17, 2, 0.0769231, 0),
-(18, 2, 0.0769231, 0),
-(19, 3, 0.153846, 1),
-(20, 3, 0.153846, 0),
-(21, 3, 0.0769231, 0),
-(22, 3, 0.0769231, 0),
-(23, 3, 0.153846, 0),
-(24, 3, 0.153846, 0.5),
-(25, 3, 0.0769231, 1),
-(26, 3, 0.0769231, 0.5),
-(27, 3, 0.0769231, 0),
-(28, 4, 0.153846, 0.666667),
-(29, 4, 0.153846, 0),
-(30, 4, 0.0769231, 0),
-(31, 4, 0.0769231, 0.333333),
-(32, 4, 0.153846, 1),
-(33, 4, 0.153846, 0.333333),
-(34, 4, 0.0769231, 0.333333),
-(35, 4, 0.0769231, 0),
-(36, 4, 0.0769231, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -183,14 +131,6 @@ CREATE TABLE `tbl_perhitungan` (
   `id_perhitungan` int(11) NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_perhitungan`
---
-
-INSERT INTO `tbl_perhitungan` (`id_perhitungan`, `tanggal`) VALUES
-(1, '2021-01-03 15:28:24'),
-(2, '2021-01-03 15:28:26');
 
 -- --------------------------------------------------------
 
@@ -334,7 +274,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `last_login`) VALUES
-(1, 'omar', 'fikri', 'Om Fikri', '2021-01-03 22:27:08'),
+(1, 'omar', 'fikri', 'Om Fikri', '2021-01-03 23:28:00'),
 (2, 'ekacahyani', 'ecka1412', 'Eka Cahyani', '2021-01-03 16:14:00');
 
 --
@@ -414,7 +354,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_detail_perhitungan`
 --
 ALTER TABLE `tbl_detail_perhitungan`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_kriteria`
@@ -426,13 +366,13 @@ ALTER TABLE `tbl_kriteria`
 -- AUTO_INCREMENT for table `tbl_normalisasi`
 --
 ALTER TABLE `tbl_normalisasi`
-  MODIFY `id_normalisasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_normalisasi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_perhitungan`
 --
 ALTER TABLE `tbl_perhitungan`
-  MODIFY `id_perhitungan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_perhitungan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_pertanyaan`
@@ -450,7 +390,7 @@ ALTER TABLE `tbl_smartphone`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
