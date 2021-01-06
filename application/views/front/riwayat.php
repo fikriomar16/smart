@@ -1,6 +1,6 @@
 <div class="row justify-content-center py-2 px-4">
 	<div class="col-md-12 mb-2">
-		<div class="card shadow animated fadeInUp border-bottom-success shadow h-100 py-2 my-3" id="manual">
+		<div class="card shadow border-bottom-success shadow h-100 py-2 my-3" id="manual">
 			<div class="card-header">
 				<h6 class="font-weight-bold text-success text-center">Riwayat Pencarian Anda</h6>
 			</div>

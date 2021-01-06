@@ -49,7 +49,22 @@ if ($platform=="Android" || $platform=="iOS") {
 		<h6 class="font-weight-bold text-primary text-center">List Smartphone</h6>
 	</div>
 	<div class="card-body">
-		<!-- Isi -->
+		<div class="row py-2" id="fltr">
+			<div class="col-6">
+				<form enctype="multipart/form-data" id="form_filter" method="POST">
+					<div class="form-group row">
+						<label for="filter" class="col-sm-2 col-form-label">Urutkan : </label>
+						<div class="col-sm-3">
+							<select name="filter" id="filter" class="custom-select form-control">
+								<option value="" selected> --- </option>
+								<option value="harga_rendah">Harga Terendah</option>
+								<option value="harga_tinggi">Harga Tertinggi</option>
+							</select>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 		<div class="row justify-content-center py-2" id="data_list">
 			<!-- <div class="<?= $cardsize; ?> mb-2">
 				<div class="card shadow h-100">

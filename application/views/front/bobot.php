@@ -12,7 +12,7 @@
 					foreach ($pertanyaan as $key => $row){
 					?>
 					<input type="text" name="id_kriteria[]" value="<?= $row->id_kriteria ?>" hidden>
-					<?php if ($row->kriteria != "Harga") { ?>
+					<?php if ($row->id_kriteria != 9) { ?>
 						<p><?= $i; ?>. <?= $row->pertanyaan; ?></p>
 						<div class="custom-control custom-radio custom-control-inline">
 							<input type="radio" id="bbt<?= $i ?>" name="bobot<?= $i ?>" class="custom-control-input" value="20">

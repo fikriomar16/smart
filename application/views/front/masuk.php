@@ -22,7 +22,7 @@
 								<label>Masuk Sebagai :</label>
 								<div class="custom-control custom-radio">
 									<input type="radio" name="login_as" id="as_user" value="user" class="custom-control-input">
-									<label class="custom-control-label" for="as_user">User</label>
+									<label class="custom-control-label" for="as_user">Pengguna</label>
 								</div>
 								<div class="custom-control custom-radio">
 									<input type="radio" name="login_as" id="as_admin" value="admin" class="custom-control-input">

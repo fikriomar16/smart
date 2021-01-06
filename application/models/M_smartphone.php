@@ -158,6 +158,20 @@ class M_smartphone extends CI_Model {
 		return $q->row();
 	}
 
+	public function filter_smart($param,$rowperpage,$rowno)
+	{
+		$this->db->select('*')->limit($rowperpage,$rowno);;
+		$this->db->from('tbl_smartphone');
+		if ($param == "harga_rendah") {
+			$sort = $this->db->order_by('harga', 'asc');
+		} elseif ($param == "harga_tinggi") {
+			$sort = $this->db->order_by('harga', 'desc');
+		}
+		$sort;
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 }
 
 /* End of file M_smartphone.php */

@@ -153,6 +153,9 @@
 		</div>
 	</div>
 </div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+	<h1 class="h4 mb-0 text-gray-800">Data User</h1>
+</div>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="card border-bottom-info shadow mb-4">

@@ -27,7 +27,8 @@ _Judul:_ __Implementasi Metode SMART Pada Sistem Rekomendasi Pemilihan Smartphon
 - [x] Chart
 - [x] Searched data log
 - [ ] Searching (part of pagination)
-- [ ] Sorting data (part of pagination)
+- [x] Sorting data (part of pagination)
+- [ ] Rating System
 - [ ] DSS Method Implementation with Ajax \*still can't figured\*
 
 *Cukup Sekian* :+1:

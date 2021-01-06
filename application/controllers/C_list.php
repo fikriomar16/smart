@@ -22,16 +22,21 @@ class C_list extends CI_Controller {
 
 	public function listpage($rowno=0)
 	{
-		$rowperpage = 12;
-		if($rowno != 0){
-			$rowno = ($rowno-1) * $rowperpage;
-		}
-		$record = $this->msmart->seg($rowperpage,$rowno);
 		$platform = $this->agent->platform();
 		if ($platform=="Android" | $platform=="iOS") {
 			$size = 'small';
 		} else {
 			$size = '';
+		}
+		$rowperpage = 12;
+		if($rowno != 0){
+			$rowno = ($rowno-1) * $rowperpage;
+		}
+		$param = $this->input->post('filter');
+		if (empty($param)) {
+			$record = $this->msmart->seg($rowperpage,$rowno);
+		} else {
+			$record = $this->msmart->filter_smart($param,$rowperpage,$rowno);
 		}
 		
 		$config['base_url'] = base_url();
@@ -70,6 +75,7 @@ class C_list extends CI_Controller {
 		$data['pagination'] = $this->pagination->create_links();
 		$data['result'] = $record;
 		$data['row'] = $rowno;
+		$data['param'] = $param;
 
 		echo json_encode($data);
 	}

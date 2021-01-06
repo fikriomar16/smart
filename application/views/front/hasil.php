@@ -23,6 +23,16 @@ for ($j=0; $j < sizeof($result); $j++) {
 	}
 }
 ?>
+<?php
+$platform = $this->agent->platform();
+if ($platform=="Android" || $platform=="iOS") {
+	$cardsize = 'col-6';
+	$size = 'small';
+} else {
+	$cardsize = 'col-md-3';
+	$size = '';
+}
+?>
 <div class="row justify-content-center mb-2">
 	<div class="col-md-12">
 		<div class="card shadow animated fadeInDownBig border-bottom-info shadow h-100 py-2 my-3" id="manual">
@@ -33,14 +43,14 @@ for ($j=0; $j < sizeof($result); $j++) {
 				<div class="row justify-content-center">
 				<?php for ($j=0; $j < $limit; $j++) { ?>
 				<?php $value = select_smart($result[$j]['id_smartphone']) ?>
-					<div class="col-md-3 mb-2">
+					<div class="<?= $cardsize ?> mb-2">
 						<div class="card shadow h-100">
 							<div class="card-header">
 								<h5 class="font-weight-bold text-center text-primary">Rangking <?= $j+1 ?></h5>
 							</div>
 							<div class="card-body">
 								<center><img class="img-responsive img-fluid mb-5" src="<?= base_url('assets/img/smartphone/'.$value->foto) ?>" style="height: 125px;width: auto;"></center>
-								<ul class="px-3 my-0">
+								<ul class="<?= $size ?> px-3 my-0">
 									<li><?= $value->merk.' '.$value->seri ?></li>
 									<li><?= $value->ram.' GB - '.$value->rom.' GB' ?></li>
 									<li>Rp. <?= number_format($value->harga,0,',','.') ?></li>

@@ -86,6 +86,20 @@
 					});
 				}
 			});
+			function nocaps_space() {
+				const user = document.getElementById('username');
+				user.addEventListener('input', function() {
+					let start = this.selectionStart;
+					let end = this.selectionEnd;
+
+					const current = this.value
+					const corrected = current.replace(/\s/g, "").toLowerCase();
+					this.value = corrected;
+
+					if (corrected.length < current.length) --end;
+					this.setSelectionRange(start, end);
+				});
+			}
 			<?php if ($p == 'mendaftar') { ?>
 				$('#btn_fdaftar').prop('disabled', true);
 				var password_conf = $('#password_conf');
@@ -121,18 +135,7 @@
 						}
 					});
 				});
-				const user = document.getElementById('username');
-				user.addEventListener('input', function() {
-					let start = this.selectionStart;
-					let end = this.selectionEnd;
-
-					const current = this.value
-					const corrected = current.replace(/\s/g, "").toLowerCase();
-					this.value = corrected;
-
-					if (corrected.length < current.length) --end;
-					this.setSelectionRange(start, end);
-				});
+				nocaps_space();
 				nama.on('keyup',function () {
 					if (nama.val() == '') {
 						nama.removeClass("is-valid");
@@ -169,6 +172,7 @@
 			<?php } ?>
 
 			<?php if ($p == 'login'  || $p == 'masuk') { ?>
+				nocaps_space();
 				$('#btn_flogin').click(function () {
 					$.ajax({
 						type: "POST",
@@ -190,28 +194,30 @@
 			<?php } ?>
 
 			<?php if ($p == 'list' || $p == 'daftar') { ?>
+				$('[name="filter"]').change(function () {
+					filterform(0);
+				});
 				$('#pagination').on('click','a',function(e){
 					e.preventDefault(); 
 					var pageno = $(this).attr('data-ci-pagination-page');
-					loadPagination(pageno);
+					filterform(pageno);
 				});
-				loadPagination(0);
-				function loadPagination(pagno){
+				filterform(0);
+				function filterform(page) {
 					$.ajax({
-						type: "ajax",
-						url: "<?= base_url('cek_hal/') ?>"+pagno,
-						async: false,
+						type: "POST",
+						url: "<?= base_url('cek_hal/') ?>"+page,
+						data: $('#form_filter').serialize(),
 						dataType: "json",
-						success: function(data){
+						success: function (data){
 							$('#pagination').empty();
 							$('#pagination').html(data.pagination);
 							content(data.result,data.row);
-							console.log(data);
 						},
 						error: function(data){
-							console.log(data);
-						}
-					});
+								// console.log(data);
+							}
+						});
 				}
 				function content(result,sno){
 					var platform = "<?= $this->agent->platform() ?>";
@@ -393,20 +399,20 @@
 						$('#btn_bobot').prop('disabled', true);
 					}
 				});
-				$('#btn_bobot').click(function () {
-					$.ajax({
-						type: "POST",
-						url: "<?= base_url('hitung') ?>",
-						data: $('#form_bobot').serialize(),
-						success: function (data){
-							console.log(data);
-							// setTimeout('window.location = "<?= base_url('hasil') ?>"; ',1000);
-						},
-						error: function(data){
-							// notif_gagal();
-						}
-					});
-				});
+				// $('#btn_bobot').click(function () {
+				// 	$.ajax({
+				// 		type: "POST",
+				// 		url: "<?= base_url('hitung') ?>",
+				// 		data: $('#form_bobot').serialize(),
+				// 		success: function (data){
+				// 			console.log(data);
+				// 			// setTimeout('window.location = "<?= base_url('hasil') ?>"; ',1000);
+				// 		},
+				// 		error: function(data){
+				// 			// notif_gagal();
+				// 		}
+				// 	});
+				// });
 			<?php } ?>
 			<?php if ($p == 'riwayat') { ?>
 				tampil_log();
