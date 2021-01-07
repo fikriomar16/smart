@@ -26,7 +26,6 @@ _Judul:_ __Implementasi Metode SMART Pada Sistem Rekomendasi Pemilihan Smartphon
 - [x] Username checker using Ajax Jquery
 - [x] Chart
 - [x] Searched data log
-- [ ] Searching (part of pagination)
 - [x] Sorting data (part of pagination)
 - [ ] Rating System
 - [ ] DSS Method Implementation with Ajax \*still can't figured\*

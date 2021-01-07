@@ -194,7 +194,24 @@
 			<?php } ?>
 
 			<?php if ($p == 'list' || $p == 'daftar') { ?>
-				$('[name="filter"]').change(function () {
+				cari_merk();
+				function cari_merk() {
+					$.ajax({
+						type:"ajax",
+						url: "<?= base_url('by_merk') ?>",
+						async: false,
+						dataType: "json",
+						success: function (data) {
+							var opsi = '';
+							var i;
+							for(i = 0; i < data.length; i++){
+								opsi+= '<option value="'+data[i].merk+'">'+data[i].merk+'</option>';
+							}
+								$('#cari_merk').append(opsi);
+						}
+					});
+				}
+				$('[name="filter"],[name="cari_merk"]').change(function () {
 					filterform(0);
 				});
 				$('#pagination').on('click','a',function(e){
@@ -215,9 +232,9 @@
 							content(data.result,data.row);
 						},
 						error: function(data){
-								// console.log(data);
-							}
-						});
+							// console.log(data);
+						}
+					});
 				}
 				function content(result,sno){
 					var platform = "<?= $this->agent->platform() ?>";

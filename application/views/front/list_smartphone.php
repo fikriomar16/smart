@@ -50,15 +50,21 @@ if ($platform=="Android" || $platform=="iOS") {
 	</div>
 	<div class="card-body">
 		<div class="row py-2" id="fltr">
-			<div class="col-6">
+			<div class="col">
 				<form enctype="multipart/form-data" id="form_filter" method="POST">
-					<div class="form-group row">
+					<div class="form-group row justify-content-center">
 						<label for="filter" class="col-sm-2 col-form-label">Urutkan : </label>
 						<div class="col-sm-3">
 							<select name="filter" id="filter" class="custom-select form-control">
 								<option value="" selected> --- </option>
 								<option value="harga_rendah">Harga Terendah</option>
 								<option value="harga_tinggi">Harga Tertinggi</option>
+							</select>
+						</div>
+						<label for="cari_merk" class="col-sm-2 col-form-label">Cari Merk : </label>
+						<div class="col-sm-3">
+							<select name="cari_merk" id="cari_merk" class="custom-select form-control">
+								<option value="" selected> --- </option>
 							</select>
 						</div>
 					</div>

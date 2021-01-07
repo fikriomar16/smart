@@ -59,6 +59,7 @@ $route['bantuan'] = 'c_user/helppage';
 
 $route['daftar'] = 'c_list';
 $route['list'] = 'c_list';
+$route['by_merk'] = 'c_list/bymerk';
 $route['cek_hal/(:any)'] = 'c_list/listpage/$1';
 
 $route['find'] = 'c_proses';

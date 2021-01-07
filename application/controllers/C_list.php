@@ -20,6 +20,12 @@ class C_list extends CI_Controller {
 		$this->load->view('template/us_foot', $data);
 	}
 
+	public function bymerk()
+	{
+		$data = $this->msmart->bymerk();
+		echo json_encode($data);
+	}
+
 	public function listpage($rowno=0)
 	{
 		$platform = $this->agent->platform();
@@ -33,15 +39,21 @@ class C_list extends CI_Controller {
 			$rowno = ($rowno-1) * $rowperpage;
 		}
 		$param = $this->input->post('filter');
-		if (empty($param)) {
+		$cari_merk = $this->input->post('cari_merk');
+		if (empty($param) && empty($cari_merk)) {
 			$record = $this->msmart->seg($rowperpage,$rowno);
 		} else {
-			$record = $this->msmart->filter_smart($param,$rowperpage,$rowno);
+			$record = $this->msmart->filter_smart($param,$cari_merk,$rowperpage,$rowno);
+		}
+		if (empty($cari_merk)) {
+			$total_rows = $this->msmart->count_all();
+		} else {
+			$total_rows = $this->msmart->count_all_by_merk($cari_merk);
 		}
 		
 		$config['base_url'] = base_url();
 		$config['use_page_numbers'] = TRUE;
-		$config['total_rows'] = $this->msmart->count_all();
+		$config['total_rows'] = $total_rows;
 		$config['per_page'] = $rowperpage;
 		// $config['uri_segment'] = 3;
 		// $config['num_links'] = 3;
@@ -76,6 +88,7 @@ class C_list extends CI_Controller {
 		$data['result'] = $record;
 		$data['row'] = $rowno;
 		$data['param'] = $param;
+		$data['merk'] = $cari_merk;
 
 		echo json_encode($data);
 	}

@@ -158,7 +158,7 @@ class M_smartphone extends CI_Model {
 		return $q->row();
 	}
 
-	public function filter_smart($param,$rowperpage,$rowno)
+	public function filter_smart($param,$cari_merk,$rowperpage,$rowno)
 	{
 		$this->db->select('*')->limit($rowperpage,$rowno);;
 		$this->db->from('tbl_smartphone');
@@ -167,9 +167,33 @@ class M_smartphone extends CI_Model {
 		} elseif ($param == "harga_tinggi") {
 			$sort = $this->db->order_by('harga', 'desc');
 		}
+		if (empty($cari_merk)) {
+			$by_merk = '';
+		} else {
+			$by_merk = $this->db->where('merk', $cari_merk);
+		}
+		
 		$sort;
 		$query = $this->db->get();
 		return $query->result();
+	}
+
+	public function bymerk()
+	{
+		$this->db->select('merk');
+		$this->db->from('tbl_smartphone');
+		$this->db->group_by('merk');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function count_all_by_merk($merk)
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_smartphone');
+		$this->db->where('merk', $merk);
+		$r = $this->db->get();
+		return $r->num_rows();
 	}
 
 }
