@@ -118,7 +118,7 @@ class C_login extends CI_Controller {
 		} else if ($this->session->userdata('user')) {
 			redirect('beranda');
 		}
-		$data['title'] = 'Recommendation - Mendaftar';
+		$data['title'] = 'Recommendation - Lupa Password';
 		$this->load->view('template/us_head', $data);
 		$this->load->view('front/resetpass', $data);
 		$this->load->view('template/us_foot', $data);

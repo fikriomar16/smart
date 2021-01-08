@@ -36,15 +36,9 @@
 					<i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Masuk
 				</button>
 				<hr>
-				<a href="<?= base_url('resetpass') ?>" class="float-right">Lupa Password ?</a>
+				<a href="<?= base_url('resetpass') ?>" class="float-right text-danger">Lupa Password ?</a>
 				<a href="<?= base_url('mendaftar') ?>">Belum Memiliki Akun? Daftar Sekarang !</a>
 			</div>
-			<!-- <div class="card-footer text-center">
-				<a href="<?= base_url('beranda') ?>" class="btn btn-sm btn-danger btn-icon-split">
-					<span class="icon text-white"><i class="fas fa-chevron-circle-up"></i></span>
-					<span class="text">Kembali</span>
-				</a>
-			</div> -->
 		</div>
 	</div>
 </div>

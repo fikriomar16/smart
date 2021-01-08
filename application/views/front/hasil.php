@@ -43,20 +43,21 @@ if ($platform=="Android" || $platform=="iOS") {
 				<div class="row justify-content-center">
 				<?php for ($j=0; $j < $limit; $j++) { ?>
 				<?php $value = select_smart($result[$j]['id_smartphone']) ?>
-					<div class="<?= $cardsize ?> mb-2">
+					<div class="<?= $cardsize ?> <?= $size ?> mb-2">
 						<div class="card shadow h-100">
 							<div class="card-header">
 								<h5 class="font-weight-bold text-center text-primary">Rangking <?= $j+1 ?></h5>
 							</div>
 							<div class="card-body">
 								<center><img class="img-responsive img-fluid mb-5" src="<?= base_url('assets/img/smartphone/'.$value->foto) ?>" style="height: 125px;width: auto;"></center>
-								<ul class="<?= $size ?> px-3 my-0">
+								<ul class="px-3 my-0">
 									<li><?= $value->merk.' '.$value->seri ?></li>
 									<li><?= $value->ram.' GB - '.$value->rom.' GB' ?></li>
 									<li>Rp. <?= number_format($value->harga,0,',','.') ?></li>
 								</ul>
-								<hr>
-								<p class="text-center text-primary">Score : <?= number_format($result[$j]['final_score'],4) ?></p>
+							</div>
+							<div class="card-footer">
+								<p class="text-center text-primary font-weight-bold">Score : <?= number_format($result[$j]['final_score'],4) ?></p>
 							</div>
 						</div>
 					</div>
