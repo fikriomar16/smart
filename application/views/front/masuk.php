@@ -36,6 +36,7 @@
 					<i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Masuk
 				</button>
 				<hr>
+				<a href="<?= base_url('resetpass') ?>" class="float-right">Lupa Password ?</a>
 				<a href="<?= base_url('mendaftar') ?>">Belum Memiliki Akun? Daftar Sekarang !</a>
 			</div>
 			<!-- <div class="card-footer text-center">

@@ -23,6 +23,7 @@ _Judul:_ __Implementasi Metode SMART Pada Sistem Rekomendasi Pemilihan Smartphon
 - [x] Admin Management by Super Admin
 - [x] SweetAlert for pop-up info & confirmation
 - [x] Registration feature (for user)
+- [x] Forgot Password (for user)
 - [x] Username checker using Ajax Jquery
 - [x] Chart
 - [x] Searched data log

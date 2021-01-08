@@ -64,6 +64,12 @@ class M_login extends CI_Model {
 		return $this->db->insert_id();
 	}
 
+	public function respass_user($username,$data)
+	{
+		$this->db->where('username', $username);
+		return $this->db->update('tbl_user', $data);
+	}
+
 }
 
 /* End of file M_login.php */

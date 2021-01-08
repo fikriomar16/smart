@@ -166,6 +166,14 @@ class M_smartphone extends CI_Model {
 			$sort = $this->db->order_by('harga', 'asc');
 		} elseif ($param == "harga_tinggi") {
 			$sort = $this->db->order_by('harga', 'desc');
+		} elseif ($param == "ram_tinggi") {
+			$sort = $this->db->order_by('ram', 'desc');
+		} elseif ($param == "ram_rendah") {
+			$sort = $this->db->order_by('ram', 'asc');
+		} elseif ($param == "rom_tinggi") {
+			$sort = $this->db->order_by('rom', 'desc');
+		} elseif ($param == "rom_rendah") {
+			$sort = $this->db->order_by('rom', 'asc');
 		}
 		if (empty($cari_merk)) {
 			$by_merk = '';

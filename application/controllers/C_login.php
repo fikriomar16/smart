@@ -110,6 +110,29 @@ class C_login extends CI_Controller {
 		redirect('beranda');
 	}
 
+	public function reset_pass()
+	{
+		$sesi = $this->session->userdata('admin');
+		if ($sesi) {
+			redirect('admin');
+		} else if ($this->session->userdata('user')) {
+			redirect('beranda');
+		}
+		$data['title'] = 'Recommendation - Mendaftar';
+		$this->load->view('template/us_head', $data);
+		$this->load->view('front/resetpass', $data);
+		$this->load->view('template/us_foot', $data);
+	}
+
+	public function conf_pass()
+	{
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$data = array('password' => $password);
+		$res = $this->mlogin->respass_user($username,$data);
+		echo json_encode($res);
+	}
+
 }
 
 /* End of file C_login.php */

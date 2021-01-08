@@ -106,17 +106,22 @@
 				var password = $('#password');
 				var username = $('#username');
 				var nama = $('#nama');
-				password_conf.on('keyup',function () {
-					if (password.val() == password_conf.val() || password.val().length<6) {
-						password_conf.removeClass("is-invalid");
+				password.on('keyup',function () {
+					if (password.val().length<6) {
+						password.removeClass("is-valid");
+						password.addClass("is-invalid");
+					} else {
 						password.removeClass("is-invalid");
-						password_conf.addClass("is-valid");
 						password.addClass("is-valid");
+					}
+				});
+				password_conf.on('keyup',function () {
+					if (password.val() == password_conf.val()) {
+						password_conf.removeClass("is-invalid");
+						password_conf.addClass("is-valid");
 					} else {
 						password_conf.removeClass("is-valid");
-						password.removeClass("is-valid");
 						password_conf.addClass("is-invalid");
-						password.addClass("is-invalid");
 					}
 				});
 				username.on('keyup',function () {
@@ -163,9 +168,9 @@
 								title: 'Berhasil Mendaftar',
 								text: 'Harap Tunggu, Sedang Mengalihkan Halaman',
 								showConfirmButton: false,
-								timer: 3000
+								timer: 2000
 							});
-							setTimeout('window.location = "<?= base_url('login') ?>"; ',3000);
+							setTimeout('window.location = "<?= base_url('login') ?>"; ',2000);
 						}
 					});
 				});
@@ -191,6 +196,87 @@
 						}
 					});
 				})
+			<?php } ?>
+			<?php if ($p == 'resetpass') { ?>
+				var password_conf = $('#password_conf');
+				var password = $('#password');
+				var username = $('#username');
+				nocaps_space();
+				form1();
+				function form1() {
+					$('#btn_confirm').prop('hidden', true);
+					$('#btn_confirm').prop('disabled', true);
+					$('#btn_cek_user').prop('disabled', true);
+					$('#confirm').prop('hidden', true);
+				}
+				function form2() {
+					$('#confirm').prop('hidden', false);
+					$('#cek_user').prop('hidden', true);
+					$('#btn_confirm').prop('hidden', false);
+					$('#btn_cek_user').prop('hidden', true);
+				}
+				username.on('keyup',function () {
+					$.ajax({
+						type: "POST",
+						url: "<?= base_url('cekusername') ?>",
+						data: $('#freset').serialize(),
+						success: function (data) {
+							if (data) {
+								$('#btn_cek_user').prop('disabled', false);
+							} else {
+								$('#btn_cek_user').prop('disabled', true);
+							}
+						}
+					});
+				});
+				$('#btn_cek_user').click(function () {
+					form2();
+				});
+				password.on('keyup',function () {
+					if (password.val().length<6) {
+						password.removeClass("is-valid");
+						password.addClass("is-invalid");
+					} else {
+						password.removeClass("is-invalid");
+						password.addClass("is-valid");
+					}
+				});
+				password_conf.on('keyup',function () {
+					if (password.val() == password_conf.val()) {
+						password_conf.removeClass("is-invalid");
+						password_conf.addClass("is-valid");
+					} else {
+						password_conf.removeClass("is-valid");
+						password_conf.addClass("is-invalid");
+					}
+				});
+				$('input').on('keyup',function () {
+					if ($('.is-valid').length>1) {
+						$('#btn_confirm').prop('disabled', false);
+					} else {
+						$('#btn_confirm').prop('disabled', true);
+					}
+				});
+				$('#btn_confirm').click(function () {
+					$.ajax({
+						type: "POST",
+						url: "<?= base_url('confpass') ?>",
+						data: $('#freset').serialize(),
+						success: function (data) {
+							Swal.fire({
+								type: 'success',
+								title: 'Berhasil Mereset Password',
+								text: 'Harap Tunggu, Sedang Mengalihkan Halaman',
+								showConfirmButton: false,
+								timer: 2000
+							});
+							setTimeout('window.location = "<?= base_url('login') ?>"; ',2000);
+						},
+						error: function (data) {
+							console.log(data);
+						}
+					});
+				});
 			<?php } ?>
 
 			<?php if ($p == 'list' || $p == 'daftar') { ?>

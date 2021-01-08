@@ -49,7 +49,7 @@ if ($platform=="Android" || $platform=="iOS") {
 		<h6 class="font-weight-bold text-primary text-center">List Smartphone</h6>
 	</div>
 	<div class="card-body">
-		<div class="row py-2" id="fltr">
+		<div class="<?= $size ?> row py-2" id="fltr">
 			<div class="col">
 				<form enctype="multipart/form-data" id="form_filter" method="POST">
 					<div class="form-group row justify-content-center">
@@ -59,6 +59,10 @@ if ($platform=="Android" || $platform=="iOS") {
 								<option value="" selected> --- </option>
 								<option value="harga_rendah">Harga Terendah</option>
 								<option value="harga_tinggi">Harga Tertinggi</option>
+								<option value="ram_rendah">Memori Terendah</option>
+								<option value="ram_tinggi">Memori Tertinggi</option>
+								<option value="rom_rendah">Kapasitas Penyimpanan Terendah</option>
+								<option value="rom_tinggi">Kapasitas Penyimpanan Tertinggi</option>
 							</select>
 						</div>
 						<label for="cari_merk" class="col-sm-2 col-form-label">Cari Merk : </label>
