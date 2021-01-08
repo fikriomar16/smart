@@ -28,9 +28,11 @@ $platform = $this->agent->platform();
 if ($platform=="Android" || $platform=="iOS") {
 	$cardsize = 'col-6';
 	$size = 'small';
+	$imgsize = 'style="height: 90px;width: auto;"';
 } else {
 	$cardsize = 'col-md-3';
 	$size = '';
+	$imgsize = 'style="height: 125px;width: auto;"';
 }
 ?>
 <div class="row justify-content-center mb-2">
@@ -49,7 +51,7 @@ if ($platform=="Android" || $platform=="iOS") {
 								<h5 class="font-weight-bold text-center text-primary">Rangking <?= $j+1 ?></h5>
 							</div>
 							<div class="card-body">
-								<center><img class="img-responsive img-fluid mb-5" src="<?= base_url('assets/img/smartphone/'.$value->foto) ?>" style="height: 125px;width: auto;"></center>
+								<center><img class="img-responsive img-fluid mb-2" src="<?= base_url('assets/img/smartphone/'.$value->foto) ?>" <?= $imgsize ?>></center>
 								<ul class="px-3 my-0">
 									<li><?= $value->merk.' '.$value->seri ?></li>
 									<li><?= $value->ram.' GB - '.$value->rom.' GB' ?></li>

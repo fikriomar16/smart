@@ -139,7 +139,7 @@
 								<th>No</th>
 								<th>Nama</th>
 								<th>Username</th>
-								<th>Password</th>
+								<!-- <th>Password</th> -->
 								<th>Login Terakhir</th>
 								<th class="text-center">Opsi</th>
 							</tr>
@@ -174,7 +174,7 @@
 								<th>No</th>
 								<th>Nama</th>
 								<th>Username</th>
-								<th>Password</th>
+								<!-- <th>Password</th> -->
 								<th>Login Terakhir</th>
 								<th class="text-center">Opsi</th>
 							</tr>

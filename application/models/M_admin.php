@@ -11,8 +11,12 @@ class M_admin extends CI_Model {
 
 	public function list_admin()
 	{
-		$query = $this->db->get('tbl_admin');
-		return $query->result();
+		// $query = $this->db->get('tbl_admin');
+		// return $query->result();
+		$this->db->select('id_admin,username,nama,hak_akses,last_login');
+		$this->db->from('tbl_admin');
+		$q = $this->db->get();
+		return $q->result();
 	}
 	public function get_admin($id_admin)
 	{
@@ -123,8 +127,12 @@ class M_admin extends CI_Model {
 
 	public function list_user()
 	{
-		$query = $this->db->get('tbl_user');
-		return $query->result();
+		// $query = $this->db->get('tbl_user');
+		// return $query->result();
+		$this->db->select('id_user,username,nama,last_login');
+		$this->db->from('tbl_user');
+		$q = $this->db->get();
+		return $q->result();
 	}
 	public function get_user($id_user)
 	{

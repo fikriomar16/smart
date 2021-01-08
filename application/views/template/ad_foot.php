@@ -454,7 +454,7 @@
 									'<td>'+(i+1)+'</td>'+
 									'<td>'+data[i].nama+'</td>'+
 									'<td>'+data[i].username+'</td>'+
-									'<td>'+data[i].password.replace(/./g, '*')+'</td>'+
+									// '<td>'+data[i].password.replace(/./g, '*')+'</td>'+
 									'<td>'+data[i].last_login+'</td>'+
 									'<td class="text-center">'+
 									'<button class="btn btn-sm btn-warning m-1" onclick="edt_admin('+
@@ -467,7 +467,7 @@
 									'<td>'+(i+1)+'</td>'+
 									'<td>'+data[i].nama+'</td>'+
 									'<td>'+data[i].username+'</td>'+
-									'<td>'+data[i].password.replace(/./g, '*')+'</td>'+
+									// '<td>'+data[i].password.replace(/./g, '*')+'</td>'+
 									'<td>'+data[i].last_login+'</td>'+
 									'<td class="text-center">'+
 									'<button class="btn btn-sm btn-warning m-1" onclick="edt_admin('+
@@ -488,7 +488,7 @@
 									'<td>'+(i+1)+'</td>'+
 									'<td>'+data[i].nama+'</td>'+
 									'<td>'+data[i].username+'</td>'+
-									'<td>'+data[i].password.replace(/./g, '*')+'</td>'+
+									// '<td>'+data[i].password.replace(/./g, '*')+'</td>'+
 									'<td>'+data[i].last_login+'</td>'+
 									'<td class="text-center">'+
 									'<button class="btn btn-sm btn-warning m-1" onclick="edt_admin('+
@@ -501,7 +501,7 @@
 									'<td>'+(i+1)+'</td>'+
 									'<td>'+data[i].nama+'</td>'+
 									'<td>'+data[i].username+'</td>'+
-									'<td>'+data[i].password.replace(/./g, '*')+'</td>'+
+									// '<td>'+data[i].password.replace(/./g, '*')+'</td>'+
 									'<td>'+data[i].last_login+'</td>'+
 									'<td class="text-center">'+
 									'</td>'+
@@ -555,7 +555,7 @@
 							'<td>'+(i+1)+'</td>'+
 							'<td>'+data[i].nama+'</td>'+
 							'<td>'+data[i].username+'</td>'+
-							'<td>'+data[i].password.replace(/./g, '*')+'</td>'+
+							// '<td>'+data[i].password.replace(/./g, '*')+'</td>'+
 							'<td>'+data[i].last_login+'</td>'+
 							'<td class="text-center">'+
 							'<button class="btn btn-sm btn-primary m-1" onclick="edt_user('+
@@ -593,6 +593,8 @@
 					});
 				}
 			});
+			var tab_user;
+			tab_user = $('#tab_user').DataTable();
 			<?php } ?>
 
 			<?php if ($p == 'perhitungan') { ?>
