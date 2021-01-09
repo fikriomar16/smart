@@ -20,11 +20,11 @@
 						<div class="col">
 							<div class="form-group">
 								<label>Masuk Sebagai :</label>
-								<div class="custom-control custom-radio">
+								<div class="custom-control custom-radio custom-control-inline">
 									<input type="radio" name="login_as" id="as_user" value="user" class="custom-control-input">
 									<label class="custom-control-label" for="as_user">Pengguna</label>
 								</div>
-								<div class="custom-control custom-radio">
+								<div class="custom-control custom-radio custom-control-inline">
 									<input type="radio" name="login_as" id="as_admin" value="admin" class="custom-control-input">
 									<label class="custom-control-label" for="as_admin">Admin</label>
 								</div>
