@@ -432,7 +432,9 @@
 			})
 			function showuseradmin() {
 				tampil_admin();
+				$('#tab_user').DataTable().destroy();
 				tampil_user();
+				$('#tab_user').DataTable();
 			}
 			function tampil_admin() {
 				var user="<?= $this->session->userdata('admin')['username']; ?>";
@@ -571,6 +573,8 @@
 					}
 				})
 			}
+			var tab_user;
+			tab_user = $('#tab_user').DataTable();
 			$('#simp_adduser').click(function () {
 				var username = $('[name="username_user"]').val();
 				var password = $('[name="password_user"]').val();
@@ -593,8 +597,6 @@
 					});
 				}
 			});
-			var tab_user;
-			tab_user = $('#tab_user').DataTable();
 			<?php } ?>
 
 			<?php if ($p == 'perhitungan') { ?>

@@ -30,6 +30,7 @@
 		});
 	}
 </script>
+<?php $platform = $this->agent->platform(); ?>
 <div class="card shadow animated fadeInDownBig border-bottom-primary shadow h-100 py-2 my-3" id="manual">
 	<div class="card-header">
 		<h6 class="font-weight-bold text-primary text-center">Cari Rekomendasi Smartphone</h6>
@@ -37,7 +38,7 @@
 	<form method="POST" enctype="multipart/form-data" id="form_cari" action="pembobotan">
 		<div class="card-body">
 			<div class="alert alert-primary text-center" role="alert">** Pilih Minimal 2 Smartphone Untuk Dibandingkan **</div>
-			<div class="table-responsive <?php if ($this->agent->platform() == "Android" || $this->agent->platform() == "iOS"){echo "small";} ?>">
+			<div class="table-responsive <?php if ($platform == "Android" || $platform == "iOS"){echo "small";} ?>">
 				<table class="table table-hover table-striped table-borderless table-sm" id="tab_pilih">
 					<thead class="thead-light text-center">
 						<tr>
@@ -50,10 +51,16 @@
 							<th>Smartphone</th>
 							<th>RAM-ROM</th>
 							<th>Kamera</th>
+						<?php if ($platform == "Android" || $platform == "iOS") { ?>
+						<?php } else { ?>
 							<th>Display</th>
+						<?php } ?>
 							<th>CPU</th>
+						<?php if ($platform == "Android" || $platform == "iOS") { ?>
+						<?php } else { ?>
 							<th>Chipset</th>
 							<th>OS</th>
+						<?php } ?>
 							<th>Baterai</th>
 							<th>Harga</th>
 							<th>...</th>

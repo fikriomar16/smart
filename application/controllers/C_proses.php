@@ -335,7 +335,6 @@ class C_proses extends CI_Controller {
 				'perhitungan' => $perhitungan
 			);
 			return $SMART;
-			// echo json_encode($SMART);
 		} else {
 			return false;
 		}

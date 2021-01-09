@@ -439,6 +439,7 @@
 					}				
 				});
 				function tampil_daftar() {
+					var platform = "<?= $this->agent->platform() ?>";
 					$.ajax({
 						type: "ajax",
 						url: "<?= base_url('list_smartphone') ?>",
@@ -447,30 +448,53 @@
 						success: function (data) {
 							var html = '';
 							var i;
-							for (i = 0; i < data.length; i++) {
-								html+= '<tr class="my-auto">'+
-								'<td>'+
-								'<div class="custom-control custom-checkbox">'+
-								'<input type="checkbox" class="custom-control-input" value="'+data[i].id+'" id="chk_boxes'+data[i].id+'" name="hp[]" onchange=""/>'+
-								'<label class="custom-control-label" for="chk_boxes'+data[i].id+'"></label>'+
-								'</div>'+
-								'</td>'+
-								'<td>'+
-								// '<button class="btn btn-sm btn-block btn-secondary float-left" onclick="det_smart('+data[i].id+')">'+data[i].merk+' '+data[i].seri+'</button>'+
-								data[i].merk+' '+data[i].seri+
-								'</td>'+
-								'<td>'+data[i].ram+' GB - '+data[i].rom+' GB'+'</td>'+
-								'<td>'+data[i].kamera_belakang+' MP / '+data[i].kamera_depan+' MP</td>'+
-								'<td>'+data[i].display+'"</td>'+
-								'<td>'+data[i].cpu+' GHz</td>'+
-								'<td>'+data[i].chipset+'</td>'+
-								'<td>'+data[i].os+'</td>'+
-								'<td>'+data[i].baterai+' mAh</td>'+
-								'<td>Rp.'+konversi(data[i].harga)+'</td>'+
-								'<td class="text-center">'+
-								'<button class="btn btn-sm btn-primary" type="button" onclick="det_smart('+data[i].id+')" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fas fa-eye"></i></button>'+
-								'</td>'+
-								'</tr>';
+							if (platform == "Android" || platform == "iOS") {
+								for (i = 0; i < data.length; i++) {
+									html+= '<tr class="my-auto">'+
+									'<td>'+
+									'<div class="custom-control custom-checkbox">'+
+									'<input type="checkbox" class="custom-control-input" value="'+data[i].id+'" id="chk_boxes'+data[i].id+'" name="hp[]" onchange=""/>'+
+									'<label class="custom-control-label" for="chk_boxes'+data[i].id+'"></label>'+
+									'</div>'+
+									'</td>'+
+									'<td>'+
+									data[i].merk+' '+data[i].seri+
+									'</td>'+
+									'<td>'+data[i].ram+' GB - '+data[i].rom+' GB'+'</td>'+
+									'<td>'+data[i].kamera_belakang+' MP / '+data[i].kamera_depan+' MP</td>'+
+									'<td>'+data[i].cpu+' GHz</td>'+
+									'<td>'+data[i].baterai+' mAh</td>'+
+									'<td>Rp.'+konversi(data[i].harga)+'</td>'+
+									'<td class="text-center">'+
+									'<button class="btn btn-sm btn-primary" type="button" onclick="det_smart('+data[i].id+')" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fas fa-eye"></i></button>'+
+									'</td>'+
+									'</tr>';
+								}
+							} else {
+								for (i = 0; i < data.length; i++) {
+									html+= '<tr class="my-auto">'+
+									'<td>'+
+									'<div class="custom-control custom-checkbox">'+
+									'<input type="checkbox" class="custom-control-input" value="'+data[i].id+'" id="chk_boxes'+data[i].id+'" name="hp[]" onchange=""/>'+
+									'<label class="custom-control-label" for="chk_boxes'+data[i].id+'"></label>'+
+									'</div>'+
+									'</td>'+
+									'<td>'+
+									data[i].merk+' '+data[i].seri+
+									'</td>'+
+									'<td>'+data[i].ram+' GB - '+data[i].rom+' GB'+'</td>'+
+									'<td>'+data[i].kamera_belakang+' MP / '+data[i].kamera_depan+' MP</td>'+
+									'<td>'+data[i].display+'"</td>'+
+									'<td>'+data[i].cpu+' GHz</td>'+
+									'<td>'+data[i].chipset+'</td>'+
+									'<td>'+data[i].os+'</td>'+
+									'<td>'+data[i].baterai+' mAh</td>'+
+									'<td>Rp.'+konversi(data[i].harga)+'</td>'+
+									'<td class="text-center">'+
+									'<button class="btn btn-sm btn-primary" type="button" onclick="det_smart('+data[i].id+')" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fas fa-eye"></i></button>'+
+									'</td>'+
+									'</tr>';
+								}
 							}
 							$('#show_pilih').html(html);
 						}
