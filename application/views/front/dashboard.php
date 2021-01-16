@@ -40,7 +40,7 @@
 	}
 </style>
 <div class="m-0">
-	<div class="row justify-content-center py-2 px-4">
+	<div class="row justify-content-center py-2">
 		<div class="col-md-4 mb-2">
 			<div class="card border-0 animated fadeInDownBig shadow h-100 c">
 				<div class="top-sec mx-3"><img class="img-fluid" src="<?= base_url('assets/img/sp.jpg') ?>"></div>
@@ -49,17 +49,14 @@
 					<h4 class="font-weight-bold text-primary py-3"><?= $d->nama_aplikasi;?></h4>
 					<h5 class="font-weight-bold"><?= $d->nama_instansi;?></h5>
 					<p class="font-italic"><?= $d->alamat_instansi;?></p>
-					<?php if (!$this->session->userdata('user')) { ?>
-					<a href="<?= base_url('login') ?>" class="btn btn-primary btn-icon-split m-1">
+					<?php
+					$session = $this->session->userdata('user');
+					if ($session) { $url = base_url('list'); } else { $url = base_url('login'); }
+					?>
+					<a href="<?= $url ?>" class="btn btn-primary btn-icon-split m-1">
 						<span class="icon text-white"><i class="fas fa-chevron-circle-right"></i></span>
 						<span class="text">Berikutnya</span>
 					</a>
-					<?php } else { ?>
-					<a href="<?= base_url('list') ?>" class="btn btn-primary btn-icon-split m-1">
-						<span class="icon text-white"><i class="fas fa-chevron-circle-right"></i></span>
-						<span class="text">Berikutnya</span>
-					</a>
-					<?php } ?>
 				</center>
 			</div>
 		</div>

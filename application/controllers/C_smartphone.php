@@ -49,15 +49,17 @@ class C_smartphone extends CI_Controller {
 			$row[] = 'Rp '.number_format($sp->harga,0,',','.');
 			//add html for action
 			$row[] = '<td class="text-center">'.
-			'<button class="btn btn-sm btn-primary m-1" onclick="det_smart('.
+			'<div class="btn-group m-1" role="group">'.
+			'<button class="btn btn-sm btn-primary" onclick="det_smart('.
 			$sp->id.
 			');" '.$pop_det.'><i class="fas fa-info-circle"></i></button>'.
-			'<button class="btn btn-sm btn-warning m-1" onclick="edt_smart('.
+			'<button class="btn btn-sm btn-warning" onclick="edt_smart('.
 			$sp->id.
 			');" '.$pop_edt.'><i class="fas fa-pen-square"></i></button>'.
-			'<button class="btn btn-sm btn-danger m-1" onclick="del_smart('.
+			'<button class="btn btn-sm btn-danger" onclick="del_smart('.
 			$sp->id.
 			');" '.$pop_del.'><i class="fas fa-trash"></i></button>'.
+			'</div>'.
 			'</td>';
 
 			$data[] = $row;

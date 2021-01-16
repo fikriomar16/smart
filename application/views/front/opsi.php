@@ -1,5 +1,5 @@
 <div class="row justify-content-center py-2 px-4">
-	<div class="col-md-12 mb-2">
+	<div class="col-md-12 mb-5">
 		<div class="card shadow animated flash border-left-success shadow h-100 py-2 my-3" id="manual">
 			<div class="card-header">
 				<h6 class="font-weight-bold text-success text-center">Pilih Opsi</h6>
