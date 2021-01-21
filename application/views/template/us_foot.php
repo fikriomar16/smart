@@ -39,15 +39,28 @@
 			$('[data-toggle="tooltip"]').tooltip({
 				placement : 'right'
 			});
-
+		<?php if($p == '' || $p == 'beranda'): ?>
+		<?php if($flash): ?>
+			const flashType = $('.flash-data').data('type');
+			const flashTitle = $('.flash-data').data('title');
+			if (flashType || flashTitle) {
+				const Notif = Swal.mixin({
+					toast: true,
+					position: 'top-end',
+					showConfirmButton: false,
+					timer: 4000
+				});
+				Notif.fire({
+					type: flashType,
+					title:flashTitle
+				});
+			}
+			console.log(flashTitle+' dan '+flashType);
+		<?php endif; ?>
+		<?php endif; ?>
+		<?php if($this->session->userdata('user')): ?>
 			$('#btn_edt_user').click(function () {
-				<?php
-				if ($this->session->userdata('user')) {
-					?>
-					var id_user = "<?= $this->session->userdata('user')['id_user'] ?>";
-					<?php
-				}
-				?>
+				var id_user = "<?= $this->session->userdata('user')['id_user'] ?>";
 				$.ajax({
 					type: "ajax",
 					url: "<?= base_url('pil_user/') ?>"+id_user,
@@ -89,6 +102,7 @@
 					});
 				}
 			});
+		<?php endif; ?>
 			function nocaps_space() {
 				const user = document.getElementById('username');
 				user.addEventListener('input', function() {

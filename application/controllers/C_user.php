@@ -13,6 +13,7 @@ class C_user extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = 'Recommendation - Beranda';
+		$data['flash'] = $this->session->flashdata('berhasil');
 		$data['detail_con'] = $this->mconfig->det_conf();
 		$this->load->view('template/us_head', $data);
 		$this->load->view('front/dashboard', $data);

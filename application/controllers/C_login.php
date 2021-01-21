@@ -81,6 +81,7 @@ class C_login extends CI_Controller {
 			$data = $this->mlogin->login($username,$password);
 			// set sesi
 			$this->session->set_userdata('admin',$data);
+			$this->session->set_flashdata('berhasil', ['type' => 'success', 'title' => 'Selamat Datang '.$this->session->userdata('admin')['nama']]);
 			echo "benar";
 		} else {
 			return false;
@@ -98,6 +99,7 @@ class C_login extends CI_Controller {
 			$data = $this->mlogin->login_user($username,$password);
 			// set sesi
 			$this->session->set_userdata('user',$data);
+			$this->session->set_flashdata('berhasil', ['type' => 'success', 'title' => 'Selamat Datang '.$this->session->userdata('user')['nama']]);
 			echo "benar";
 		} else {
 			return false;

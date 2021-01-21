@@ -113,3 +113,6 @@
 		</div>
 	</div>
 </div>
+<?php if($flash): ?>
+<div class="flash-data" data-type="<?= $flash['type']; ?>" data-title="<?= $flash['title']; ?>"></div>
+<?php endif; ?>

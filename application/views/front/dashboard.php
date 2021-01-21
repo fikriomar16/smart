@@ -46,3 +46,6 @@ if ($session) { $url = base_url('list'); } else { $url = base_url('login'); }
 		</a>
 	</div>
 </div>
+<?php if($flash): ?>
+<div class="flash-data" data-type="<?= $flash['type']; ?>" data-title="<?= $flash['title']; ?>"></div>
+<?php endif; ?>

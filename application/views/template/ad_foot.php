@@ -34,6 +34,22 @@
 			})
 		}
 		<?php if ($p == 'admin') { ?>
+		<?php if($flash): ?>
+			const flashType = $('.flash-data').data('type');
+			const flashTitle = $('.flash-data').data('title');
+			if (flashType || flashTitle) {
+				const Notif = Swal.mixin({
+					toast: true,
+					position: 'top-end',
+					showConfirmButton: false,
+					timer: 4000
+				});
+				Notif.fire({
+					type: flashType,
+					title:flashTitle
+				});
+			}
+		<?php endif; ?>
 			tampil_chart();
 			setInterval(function(){tampil_chart()},30000);
 			function tampil_chart() {
@@ -42,7 +58,7 @@
 				$.ajax({
 					type: "GET",
 					url: "<?= base_url('chart_data') ?>",
-					async: true,
+					async: false,
 					dataType: "json",
 					success: function (response) {
 						var i,tgl=[],jml=[];

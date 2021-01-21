@@ -22,6 +22,7 @@ class C_admin extends CI_Controller {
 		$data['jumlah_kriteria'] = $this->madmin->kriteria_all();
 		$data['jumlah_perhitungan'] = $this->madmin->perhitungan_all();
 		$data['most_freq'] = $this->madmin->most_frequent();
+		$data['flash'] = $this->session->flashdata('berhasil');
 		$data['title'] = 'Recommendation - Admin';
 		$this->load->view('template/ad_head', $data);
 		$this->load->view('back/dashboard', $data);
