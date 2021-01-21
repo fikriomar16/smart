@@ -44,12 +44,12 @@
 					url: "<?= base_url('del_admin/') ?>"+id_admin,
 					data: {'id_admin':id_admin},
 					success: function (data){
-						sukses_hapus();
+						toast_sukses_hapus();
 						$('#reload_tabel').trigger('click');
 						console.log(data);
 					},
 					error: function(data){
-						notif_gagal();
+						toast_gagal_hapus();
 					}
 				});
 			}
@@ -100,12 +100,12 @@
 					url: "<?= base_url('del_user/') ?>"+id_user,
 					data: {'id_user':id_user},
 					success: function (data){
-						sukses_hapus();
+						toast_sukses_hapus();
 						$('#reload_tabel').trigger('click');
 						console.log(data);
 					},
 					error: function(data){
-						notif_gagal();
+						toast_gagal_hapus();
 					}
 				});
 			}

@@ -35,13 +35,14 @@
 		}
 		<?php if ($p == 'admin') { ?>
 			tampil_chart();
+			setInterval(function(){tampil_chart()},30000);
 			function tampil_chart() {
 				var ctx;
 				ctx = $('#myChart');
 				$.ajax({
 					type: "GET",
 					url: "<?= base_url('chart_data') ?>",
-					async: false,
+					async: true,
 					dataType: "json",
 					success: function (response) {
 						var i,tgl=[],jml=[];
@@ -49,8 +50,6 @@
 							tgl.push(response[i].tanggal);
 							jml.push(response[i].jumlah);
 						}
-						console.log(tgl);
-						console.log(jml);
 						var myChart = new Chart(ctx, {
 							type: 'line',
 							data: {
@@ -109,7 +108,7 @@
 					"type": "POST"
 				},
 				"columnDefs": [{ 
-					"targets": [ -1 ],
+					"targets": [ 0,-1 ],
 					"orderable": false
 				}],
 				initComplete:function () {
@@ -151,10 +150,12 @@
 						cache: false,
 						async: false,
 						success: function(data){
-							$('#mdl_smart').modal('hide');notif_sukses();console.log(data);reload_tab_smart();
+							$('#mdl_smart').modal('hide');
+							toast_sukses_simpan();
+							reload_tab_smart();
 						},
 						error: function(data){
-							notif_gagal();
+							toast_gagal_simpan();
 						}
 					});
 				}
@@ -166,11 +167,11 @@
 					data: $('#form_del_smart').serialize(),
 					success: function (data){
 						$('#mdl_smart_del').modal('hide');
-						sukses_hapus();
+						toast_sukses_hapus();
 						reload_tab_smart();
 					},
 					error: function(data){
-						notif_gagal();
+						toast_gagal_hapus();
 					}
 				});
 			})
@@ -311,10 +312,10 @@
 					data: $('#form_tanya').serialize(),
 					success: function (data){
 						$('#mdl_tanya').modal('hide');
-						notif_sukses();tampil_pertanyaan();
+						toast_sukses_simpan();tampil_pertanyaan();
 					},
 					error: function(data){
-						notif_gagal();
+						toast_gagal_simpan();
 					}
 				});
 			})
@@ -345,10 +346,10 @@
 						url: "<?= base_url('simpan_config') ?>",
 						data: $('#form_setting').serialize(),
 						success: function (data){
-							notif_sukses();
+							toast_sukses_simpan();
 						},
 						error: function(data){
-							notif_gagal();
+							toast_gagal_simpan();
 						}
 					});
 				}
@@ -532,10 +533,10 @@
 						success: function (data){
 							showuseradmin();
 							$('#mdl_addadmin').modal('hide');
-							notif_sukses();
+							toast_sukses_simpan();
 						},
 						error: function(data){
-							notif_gagal();
+							toast_gagal_simpan();
 						}
 					});
 				}
@@ -592,10 +593,10 @@
 						success: function (data){
 							$('#mdl_adduser').modal('hide');
 							showuseradmin();
-							notif_sukses();
+							toast_sukses_simpan();
 						},
 						error: function(data){
-							notif_gagal();
+							toast_gagal_simpan();
 						}
 					});
 				}

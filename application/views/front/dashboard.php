@@ -15,49 +15,28 @@
 		background-size: cover;
 		border-radius: 50%;
 	}
-	.c {
-		padding: 15px;
-		margin-top: 120px;
-		margin-bottom: -110px;
-		box-shadow: 0 0 16px 1px;
-	}
-
-	.c img {
-		width: 100%;
-		object-fit: cover;
-		/* background-color: white; */
-		box-shadow: 0 3px 15px 6px;
-		border-radius: 10px;
-	}
-
-	.c .top-sec {
-		margin-top: -100px;
-		margin-bottom: 25px;
-	}
-
-	.card {
-		border-radius: 10px;
-	}
 </style>
+<?php
+$d = $detail_con->row();
+$session = $this->session->userdata('user');
+if ($session) { $url = base_url('list'); } else { $url = base_url('login'); }
+?>
 <div class="m-0">
-	<div class="row justify-content-center py-2">
+	<div class="row justify-content-center py-2 my-5 px-5">
 		<div class="col-md-4 mb-2">
-			<div class="card border-0 animated fadeInDownBig shadow h-100 c">
-				<div class="top-sec mx-3"><img class="img-fluid" src="<?= base_url('assets/img/sp.jpg') ?>"></div>
-				<center>
-					<?php $d = $detail_con->row(); ?>
-					<h4 class="font-weight-bold text-primary py-3"><?= $d->nama_aplikasi;?></h4>
-					<h5 class="font-weight-bold"><?= $d->nama_instansi;?></h5>
-					<p class="font-italic"><?= $d->alamat_instansi;?></p>
-					<?php
-					$session = $this->session->userdata('user');
-					if ($session) { $url = base_url('list'); } else { $url = base_url('login'); }
-					?>
-					<a href="<?= $url ?>" class="btn btn-primary btn-icon-split m-1">
-						<span class="icon text-white"><i class="fas fa-chevron-circle-right"></i></span>
-						<span class="text">Berikutnya</span>
-					</a>
-				</center>
+			<div class="card border-0 animated fadeInDownBig shadow-lg">
+				<img class="card-img-top img-fluid shadow-lg" src="<?= base_url('assets/img/sp.jpg') ?>">
+				<div class="card-body">
+					<center>
+						<h4 class="font-weight-bold text-primary py-3"><?= $d->nama_aplikasi;?></h4>
+						<h5 class="font-weight-bold"><?= $d->nama_instansi;?></h5>
+						<p class="font-italic"><?= $d->alamat_instansi;?></p>
+						<a href="<?= $url ?>" class="btn btn-primary btn-icon-split m-1">
+							<span class="icon text-white"><i class="fas fa-chevron-circle-right"></i></span>
+							<span class="text">Berikutnya</span>
+						</a>
+					</center>
+				</div>
 			</div>
 		</div>
 	</div>

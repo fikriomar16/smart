@@ -81,10 +81,10 @@
 						data: $('#form_adduser').serialize(),
 						success: function (data){
 							$('#mdl_adduser').modal('hide');
-							notif_sukses();
+							toast_sukses_simpan();
 						},
 						error: function(data){
-							notif_gagal();
+							toast_gagal_simpan();
 						}
 					});
 				}
@@ -418,12 +418,16 @@
 							console.log(data);
 						},
 						error: function(data){
-							// notif_gagal();
+							// toast_gagal_simpan();
 						}
 					});
 				});
 				var tab_pilih;
 				tab_pilih = $('#tab_pilih').DataTable({
+					"columnDefs": [{ 
+						"targets": [ -1,0 ],
+						"orderable": false
+					}],
 					"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
 					"oLanguage": {
 						"oPaginate": {					
@@ -475,8 +479,8 @@
 								}
 							} else {
 								for (i = 0; i < data.length; i++) {
-									html+= '<tr class="my-auto">'+
-									'<td>'+
+									html+= '<tr>'+
+									'<td class="pl-3">'+
 									'<div class="custom-control custom-checkbox">'+
 									'<input type="checkbox" class="custom-control-input" value="'+data[i].id+'" id="chk_boxes'+data[i].id+'" name="hp[]" onchange=""/>'+
 									'<label class="custom-control-label" for="chk_boxes'+data[i].id+'"></label>'+
@@ -514,7 +518,7 @@
 							console.log(data);
 						},
 						error: function(data){
-							// notif_gagal();
+							// toast_gagal_simpan();
 						}
 					});
 				});
@@ -539,7 +543,7 @@
 				// 			// setTimeout('window.location = "<?= base_url('hasil') ?>"; ',1000);
 				// 		},
 				// 		error: function(data){
-				// 			// notif_gagal();
+				// 			// toast_gagal_simpan();
 				// 		}
 				// 	});
 				// });

@@ -1,3 +1,52 @@
+function toast_sukses_simpan() {
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 4000
+	});
+	Toast.fire({
+		type: 'success',
+		title: 'Berhasil Menyimpan Data'
+	});
+}
+function toast_gagal_simpan() {
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 4000
+	});
+	Toast.fire({
+		type: 'error',
+		title: 'Gagal Menyimpan Data'
+	});
+}
+function toast_sukses_hapus() {
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 4000
+	});
+	Toast.fire({
+		type: 'success',
+		title: 'Berhasil Menghapus Data'
+	});
+}
+function toast_gagal_hapus() {
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 4000
+	});
+	Toast.fire({
+		type: 'error',
+		title: 'Gagal Menghapus Data'
+	});
+}
+
 function notif_sukses() {
 	swal({
 		position: 'top-right',
@@ -7,7 +56,6 @@ function notif_sukses() {
 		timer: 1000
 	});
 }
-
 function notif_gagal() {
 	swal({
 		position: 'top-right',
@@ -15,20 +63,18 @@ function notif_gagal() {
 		title: 'Gagal Menyimpan Data',
 		text: 'Terjadi Sebuah Kesalahan',
 		showConfirmButton: false,
-		timer: 2000
+		timer: 1000
 	});
 }
-
 function sukses_hapus() {
 	swal({
 		position: 'top-right',
 		type: 'success',
 		title: 'Berhasil Menghapus Data',
 		showConfirmButton: false,
-		timer: 1500
+		timer: 1000
 	});
 }
-
 function gagal_hapus() {
 	swal({
 		position: 'top-right',
@@ -39,7 +85,6 @@ function gagal_hapus() {
 		timer: 2000
 	});
 }
-
 function sukses_simpan_bantuan() {
 	swal({
 		type: 'success',
@@ -49,7 +94,6 @@ function sukses_simpan_bantuan() {
 		timer: 2500
 	});
 }
-
 function sukses_reset() {
 	swal({
 		type: 'success',
@@ -59,7 +103,6 @@ function sukses_reset() {
 		timer: 2000
 	});
 }
-
 function gagal_reset() {
 	swal({
 		type: 'error',
@@ -69,7 +112,6 @@ function gagal_reset() {
 		timer: 2000
 	});
 }
-
 function sukses_login() {
 	swal({
 		type: 'success',
@@ -78,7 +120,6 @@ function sukses_login() {
 		timer: 2000
 	});
 }
-
 function sukses_masuk(param) {
 	swal({
 		type: 'success',
@@ -97,7 +138,6 @@ function gagal_login() {
 		timer: 2000
 	});
 }
-
 function tidak_ditemukan() {
 	swal({
 		type: 'error',

@@ -174,7 +174,7 @@ class C_smartphone extends CI_Controller {
 					'foto' => $old_image
 				);
 				$result = $this->msmart->update_smartphone($id,$isi);
-				echo json_encode($old_image);
+				echo json_encode($isi);
 			}
 		}
 		else{
@@ -224,7 +224,6 @@ class C_smartphone extends CI_Controller {
 				$result = $this->msmart->update_smartphone($id,$isi);
 				echo json_encode($isi);
 			}
-			
 		}
 	}
 
@@ -235,8 +234,7 @@ class C_smartphone extends CI_Controller {
 		$old_image = $get_old_image->foto;
 		unlink('./assets/img/smartphone/'.$old_image);
 		$result = $this->msmart->delete_smartphone($id);
-		// echo json_encode($result);
-		print_r($get_old_image);
+		echo json_encode($result);
 	}
 
 	public function jumlah_smartphone()
