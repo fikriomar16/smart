@@ -46,7 +46,7 @@ if ($platform=="Android" || $platform=="iOS") {
 				<?php for ($j=0; $j < $limit; $j++) { ?>
 				<?php $value = select_smart($result[$j]['id_smartphone']) ?>
 					<div class="<?= $cardsize ?> <?= $size ?> mb-2">
-						<div class="card shadow h-100">
+						<div class="card border-0 shadow-sm h-100">
 							<div class="card-header">
 								<h5 class="font-weight-bold text-center text-primary">Rangking <?= $j+1 ?></h5>
 							</div>

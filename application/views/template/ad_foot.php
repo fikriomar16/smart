@@ -73,9 +73,17 @@
 								datasets: [{
 									label: 'Jumlah Pencarian Dalam Perhari',
 									data: jml,
-									backgroundColor: 'rgba(54, 162, 235, 0.2)',
-									borderColor: 'rgba(54, 162, 235, 1)',
-									borderWidth: 1
+									lineTension: 0.3,
+									backgroundColor: "rgba(78, 115, 223, 0.05)",
+									borderColor: "rgba(78, 115, 223, 1)",
+									pointRadius: 3,
+									pointBackgroundColor: "rgba(78, 115, 223, 1)",
+									pointBorderColor: "rgba(78, 115, 223, 1)",
+									pointHoverRadius: 3,
+									pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+									pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+									pointHitRadius: 10,
+									pointBorderWidth: 2
 								}]
 							},
 							options: {

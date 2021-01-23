@@ -13,8 +13,8 @@ class M_smartphone extends CI_Model {
 	{
 		$table = 'tbl_smartphone';
 		$order = array('merk' => 'asc');
-		$column_order = array('id','merk','seri','display','kamera_depan','kamera_belakang','ram','rom','cpu','chipset','os','baterai','harga','foto',null);
-		$column_search = array('id','merk','seri','display','kamera_depan','kamera_belakang','ram','rom','cpu','chipset','os','baterai','harga','foto');
+		$column_order = array(null,'merk','seri','display','ram','rom','kamera_belakang','cpu','chipset','os','baterai','harga');
+		$column_search = array('merk','seri','display','ram','rom','kamera_belakang','kamera_depan','cpu','chipset','os','baterai','harga');
 
 		$this->db->from('tbl_smartphone');
 		$i = 0;

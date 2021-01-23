@@ -127,10 +127,10 @@
 					<span class="text">Reload Tabel</span>
 				</button>
 				<?php if ($this->session->userdata('admin')['hak_akses']=='sadmin') { ?>
-				<button type="button" class="btn btn-info btn-icon-split btn-sm mb-4" onclick="mdl_addmin();" data-toggle="tooltip" data-placement="right" title="Tambah Data">
-					<span class="icon text-white-50"><i class="fas fa-plus"></i></span>
-					<span class="text">Tambah</span>
-				</button>
+					<button type="button" class="btn btn-info btn-icon-split btn-sm mb-4" onclick="mdl_addmin();" data-toggle="tooltip" data-placement="right" title="Tambah Data">
+						<span class="icon text-white-50"><i class="fas fa-plus"></i></span>
+						<span class="text">Tambah</span>
+					</button>
 				<?php } ?>
 				<div class="table-responsive">
 					<table class="table table-hover" id="tab_admin">
@@ -149,7 +149,6 @@
 					</table>
 				</div>
 			</div>
-			<div class="card-footer"></div>
 		</div>
 	</div>
 </div>
@@ -159,32 +158,33 @@
 <div class="row">
 	<div class="col-lg-12">
 		<div class="card border-bottom-info shadow mb-4">
-			<div class="card-header py-3">
+			<a href="#cardUser" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
 				<h6 class="text-center m-0 font-weight-bold text-secondary">Data User</h6>
-			</div>
-			<div class="card-body">
-				<button type="button" class="btn btn-info btn-icon-split btn-sm mb-4" onclick="mdl_adduser();" data-toggle="tooltip" data-placement="right" title="Tambah Data">
-					<span class="icon text-white-50"><i class="fas fa-plus"></i></span>
-					<span class="text">Tambah</span>
-				</button>
-				<div class="table-responsive">
-					<table class="table table-hover" id="tab_user">
-						<thead class="thead-light">
-							<tr>
-								<th>No</th>
-								<th>Nama</th>
-								<th>Username</th>
-								<!-- <th>Password</th> -->
-								<th>Login Terakhir</th>
-								<th class="text-center">Opsi</th>
-							</tr>
-						</thead>
-						<tbody id="show_user">
-						</tbody>
-					</table>
+			</a>
+			<div class="collapse" id="cardUser">
+				<div class="card-body">
+					<button type="button" class="btn btn-info btn-icon-split btn-sm mb-4" onclick="mdl_adduser();" data-toggle="tooltip" data-placement="right" title="Tambah Data">
+						<span class="icon text-white-50"><i class="fas fa-plus"></i></span>
+						<span class="text">Tambah</span>
+					</button>
+					<div class="table-responsive">
+						<table class="table table-hover" id="tab_user">
+							<thead class="thead-light">
+								<tr>
+									<th>No</th>
+									<th>Nama</th>
+									<th>Username</th>
+									<!-- <th>Password</th> -->
+									<th>Login Terakhir</th>
+									<th class="text-center">Opsi</th>
+								</tr>
+							</thead>
+							<tbody id="show_user">
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
-			<div class="card-footer"></div>
 		</div>
 	</div>
 </div>

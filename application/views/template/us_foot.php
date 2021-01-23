@@ -357,7 +357,7 @@
 						text = 'class="small px-2 my-0"';
 					} else {
 						cardsize = 'col-md-2';
-						imgsize = ' style="height: 125px;width: auto;"';
+						imgsize = ' style="height: 100px;width: auto;"';
 						text = 'class="px-3 my-0"';
 					}
 					sno = Number(sno);
@@ -373,7 +373,7 @@
 						var rom = result[index].rom;
 						sno+=1;
 						isi+= '<div class="'+cardsize+' mb-2">'+
-						'<div class="card shadow h-100">'+
+						'<div class="card border-0 h-100">'+
 						'<center>'+
 						'<img class="card-img-top img-responsive img-fluid" src="<?= base_url("assets/img/smartphone/") ?>'+foto+'" alt="Smartphone" '+imgsize+'>'+
 						'</center>'+
@@ -384,7 +384,7 @@
 						'<li>Rp. '+konversi(harga)+'</li>'+
 						'</ul>'+
 						'</div>'+
-						'<div class="card-footer">'+
+						'<div class="card-footer bg-white">'+
 						'<button class="btn btn-sm btn-block btn-primary" onclick="det_smart('+id+')">'+
 						'<i class="fas fa-eye"></i>&nbsp; Detail'+
 						'</button>'+

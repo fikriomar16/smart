@@ -77,12 +77,11 @@ if ($platform=="Android" || $platform=="iOS") {
 						</form>
 					</div>
 				</div>
-				<div class="row justify-content-center py-2" id="data_list">
-				</div>
-				<div class="float-right align-content-center" id='pagination'></div>
+				<div class="row justify-content-center py-2" id="data_list"></div>
+				<div class="float-right justify-content-center" id='pagination'></div>
 			</div>
 			<div class="card-footer text-center">
-				<a href="<?= base_url('opsi') ?>" class="btn btn-primary btn-icon-split m-1 <?= $btn ?>">
+				<a href="<?= base_url('opsi') ?>" class="btn btn-primary btn-icon-split m-1">
 					<span class="icon text-white"><i class="fas fa-search"></i></span>
 					<span class="text">Cari Rekomendasi</span>
 				</a>

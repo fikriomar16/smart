@@ -115,9 +115,9 @@ class M_admin extends CI_Model {
 	public function _get_datatables_query()
 	{
 		$i = 0;
-		$order = ['id'=>'asc'];
-		$column_order = array('id','tanggal','skor_akhir','nama',null);
-		$column_search = array('tanggal','skor_akhir','nama','merk','seri');
+		$order = ['tanggal'=>'asc'];
+		$column_order = array(null,'tanggal','merk','skor_akhir','nama');
+		$column_search = array('tanggal','merk','seri','skor_akhir','nama');
 		$this->db->select('tbl_perhitungan.tanggal, tbl_smartphone.merk, tbl_smartphone.seri, tbl_detail_perhitungan.id_detail, tbl_detail_perhitungan.id_perhitungan, tbl_detail_perhitungan.skor_akhir, tbl_user.nama');
 		$this->db->from('tbl_detail_perhitungan');
 		$this->db->join('tbl_smartphone', 'tbl_detail_perhitungan.id_smartphone = tbl_smartphone.id', 'inner');

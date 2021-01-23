@@ -12,8 +12,8 @@
 					foreach ($pertanyaan as $key => $row){
 					?>
 					<input type="text" name="id_kriteria[]" value="<?= $row->id_kriteria ?>" hidden>
+					<p class="font-weight-bold"><?= $i; ?>. <?= $row->pertanyaan; ?></p>
 					<?php if ($row->id_kriteria != 9) { ?>
-						<p><?= $i; ?>. <?= $row->pertanyaan; ?></p>
 						<div class="custom-control custom-radio custom-control-inline">
 							<input type="radio" id="bbt<?= $i ?>" name="bobot<?= $i ?>" class="custom-control-input" value="20">
 							<label class="custom-control-label" for="bbt<?= $i ?>">Ya</label>
@@ -24,7 +24,6 @@
 						</div>
 						<hr>
 					<?php } else { ?>
-						<p><?= $i; ?>. <?= $row->pertanyaan; ?></p>
 						<div class="custom-control custom-radio custom-control-inline">
 							<input type="radio" id="bbt<?= $i ?>" name="bobot<?= $i ?>" class="custom-control-input" value="10">
 							<label class="custom-control-label" for="bbt<?= $i ?>">Ya</label>
