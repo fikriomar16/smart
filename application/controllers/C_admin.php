@@ -238,7 +238,7 @@ class C_admin extends CI_Controller {
 		echo json_encode($result);
 	}
 
-	public function get_perhitungan()
+	public function getperhitungan()
 	{
 		$sesi = $this->session->userdata('admin');
 		if (!$sesi) {
@@ -246,6 +246,33 @@ class C_admin extends CI_Controller {
 		}
 		$get = $this->madmin->list_perhitungan();
 		echo json_encode($get);
+	}
+	public function get_perhitungan()
+	{
+		$sesi = $this->session->userdata('admin');
+		if (!$sesi) {
+			redirect('beranda');
+		}
+		$list = $this->madmin->get_datatables();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $sp) {
+			$no++;
+			$row = array();
+			$row[] = $no;
+			$row[] = $sp->tanggal;
+			$row[] = $sp->merk.' - '.$sp->seri;
+			$row[] = $sp->skor_akhir;
+			$row[] = $sp->nama;
+			$data[] = $row;
+		}
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->madmin->count_all(),
+			"recordsFiltered" => $this->madmin->count_filtered(),
+			"data" => $data,
+		);
+		echo json_encode($output);
 	}
 
 	public function cekusername_user()

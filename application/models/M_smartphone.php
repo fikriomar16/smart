@@ -68,7 +68,7 @@ class M_smartphone extends CI_Model {
 	}
 	public function get_by_id($id)
 	{
-		$this->db->from($this->$table);
+		$this->db->from('tbl_smartphone');
 		$this->db->where('id',$id);
 		$query = $this->db->get();
 

@@ -196,23 +196,32 @@
 			<?php if ($p == 'login'  || $p == 'masuk') { ?>
 				nocaps_space();
 				$('#btn_flogin').click(function () {
-					$.ajax({
-						type: "POST",
-						url: "<?= base_url('check') ?>",
-						data: $('#flogin').serialize(),
-						success: function (data){
-							if (data == 'benar') {
-								sukses_login();
-								setTimeout('window.location = "<?= base_url('admin') ?>"; ',1000);
-							} else {
-								gagal_login();
+					var user = $('#username').val();
+					var pass = $('#password').val();
+					var as = $('input[type=radio]:checked').length;
+					if (user == '' || pass == '') {
+						Swal('Username / Password Tidak Boleh Kosong','','error');
+					} else if (as < 1) {
+						Swal('Pilih Masuk Sebagai :','','warning');
+					} else {
+						$.ajax({
+							type: "POST",
+							url: "<?= base_url('check') ?>",
+							data: $('#flogin').serialize(),
+							success: function (data){
+								if (data == 'benar') {
+									sukses_login();
+									setTimeout('window.location = "<?= base_url('admin') ?>"; ',1000);
+								} else {
+									gagal_login();
+								}
+							},
+							error: function(data){
+								console.log(data);
 							}
-						},
-						error: function(data){
-							console.log(data);
-						}
-					});
-				})
+						});
+					}
+				});
 			<?php } ?>
 			<?php if ($p == 'resetpass') { ?>
 				var password_conf = $('#password_conf');

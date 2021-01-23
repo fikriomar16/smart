@@ -620,9 +620,24 @@
 			<?php } ?>
 
 			<?php if ($p == 'perhitungan') { ?>
-			tampil_perhitungan();
 			var tab_perhitungan;
-			tab_perhitungan = $('#tab_perhitungan').DataTable();
+			tab_perhitungan = $('#tab_perhitungan').DataTable({
+				"processing": true,
+				"serverSide": true,
+				"order": [],
+				"ajax": {
+					"url": "<?= base_url('list_perhitungan')?>",
+					"type": "POST"
+				},
+				"columnDefs": [{ 
+					"targets": [ 0 ],
+					"orderable": false
+				}],
+				initComplete:function () {
+					$('#perhitungan thead tr th').addClass("align-middle text-center");
+					$('#show_perhitungan tr td').addClass("align-middle");
+				}
+			});
 			function tampil_perhitungan() {
 				$.ajax({
 					type: "ajax",

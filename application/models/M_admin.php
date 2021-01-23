@@ -112,6 +112,56 @@ class M_admin extends CI_Model {
 		$this->db->from('tbl_perhitungan');
 		return $this->db->count_all_results();
 	}
+	public function _get_datatables_query()
+	{
+		$i = 0;
+		$order = ['id'=>'asc'];
+		$column_order = array('id','tanggal','skor_akhir','nama',null);
+		$column_search = array('tanggal','skor_akhir','nama','merk','seri');
+		$this->db->select('tbl_perhitungan.tanggal, tbl_smartphone.merk, tbl_smartphone.seri, tbl_detail_perhitungan.id_detail, tbl_detail_perhitungan.id_perhitungan, tbl_detail_perhitungan.skor_akhir, tbl_user.nama');
+		$this->db->from('tbl_detail_perhitungan');
+		$this->db->join('tbl_smartphone', 'tbl_detail_perhitungan.id_smartphone = tbl_smartphone.id', 'inner');
+		$this->db->join('tbl_perhitungan', 'tbl_detail_perhitungan.id_perhitungan = tbl_perhitungan.id_perhitungan', 'inner');
+		$this->db->join('tbl_user', 'tbl_detail_perhitungan.id_user = tbl_user.id_user', 'inner');
+		foreach ($column_search as $item) {
+			if ($_POST['search']['value']) {
+				if ($i===0) {
+					$this->db->group_start();
+					$this->db->like($item, $_POST['search']['value']);
+				} else {
+					$this->db->or_like($item, $_POST['search']['value']);
+				}
+				if (count($column_search) - 1 == $i) {
+					$this->db->group_end();
+				}
+			}
+			$i++;
+			if (isset($_POST['order'])) {
+				$this->db->order_by($column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+			} elseif (isset($order)) {
+				$this->db->order_by(key($order), $order[key($order)]);
+			}
+		}
+	}
+	function get_datatables()
+	{
+		$this->_get_datatables_query();
+		if($_POST['length'] != -1)
+			$this->db->limit($_POST['length'], $_POST['start']);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	function count_filtered()
+	{
+		$this->_get_datatables_query();
+		$query = $this->db->get();
+		return $query->num_rows();
+	}
+	public function count_all()
+	{
+		$this->db->from('tbl_detail_perhitungan');
+		return $this->db->count_all_results();
+	}
 
 	public function most_frequent()
 	{
