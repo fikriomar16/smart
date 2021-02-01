@@ -74,51 +74,53 @@ if ($platform=="Android" || $platform=="iOS") {
 <div class="row justify-content-center py-2 mb-4">
 	<div class="col-md-12">
 		<div class="card shadow animated fadeInDownBig border-left-info shadow h-100 py-2 my-3">
-			<div class="card-header">
+			<a href="#cardRincian" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
 				<h6 class="font-weight-bold text-info text-center">Rincian Perhitungan</h6>
-			</div>
-			<div class="card-body">
-			<?php for ($k=0; $k < $limit; $k++) { ?>
-			<?php $value = select_smart($result[$k]['id_smartphone']) ?>
-				<div class="row">
-					<div class="col-md-10">
-						<h5>Rangking : <?= $k+1 ?></h5>
-						<h4 class="font-weight-bold text-primary"><?= ' '.$value->merk.' '. $value->seri ?></h4>
-					</div>
-					<div class="col-md-2">
-					</div>
+			</a>
+			<div class="collapse" id="cardRincian">
+				<div class="card-body">
+					<?php for ($k=0; $k < $limit; $k++) { ?>
+						<?php $value = select_smart($result[$k]['id_smartphone']) ?>
+						<div class="row">
+							<div class="col-md-10">
+								<h5>Rangking : <?= $k+1 ?></h5>
+								<h4 class="font-weight-bold text-primary"><?= ' '.$value->merk.' '. $value->seri ?></h4>
+							</div>
+							<div class="col-md-2">
+							</div>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-sm table-hover table-borderless table-striped">
+								<thead class="thead-dark">
+									<tr>
+										<th>Kriteria</th>
+										<th>Value Utilities</th>
+										<th>Normalisasi</th>
+										<th>Total</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php for($l = 0; $l < sizeof($temp_hasil[$k]); $l++) { ?>
+										<tr>
+											<td><?= $temp_hasil[$k][$l]['kriteria']->kriteria ?></td>
+											<td><?= round($temp_hasil[$k][$l]['values_util'],4) ?></td>
+											<td><?= number_format($temp_hasil[$k][$l]['normalisasi'],4) ?></td>
+											<td><?= round($temp_hasil[$k][$l]['total'],4) ?></td>
+										</tr>
+									<?php } ?>
+								</tbody>
+							</table>
+						</div>
+						<div class="row">
+							<div class="col-md-10">
+							</div>
+							<div class="col-md-2">
+								<h5 class="text-danger"><?= 'Score : '.number_format($result[$k]['final_score'],4) ?></h5>
+							</div>
+						</div>
+						<hr>
+					<?php } ?>
 				</div>
-				<div class="table-responsive">
-					<table class="table table-sm table-hover table-borderless table-striped">
-						<thead class="thead-dark">
-							<tr>
-								<th>Kriteria</th>
-								<th>Value Utilities</th>
-								<th>Normalisasi</th>
-								<th>Total</th>
-							</tr>
-						</thead>
-						<tbody>
-						<?php for($l = 0; $l < sizeof($temp_hasil[$k]); $l++) { ?>
-							<tr>
-								<td><?= $temp_hasil[$k][$l]['kriteria']->kriteria ?></td>
-								<td><?= round($temp_hasil[$k][$l]['values_util'],4) ?></td>
-								<td><?= number_format($temp_hasil[$k][$l]['normalisasi'],4) ?></td>
-								<td><?= round($temp_hasil[$k][$l]['total'],4) ?></td>
-							</tr>
-						<?php } ?>
-						</tbody>
-					</table>
-				</div>
-				<div class="row">
-					<div class="col-md-10">
-					</div>
-					<div class="col-md-2">
-						<h5 class="text-danger"><?= 'Score : '.number_format($result[$k]['final_score'],4) ?></h5>
-					</div>
-				</div>
-				<hr>
-			<?php } ?>
 			</div>
 			<div class="card-footer text-center">
 				<a class="btn btn-primary btn-block" href="<?= base_url('opsi') ?>">

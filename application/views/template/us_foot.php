@@ -454,10 +454,10 @@
 					"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
 					"oLanguage": {
 						"oPaginate": {					
-							"sFirst": "Awal",
-							"sLast": "Akhir",
-							"sNext": "Selanjutnya",
-							"sPrevious": "Sebelumnya"
+							"sFirst": "&laquo;",
+							"sLast": "&raquo;",
+							"sNext": "&rsaquo;",
+							"sPrevious": "&lsaquo;"
 						},
 						"sSearch": "Cari :",
 						"sSearchPlaceholder": "",
